@@ -45,14 +45,18 @@ screen inventoryScreen():
                     # If this slot is equipped
                     if Inventory.isEquipped(index):
 
-                        # Custom statement
-                        marker "fc1"
+                        # Custom screen statement
+                        marker:
+                            color "fc1"
+                            xysize (165, 165)
 
                     # If this slot is selected
                     if Inventory.isSelected(index):
 
-                        # Custom statement
-                        marker "f00"
+                        # Custom screen statement
+                        marker:
+                            color "f00"
+                            xysize (150, 150)
 
                     action Function( Inventory.selectToggle , index )
                     

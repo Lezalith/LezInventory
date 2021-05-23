@@ -1,10 +1,10 @@
 python early:
-    renpy.register_sl_statement("marker", children=0).add_positional("color")
+    renpy.register_sl_statement("marker", children="many").add_property("color").add_property("xysize")
 
-screen marker(color):
+screen marker(color = "fff", xysize = (155, 155) ):
 
     fixed:
-        xysize (155, 155)
+        xysize xysize
         align (0.5, 0.5)
 
         add Solid(color):
