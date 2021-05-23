@@ -69,6 +69,11 @@ init -900 python:
             # Pop the noted Item index
             self.inventory.pop( toRemove )
 
+            # If we try to pop it straight away before unselecting it,
+            # the screen manages to render one more time, and throws
+            # an error because it doesn't find the selected item
+            # inside the inventory.
+
             # Check pages whether we don't have
             # (an) empty one(s) after the removal.
             self.checkPages()
