@@ -24,8 +24,6 @@ init -890 python:
 
         def __init__(self, name, desc, image = None):
 
-            print( str( locals() ) )
-
             # Name of the Item.
             self.name = name
 
@@ -72,6 +70,10 @@ init -890 python:
 
         # What happens when the Item is Equipped.
         def equipped(self):
+            return None 
+
+        # What happens when the Item is Unequipped.
+        def unequipped(self):
             return None
 
     ###########################################
@@ -86,7 +88,7 @@ init -890 python:
 
         "Class for usable Items."
 
-        def __init__(self, name, desc, image):
+        def __init__(self, name, desc, image = None):
 
             # Gets all the arguments.
             args = locals()
@@ -122,7 +124,9 @@ init -890 python:
         
         # What happens when the Item is used.
         def used(self):
-            return renpy.notify("An Item {} has been used!".format(self.name)) 
+
+            return print("An Item {} has been used!".format(self.name))
+            # return renpy.notify("An Item {} has been used!".format(self.name)) 
 
     ###########################################
     ###########################################
@@ -136,7 +140,7 @@ init -890 python:
 
         "Class for usable Items."
 
-        def __init__(self, name, desc, image):
+        def __init__(self, name, desc, image = None):
 
             # Gets all the arguments.
             args = locals()
@@ -172,4 +176,12 @@ init -890 python:
         
         # What happens when the Item is equipped.
         def equipped(self):
-            return renpy.notify("An Item {} has been equipped!".format(self.name)) 
+
+            return print("An Item {} has been equipped!".format(self.name))
+            # return renpy.notify("An Item {} has been equipped!".format(self.name)) 
+        
+        # What happens when the Item is unequipped.
+        def unequipped(self):
+
+            return print("An Item {} has been unequipped!".format(self.name))
+            # return renpy.notify("An Item {} has been unequipped!".format(self.name)) 

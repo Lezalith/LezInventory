@@ -106,7 +106,7 @@ init -900 python:
         def changePage(self, direction):
 
             # Only on one page - Cannot move anywhere.
-            if self.getPages()[1] == 1:
+            if self.getPages()[1] == 0:
                 return None
 
             # Going up.
@@ -289,12 +289,24 @@ init -900 python:
         # Equip currently selected item.
         def equip(self):
 
+            # Something was already equipped
+            if self.equippedSlot != None:
+
+                # Unequip it first.
+                self.unequip()
+
             self.equippedSlot = self.selectedSlot
+
+            # Call Item's equipped() method.
+            self.getSelectedItem().equipped()
 
         # Unequip currently equipped item.
         def unequip(self):
 
             self.equippedSlot = None
+
+            # Call Item's unequipped() method.
+            self.getSelectedItem().unequipped()
 
         # Returns currently equipped Item
         def getEquippedItem(self):
