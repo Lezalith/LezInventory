@@ -45,42 +45,14 @@ screen inventoryScreen():
                     # If this slot is equipped
                     if Inventory.isEquipped(index):
 
-                        fixed:
-                            xysize (155, 155)
-                            align (0.5, 0.5)
-
-                            add Solid("fc1"):
-                                size (15, 15)
-                                align(0.0, 0.0)
-                            add Solid("fc1"):
-                                size (15, 15)
-                                align(1.0, 0.0)
-                            add Solid("fc1"):
-                                size (15, 15)
-                                align(1.0, 1.0)
-                            add Solid("fc1"):
-                                size (15, 15)
-                                align(0.0, 1.0)  
+                        # Custom statement
+                        marker "fc1"
 
                     # If this slot is selected
                     if Inventory.isSelected(index):
 
-                        fixed:
-                            xysize (175, 175)
-                            align (0.5, 0.5)
-
-                            add Solid("f00"):
-                                size (15, 15)
-                                align(0.0, 0.0)
-                            add Solid("f00"):
-                                size (15, 15)
-                                align(1.0, 0.0)
-                            add Solid("f00"):
-                                size (15, 15)
-                                align(1.0, 1.0)
-                            add Solid("f00"):
-                                size (15, 15)
-                                align(0.0, 1.0)  
+                        # Custom statement
+                        marker "f00"
 
                     action Function( Inventory.selectToggle , index )
                     
