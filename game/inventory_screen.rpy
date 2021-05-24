@@ -1,10 +1,18 @@
 
-style inventory_frame:
+##########################
+## The Main Frame
+##########################
+
+style inventory_main_frame:
 
     xysize (1280, 720)
     align (0.5, 0.5)
 
-style inventory_grid:
+##########################
+## The Grid with Slots
+##########################
+
+style inventory_slots_grid:
 
     xpos 100
     yalign 0.5
@@ -12,10 +20,27 @@ style inventory_grid:
     xspacing 50
     yspacing 15
 
-style inventory_button:
+style inventory_slot:
 
-    background Frame("gui/frame.png", 6, 6, 6, 6)
+    background Frame("inventory/gui/slot.png", 6, 6, 6, 6)
+    selected_background Frame("inventory/gui/selected_slot.png", 6, 6, 6, 6)
     xysize (180, 180)
+
+# Not used yet
+style inventory_slot_image:
+
+    align (0.5, 0.5)
+
+style inventory_slot_empty:
+
+    background Frame("inventory/gui/slot.png", 6, 6, 6, 6)
+    xysize (180, 180)
+
+# 
+
+##########################
+## 
+##########################
 
 style inventory_pages_text:
 
@@ -44,13 +69,16 @@ screen inventoryScreen():
     add Solid("c0c0c0")
 
     # Frame of the Inventory
-    frame:
+    frame: # <style: inventory_frame>
 
         style_prefix "inventory"
+        style_suffix "main_frame"
 
         # Grid of all the Inventory Slots.
         # The grid size depends on the defined "grid" of an inventory.
         grid Inventory.grid["width"] Inventory.grid["heigth"]:
+
+            style_suffix "slots_grid" # Style: inventory_slots_grid
 
             # .getPageItems() fetches items that are supposed 
             # to be shown on the current inventory page.
@@ -62,6 +90,8 @@ screen inventoryScreen():
                 # Has a background to also function as a frame around the item.
                 button:
 
+                    style_suffix "slot" # Style: inventory_slot
+
                     # Test whether this slot is Equipped.
                     if Inventory.isEquipped(index):
 
@@ -70,13 +100,23 @@ screen inventoryScreen():
                             color "fc1"
                             xysize (165, 165)
 
-                    # Test whether this slot is Selected.
-                    if Inventory.isSelected(index):
+                    #######################################################################
+                    # Used before Slots got different backgrounds through "selected" below.
+                    # Adds the same marker from Equipped slot
+                    # to a Selected slot, in different color.
+                    #
+                    # # Test whether this slot is Selected.
+                    # if Inventory.isSelected(index):
+                    #
+                    #     # Custom screen statement. Check 01marker.rpy.
+                    #     marker:
+                    #         color "f00"
+                    #         xysize (150, 150)
+                    ##################################
 
-                        # Custom screen statement. Check 01marker.rpy.
-                        marker:
-                            color "f00"
-                            xysize (150, 150)
+                    # We further use .isSelected as means of telling Ren'Py
+                    # when the button is selected, for example for background purposes.
+                    selected Inventory.isSelected(index)
 
                     # Triggers .selectToggle(), a method which manages
                     # selecting and deselecting items.
@@ -84,8 +124,12 @@ screen inventoryScreen():
                     
                     # An Image of the item inside the frame.
                     add item.image:
-                        align (0.5, 0.5)
 
+                        # Normally I would put style_suffix "slot_image" here, but
+                        # as it turns out, add cannot have a style.
+                        # So this is one of the few properties we have to manually write here. 
+                        align (0.5, 0.5)
+                        
             # .getEmptyCells() fetches the number of cells that have
             # been left empty on a non-full page and fills them with empty space.
             #
@@ -95,6 +139,8 @@ screen inventoryScreen():
                 # One Empty Slot.
                 # Also has a background to function as a frame around the "item".
                 button:
+
+                    style_suffix "slot_empty" # Style: inventory_slot_empty                    
 
                     # Unselects the selected item.
                     action Function( Inventory.unselect )
