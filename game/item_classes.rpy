@@ -48,6 +48,14 @@ init -890 python:
             self.equippable = False
 
         ############################
+        ## Getters
+        ############################
+
+        def getImage(self):
+
+            return self.image
+
+        ############################
         ## Checks
         ############################
 

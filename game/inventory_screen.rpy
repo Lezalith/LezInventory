@@ -23,7 +23,7 @@ style inventory_slots_grid:
 style inventory_slot:
 
     background Frame("inventory/gui/slot.png", 6, 6, 6, 6)
-    selected_background Frame("inventory/gui/selected_slot.png", 6, 6, 6, 6)
+    selected_background Frame("inventory/gui/slot_selected.png", 6, 6, 6, 6)
     xysize (180, 180)
 
 # Not used yet
@@ -123,7 +123,7 @@ screen inventoryScreen():
                     action Function( Inventory.selectToggle , index )
                     
                     # An Image of the item inside the frame.
-                    add item.image:
+                    add item.getImage():
 
                         # Normally I would put style_suffix "slot_image" here, but
                         # as it turns out, add cannot have a style.
@@ -173,13 +173,13 @@ screen inventoryScreen():
                 # Frame around the Slot.
                 frame:
 
-                    background Frame("gui/frame.png", 6, 6, 6, 6)
+                    background Frame("inventory/gui/slot_equipped.png", 6, 6, 6, 6)
                     xysize (200, 200)
                     xalign 0.5
 
                     # If there is an Equipped Item, add its Image in the middle.
                     if Inventory.getEquippedItem():
-                        add Inventory.getEquippedItem().image:
+                        add Inventory.getEquippedItem().getImage():
                             align (0.5, 0.5)
 
                     # If there is an Equipped Item, create a marker around it.
