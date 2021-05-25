@@ -5,3 +5,4 @@ errors.txt
 *.bak
 game/cache/
 game/saves/
+.rpymc

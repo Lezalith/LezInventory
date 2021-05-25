@@ -3,6 +3,7 @@
 ## The Main Frame
 ##########################
 
+# Main window of the Inventory.
 style inventory_main_frame:
 
     xysize (1280, 720)
@@ -12,31 +13,54 @@ style inventory_main_frame:
 ## The Grid with Slots
 ##########################
 
+# Grid of the Item Slots
 style inventory_slots_grid:
-
     xpos 100
     yalign 0.5
     yoffset -35
     xspacing 50
     yspacing 15
 
+# One Slot for an Item inside the grid, when the slot is full.
 style inventory_slot:
-
     background Frame("inventory/gui/slot.png", 6, 6, 6, 6)
     selected_background Frame("inventory/gui/slot_selected.png", 6, 6, 6, 6)
     xysize (180, 180)
 
-# Not used yet
-style inventory_slot_image:
-
-    align (0.5, 0.5)
-
+# One Slot for an Item inside the grid, when the slot is empty.
 style inventory_slot_empty:
-
     background Frame("inventory/gui/slot.png", 6, 6, 6, 6)
     xysize (180, 180)
 
-# 
+##########################
+##  Side Menu
+##########################
+
+# Frame that contains everything in the Side Menu.
+style side_menu_frame:
+    background None
+    xysize(400, 660)
+    align (1.0, 0.5)
+    xoffset -30
+
+# Vbox that contains the "Equipped Item" label, 
+# and the Equipped Slot.
+style side_menu_vbox_equipped:
+    align (0.5, 0.06)
+    spacing 5
+
+# The "Equipped Item" label.
+# Has no properties at the time of writing.
+# style side_menu_vbox_equipped_text:
+#     example 123
+
+# The Equipped Slot.
+style side_menu_vbox_equipped_slot:
+    background Frame("inventory/gui/slot_equipped.png", 6, 6, 6, 6)
+    xysize (200, 200)
+    xalign 0.5
+
+
 
 ##########################
 ## 
@@ -69,10 +93,10 @@ screen inventoryScreen():
     add Solid("c0c0c0")
 
     # Frame of the Inventory
-    frame: # <style: inventory_frame>
+    frame: 
 
         style_prefix "inventory"
-        style_suffix "main_frame"
+        style_suffix "main_frame" # Style: inventory_main_frame
 
         # Grid of all the Inventory Slots.
         # The grid size depends on the defined "grid" of an inventory.
@@ -152,35 +176,33 @@ screen inventoryScreen():
         # Frame, without a background.
         frame:
 
-            style_prefix None
-
-            background None
-            xysize(400, 660)
-            align (1.0, 0.5)
-            xoffset -30
+            style_prefix "side_menu"
+            style_suffix "frame" # Style: side_menu_frame
 
             # A vertical box. This one contains:
             # 1) The "Equipped Item:" label 
             # 2) Slot with an equipped Item
             vbox:
 
-                align (0.5, 0.06)
-                spacing 5
+                style_suffix "vbox_equipped" # Style: side_menu_vbox_equipped
 
                 # Label
-                text "Equipped Item:"
+                text "Equipped Item:" style_suffix "vbox_equipped_text" # Style: side_menu_vbox_equipped_text
 
                 # Frame around the Slot.
                 frame:
 
-                    background Frame("inventory/gui/slot_equipped.png", 6, 6, 6, 6)
-                    xysize (200, 200)
-                    xalign 0.5
+                    style_suffix "vbox_equipped_slot" # Style: side_menu_vbox_equipped_slot
 
                     # If there is an Equipped Item, add its Image in the middle.
                     if Inventory.getEquippedItem():
                         add Inventory.getEquippedItem().getImage():
+
+                            # Normally I would put style_suffix "vbox_equipped_slot_image" here, but
+                            # as it turns out, add cannot have a style.
+                            # So this is one of the few properties we have to manually write here. 
                             align (0.5, 0.5)
+
 
                     # If there is an Equipped Item, create a marker around it.
                     # Makes more clear how the equipped item is marked in the Inventory slots.
