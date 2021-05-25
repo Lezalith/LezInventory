@@ -37,30 +37,104 @@ style inventory_slot_empty:
 ##########################
 
 # Frame that contains everything in the Side Menu.
-style side_menu_frame:
+style inventory_side_menu_frame:
     background None
     xysize(400, 660)
     align (1.0, 0.5)
     xoffset -30
 
+#-----------------------------------------------------
+# Vbox of Equipped Item and its Slot.
+#-----------------------------------------------------
+
 # Vbox that contains the "Equipped Item" label, 
 # and the Equipped Slot.
-style side_menu_vbox_equipped:
+style inventory_side_menu_vbox_equipped:
     align (0.5, 0.06)
     spacing 5
 
 # The "Equipped Item" label.
 # Has no properties at the time of writing.
-# style side_menu_vbox_equipped_text:
+# style inventory_side_menu_vbox_equipped_text:
 #     example 123
 
 # The Equipped Slot.
-style side_menu_vbox_equipped_slot:
+style inventory_side_menu_vbox_equipped_slot:
     background Frame("inventory/gui/slot_equipped.png", 6, 6, 6, 6)
     xysize (200, 200)
     xalign 0.5
 
+#-----------------------------------------------------
+# Vbox of Name and Description.
+#-----------------------------------------------------
 
+# Vbox that contains the Name and Description,
+# of the selected item.
+style inventory_side_menu_vbox_info:
+    align (0.5, 0.56)
+    spacing 5
+    xsize 500
+
+# Selected Item's Name.
+style inventory_side_menu_vbox_info_name:
+    xalign 0.5
+    underline True
+
+# Selected Item's Description.
+style inventory_side_menu_vbox_info_description:    
+    xalign 0.5
+    size 24
+
+#-----------------------------------------------------
+# Vbox of Interactables (Buttons)
+#-----------------------------------------------------
+
+# Vbox that contains:
+# Hbox containing Equip and Unequip buttons 
+# Use button
+# Throw Away button.
+style inventory_side_menu_vbox_interaction:   
+    align (0.5, 0.83)
+    xsize 400
+    spacing 8
+
+# Hbox containing Equip and Unequip buttons.
+style inventory_side_menu_vbox_interaction_equip_box:
+    xalign 0.5
+    spacing 50
+
+# The Unequip textbutton.
+# Has no properties at the time of writing.
+# style inventory_side_menu_vbox_interaction_unequip_textbutton:
+#     example 123
+
+# The Equip textbutton.
+# Has no properties at the time of writing.
+# style inventory_side_menu_vbox_interaction_equip_textbutton:
+#     example 123
+
+# The Use textbutton.
+# Has no properties at the time of writing.
+# style inventory_side_menu_vbox_interaction_use_textbutton:
+#     example 123
+
+# The Throw Away textbutton.
+style inventory_side_menu_vbox_interaction_throwaway_textbutton:
+    xalign 0.5
+
+#-----------------------------------------------------
+# Others
+#-----------------------------------------------------
+
+# The Return textbutton.
+style inventory_side_menu_return_textbutton:
+    align (0.5, 1.0)
+
+##########################
+## Pages 
+##########################
+
+# 
 
 ##########################
 ## 
@@ -87,10 +161,6 @@ screen inventoryScreen():
     # You cannot interact with other shown screens below.
     # This means not even clicking to continue dialogue.
     modal True
-
-    # Background. Used just for testing.
-    # TODO: Remove Test BG.
-    add Solid("c0c0c0")
 
     # Frame of the Inventory
     frame: 
@@ -176,23 +246,23 @@ screen inventoryScreen():
         # Frame, without a background.
         frame:
 
-            style_prefix "side_menu"
-            style_suffix "frame" # Style: side_menu_frame
+            style_prefix "inventory_side_menu"
+            style_suffix "frame" # Style: inventory_side_menu_frame
 
             # A vertical box. This one contains:
             # 1) The "Equipped Item:" label 
             # 2) Slot with an equipped Item
             vbox:
 
-                style_suffix "vbox_equipped" # Style: side_menu_vbox_equipped
+                style_suffix "vbox_equipped" # Style: inventory_side_menu_vbox_equipped
 
                 # Label
-                text "Equipped Item:" style_suffix "vbox_equipped_text" # Style: side_menu_vbox_equipped_text
+                text "Equipped Item:" style_suffix "vbox_equipped_text" # Style: inventory_side_menu_vbox_equipped_text
 
                 # Frame around the Slot.
                 frame:
 
-                    style_suffix "vbox_equipped_slot" # Style: side_menu_vbox_equipped_slot
+                    style_suffix "vbox_equipped_slot" # Style: inventory_side_menu_vbox_equipped_slot
 
                     # If there is an Equipped Item, add its Image in the middle.
                     if Inventory.getEquippedItem():
@@ -218,38 +288,34 @@ screen inventoryScreen():
             # 2) Text of Item's description
             vbox:
 
-                align (0.5, 0.56)
-                spacing 5
-                xsize 500
+                style_suffix "vbox_info" # Style: inventory_side_menu_vbox_info
 
                 # Item's Name.
                 # Underlined to create a line between this and...
                 text ( Inventory.getSelectedItem().name if Inventory.getSelectedItem() else "Nothing selected." ):
-                    xalign 0.5
-                    underline True
+
+                    style_suffix "vbox_info_name" # Style: inventory_side_menu_vbox_info_name
 
                 # Item's Description.
                 # Smaller Size.
                 text ( Inventory.getSelectedItem().description if Inventory.getSelectedItem() else "Nothing selected." ):
-                    xalign 0.5
-                    size 24
+
+                    style_suffix "vbox_info_description" # Style: inventory_side_menu_vbox_info_description
 
             # A vertical box. This one contains:
             # 1) A horizontal box with the Equip, Unequip and Use buttons
             # 2) The Throw Away button
             vbox:
 
-                align (0.5, 0.83)
-                xsize 400
-                spacing 8
+                style_suffix "vbox_interaction" # Style: inventory_side_menu_vbox_interaction
 
                 # A horizontal box. This one contains:
                 # 1) The Equip button (If Unequip is hidden)
                 # 2) The Unequip button (If Equip is hidden)
                 # 3) The Use button.
                 hbox:
-                    xalign 0.5
-                    spacing 50
+
+                    style_suffix "vbox_interaction_equip_box" # Style: inventory_side_menu_vbox_interaction_equip_box
 
                     # Checks whether the player can Unequip an item.
                     # This means that NOT ONLY does an item have to be equipped,
@@ -258,12 +324,16 @@ screen inventoryScreen():
 
                         textbutton "Unequip":
 
+                            style_suffix "vbox_interaction_unequip_textbutton" # Style: inventory_side_menu_vbox_interaction_unequip_textbutton
+
                             action Function(Inventory.unequip)
 
                     # If you can't Unequip stuff, automatically show the Equip button.
                     else:
 
                         textbutton "Equip": 
+
+                            style_suffix "vbox_interaction_equip_textbutton" # Style: inventory_side_menu_vbox_interaction_equip_textbutton
 
                             # .canEquip() decides whether you can actually click the button.
                             # Depends on whether an Equippable is Selected.
@@ -272,6 +342,8 @@ screen inventoryScreen():
 
                     # Either way, the Use button is shown.
                     textbutton "Use": 
+
+                        style_suffix "vbox_interaction_use_textbutton" # Style: inventory_side_menu_vbox_interaction_use_textbutton
                         
                         # .canUse() decides whether you can click this button,
                         # and this one depends on the Item being Usable. 
@@ -281,15 +353,17 @@ screen inventoryScreen():
                 # The Throw Away button.
                 textbutton "Throw Away":
 
+                    style_suffix "vbox_interaction_throwaway_textbutton" # Style: inventory_side_menu_vbox_interaction_throwaway_textbutton
+
                     # Can be clicked if an item is Selected.
                     sensitive Inventory.getSelectedItem()
-                    xalign 0.5
                     action Function(Inventory.remove)
 
             # The Return button. Closes the Inventory.
             textbutton "Return":
 
-                align (0.5, 1.0)
+                style_suffix "return_textbutton" # Style: inventory_side_menu_return_textbutton
+
                 action Return()
 
         # A horizontal box. This one contains:
