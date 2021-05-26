@@ -157,9 +157,9 @@ style inventory_side_menu_vbox_interaction_unequip_textbutton:
 # The Unequip textbutton - Text part.
 style inventory_side_menu_vbox_interaction_unequip_textbutton_text:
     xalign 0.5
-    insensitive_color "d3d3d3"
-    idle_color "fff"
-    hover_color "f0f"
+    insensitive_color "aaaaaa7f"
+    idle_color "aaa"
+    hover_color "c60"
 
 #---------------
 
@@ -170,9 +170,9 @@ style inventory_side_menu_vbox_interaction_equip_textbutton:
 # The Equip textbutton - Text part.
 style inventory_side_menu_vbox_interaction_equip_textbutton_text:
     xalign 0.5
-    insensitive_color "d3d3d3"
-    idle_color "fff"
-    hover_color "f0f"
+    insensitive_color "aaaaaa7f"
+    idle_color "aaa"
+    hover_color "c60"
 
 #---------------
 
@@ -183,9 +183,9 @@ style inventory_side_menu_vbox_interaction_equip_textbutton_text:
 
 # The Use textbutton - Text part.
 style inventory_side_menu_vbox_interaction_use_textbutton_text:
-    insensitive_color "d3d3d3"
-    idle_color "fff"
-    hover_color "f0f"
+    insensitive_color "aaaaaa7f"
+    idle_color "aaa"
+    hover_color "c60"
 
 #---------------
 
@@ -195,9 +195,9 @@ style inventory_side_menu_vbox_interaction_throwaway_textbutton:
 
 # The Throw Away textbutton - Text part.
 style inventory_side_menu_vbox_interaction_throwaway_textbutton_text:
-    insensitive_color "d3d3d3"
-    idle_color "fff"
-    hover_color "f0f"
+    insensitive_color "aaaaaa7f"
+    idle_color "aaa"
+    hover_color "c60"
 
 #-----------------------------------------------------
 # Others
@@ -209,9 +209,10 @@ style inventory_side_menu_return_textbutton:
     yoffset -10
 
 # The Return textbutton - Text part.
-# Has no properties at the time of writing.
-# style inventory_side_menu_return_textbutton_text:
-#     example 123
+style inventory_side_menu_return_textbutton_text:
+    insensitive_color "aaaaaa7f"
+    idle_color "aaa"
+    hover_color "c60"
 
 ##########################
 ## Pages 
@@ -235,9 +236,9 @@ style inventory_pages_hbox_left:
 
 # The Left Arrow textbutton - Text part. 
 style inventory_pages_hbox_left_text:
-    insensitive_color "d3d3d3"
-    idle_color "fff"
-    hover_color "f0f"
+    insensitive_color "aaaaaa7f"
+    idle_color "aaa"
+    hover_color "c60"
     size 42
 
 #---------------
@@ -257,9 +258,9 @@ style inventory_pages_hbox_right:
 # The Right Arrow textbutton - Text part. 
 style inventory_pages_hbox_right_text:
     size 42
-    insensitive_color "d3d3d3"
-    idle_color "fff"
-    hover_color "f0f"
+    insensitive_color "aaaaaa7f"
+    idle_color "aaa"
+    hover_color "c60"
 
 ###########################################
 ###########################################
