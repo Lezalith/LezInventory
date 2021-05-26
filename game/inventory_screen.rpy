@@ -46,9 +46,8 @@
 
 # Main window of the Inventory.
 style inventory_main_frame:
-
     xysize (1280, 720)
-    align (0.5, 0.5)
+    align (0.5, 0.4)
 
 ##########################
 ## The Grid with Slots
@@ -79,10 +78,11 @@ style inventory_slot_empty:
 
 # Frame that contains everything in the Side Menu.
 style inventory_side_menu_frame:
+    # background Solid("000") # Great for testing, shows the Frame.
     background None
     xysize(400, 660)
     align (1.0, 0.5)
-    xoffset -30
+    xoffset -50
 
 #-----------------------------------------------------
 # Vbox of Equipped Item and its Slot.
@@ -91,8 +91,9 @@ style inventory_side_menu_frame:
 # Vbox that contains the "Equipped Item" label, 
 # and the Equipped Slot.
 style inventory_side_menu_vbox_equipped:
-    align (0.5, 0.06)
+    xalign 0.5
     spacing 5
+    ypos 30
 
 # The "Equipped Item" label.
 # Has no properties at the time of writing.
@@ -112,9 +113,10 @@ style inventory_side_menu_vbox_equipped_slot:
 # Vbox that contains the Name and Description,
 # of the selected item.
 style inventory_side_menu_vbox_info:
-    align (0.5, 0.56)
+    xsize 400 # Same size as the inventory_side_menu_frame.
+    xalign 0.5
     spacing 5
-    xsize 500
+    ypos 330
 
 # Selected Item's Name.
 style inventory_side_menu_vbox_info_name:
@@ -124,7 +126,7 @@ style inventory_side_menu_vbox_info_name:
 # Selected Item's Description.
 style inventory_side_menu_vbox_info_description:    
     xalign 0.5
-    size 24
+    size 26
 
 #-----------------------------------------------------
 # Vbox of Interactables (Buttons)
@@ -135,24 +137,26 @@ style inventory_side_menu_vbox_info_description:
 # Use button
 # Throw Away button.
 style inventory_side_menu_vbox_interaction:   
-    align (0.5, 0.83)
-    xsize 400
+    xsize 400 # Same size as the inventory_side_menu_frame.
+    xalign 0.5
+    ypos 460
     spacing 8
 
 # Hbox containing Equip and Unequip buttons.
 style inventory_side_menu_vbox_interaction_equip_box:
     xalign 0.5
-    spacing 50
+    spacing 30
+    xoffset -12
 
 #---------------
 
 # The Unequip textbutton.
-# Has no properties at the time of writing.
-# style inventory_side_menu_vbox_interaction_unequip_textbutton:
-#     example 123
+style inventory_side_menu_vbox_interaction_unequip_textbutton:
+    xsize 140
 
 # The Unequip textbutton - Text part.
 style inventory_side_menu_vbox_interaction_unequip_textbutton_text:
+    xalign 0.5
     insensitive_color "d3d3d3"
     idle_color "fff"
     hover_color "f0f"
@@ -160,12 +164,12 @@ style inventory_side_menu_vbox_interaction_unequip_textbutton_text:
 #---------------
 
 # The Equip textbutton.
-# Has no properties at the time of writing.
-# style inventory_side_menu_vbox_interaction_equip_textbutton:
-#     example 123
+style inventory_side_menu_vbox_interaction_equip_textbutton:
+    xsize 140
 
 # The Equip textbutton - Text part.
 style inventory_side_menu_vbox_interaction_equip_textbutton_text:
+    xalign 0.5
     insensitive_color "d3d3d3"
     idle_color "fff"
     hover_color "f0f"
@@ -202,6 +206,7 @@ style inventory_side_menu_vbox_interaction_throwaway_textbutton_text:
 # The Return textbutton.
 style inventory_side_menu_return_textbutton:
     align (0.5, 1.0)
+    yoffset -10
 
 # The Return textbutton - Text part.
 # Has no properties at the time of writing.
@@ -219,7 +224,7 @@ style inventory_side_menu_return_textbutton:
 style inventory_pages_hbox:
     xanchor 0.5
     xpos 415
-    yalign 0.965
+    ypos 630
     spacing 180
 
 # The Left Arrow textbutton. 
@@ -230,6 +235,9 @@ style inventory_pages_hbox_left:
 
 # The Left Arrow textbutton - Text part. 
 style inventory_pages_hbox_left_text:
+    insensitive_color "d3d3d3"
+    idle_color "fff"
+    hover_color "f0f"
     size 42
 
 #---------------
@@ -249,6 +257,9 @@ style inventory_pages_hbox_right:
 # The Right Arrow textbutton - Text part. 
 style inventory_pages_hbox_right_text:
     size 42
+    insensitive_color "d3d3d3"
+    idle_color "fff"
+    hover_color "f0f"
 
 ###########################################
 ###########################################
@@ -393,6 +404,8 @@ screen inventoryScreen():
             vbox:
 
                 style_suffix "vbox_info" # Style: inventory_side_menu_vbox_info
+
+                # TODO: Wrap the Vbox so it can go onto another line.
 
                 # Item's Name.
                 # Underlined to create a line between this and...
