@@ -18,14 +18,14 @@ screen marker(color = "fff", xysize = (155, 155) ):
 
         # All 4 squares added, each in different corner.
         add Solid(color):
-            size (15, 15)
+            size (xysize[1], 6)
             align(0.0, 0.0)
         add Solid(color):
-            size (15, 15)
-            align(1.0, 0.0)
+            size (6, xysize[1])
+            align(0.0, 0.0)
         add Solid(color):
-            size (15, 15)
+            size (6, xysize[1])
             align(1.0, 1.0)
         add Solid(color):
-            size (15, 15)
-            align(0.0, 1.0)  
+            size (xysize[0], 6)
+            align(1.0, 1.0)  

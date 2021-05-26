@@ -56,7 +56,7 @@ style side_menu_vbox_equipped:
 
 # The Equipped Slot.
 style side_menu_vbox_equipped_slot:
-    background Frame("inventory/gui/slot_equipped.png", 6, 6, 6, 6)
+    background Frame("inventory/gui/slot.png", 6, 6, 6, 6)
     xysize (200, 200)
     xalign 0.5
 
@@ -122,7 +122,7 @@ screen inventoryScreen():
                         # Custom screen statement. Check 01marker.rpy.
                         marker:
                             color "fc1"
-                            xysize (165, 165)
+                            xysize (155, 155)
 
                     #######################################################################
                     # Used before Slots got different backgrounds through "selected" below.
@@ -206,12 +206,12 @@ screen inventoryScreen():
 
                     # If there is an Equipped Item, create a marker around it.
                     # Makes more clear how the equipped item is marked in the Inventory slots.
-                    if Inventory.getEquippedItem():
+                    # if Inventory.getEquippedItem():
 
-                        # Custom screen statement. Check 01marker.rpy.
-                        marker:
-                            color "fc1"
-                            xysize (165, 165) 
+                    # Custom screen statement. Check 01marker.rpy.
+                    marker:
+                        color "fc1"
+                        xysize (175, 175) 
 
             # A vertical box. This one contains:
             # 1) Text of Item's name
