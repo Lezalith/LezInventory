@@ -228,7 +228,7 @@ init -900 python:
                 return self.inventory[ self.selectedSlot ]
 
             # Return None if nothing is equipped.
-            return None
+            return False
 
         ###############################
         ## Calculations with Items
