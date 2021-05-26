@@ -105,23 +105,18 @@ init -900 python:
         # Direction can be "up" or "down", raises an Exception otherwise.
         def changePage(self, direction):
 
-            # Only on one page - Cannot move anywhere.
-            if self.getPages()[1] == 0:
+            # Check whether the move can be executed.
+            if not self.canChangePage(direction):
                 return None
 
             # Going up.
             if direction == "up":
-
-                # 
-                if not self.page == self.getPages()[1]:
-                    self.page += 1
-                    self.unselect()
+                self.page += 1
+                self.unselect()
 
             # Going down.
             elif direction == "down":
-
-                if self.page > 0:
-                    self.page -= 1
+                self.page -= 1
 
             # Different direction given.
             else:
@@ -129,6 +124,39 @@ init -900 python:
 
             # Finally, unselect whatever's selected.
             self.unselect()
+
+        # Checks whether we can more up or down a page.
+        # Intended for the arrow buttons on a screen that change pages..
+        # Moving is possible as long as we're not going past the first
+        # or past the final page.
+        def canChangePage(self, direction):
+
+            # Only on one page - Cannot move anywhere.
+            if self.getPages()[1] == 0:
+                return False
+
+            # Checks for going up.
+            if direction == "up":
+
+                # Can move, unless we're on the final page.
+                if not self.page == self.getPages()[1]:
+                    return True
+
+            # Checks for going down.
+            elif direction == "down":
+
+                # Can move, nless we're on the first page.
+                if self.page > 0:
+                    return True
+
+            # Different direction given.
+            else:
+                raise Exception("changePage() got invalid direction.")
+
+            # If we get here, it means the check did not pass.
+            return False
+
+
 
         # Returns tuple of two ints - (Current Page, Final Page).
         # This shows the page indexes when counting from 1 rather than 0.
