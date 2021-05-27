@@ -402,3 +402,24 @@ init -900 python:
 
             # If an Item isn't selected.
             return False 
+
+        #---------------------------------
+        # Following Checks aren't used anywhere myself, but should prove useful to coders.
+        #---------------------------------
+
+        # Returns True if item is present somewhere in the Inventory, False otherwise.
+        def isInInventory(self, item):
+
+            return item in self.inventory
+
+        # Returns True if the item is selected, False otherwise.
+        # Checks for Item, rather than a Slot like .isSelected()  
+        def isItemSelected(self, item):
+
+            return item == self.getSelectedItem()
+
+        # Returns True if item is equipped, False otherwise.
+        # Checks for Item, rather than a Slot like .isEquipped()
+        def isItemEquipped(self, item):
+
+            return item == self.getEquippedItem()
