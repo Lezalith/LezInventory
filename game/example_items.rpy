@@ -15,6 +15,7 @@ init -850:
     default Inventory = InventoryObject( (3, 3) )
 
     default orange = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "images/17_Orange.png" )
+    default apple = Item( "Apple" , "The King of all the fruits." , "images/16_Apple.png" )
 
 init -750 python:
 
@@ -27,4 +28,5 @@ init -750 python:
         Inventory.add(durian)
         Inventory.add(orange)
         Inventory.add(wmelon)
+        Inventory.add(apple)
         Inventory.add(grapes)
