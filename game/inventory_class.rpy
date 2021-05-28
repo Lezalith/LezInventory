@@ -56,6 +56,10 @@ init -900 python:
         # Removes the selected Item from the inventory.
         def remove(self):
 
+            # Do nothing if nothing is selected
+            if self.selectedSlot == None:
+                return
+
             # Unequip if this Item was equipped
             if self.selectedSlot == self.equippedSlot:
                 self.unequip()
@@ -330,6 +334,10 @@ init -900 python:
 
         # Unequip currently equipped item.
         def unequip(self):
+
+            # Do nothing if nothing is equipped.
+            if self.equippedSlot == None:
+                return
 
             self.equippedSlot = None
 
