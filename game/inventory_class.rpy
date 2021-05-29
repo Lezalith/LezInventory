@@ -339,10 +339,10 @@ init -900 python:
             if self.equippedSlot == None:
                 return
 
-            self.equippedSlot = None
-
             # Call Item's unequipped() method.
-            self.getSelectedItem().unequipped()
+            self.getEquippedItem().unequipped()
+
+            self.equippedSlot = None
 
         # Returns currently equipped Item
         def getEquippedItem(self):
