@@ -30,5 +30,6 @@ init -750 python:
         Inventory.add(orange)
         Inventory.add(wmelon)
         Inventory.add(apple)
+        Inventory.add(lemon)
         Inventory.add(grapes)
         Inventory.add(passionFruit)
