@@ -93,8 +93,15 @@ init -900 python:
         # Returns tuple of two ints - (Current Page INDEX, Final Page INDEX ).
         def getPages(self):
 
-            # self.page is obvious
-            return ( self.page, (len(self.inventory) - 1) / self.getSize() )
+            # Calculate how many pages are there.
+            lastPage = (len(self.inventory) - 1) / self.getSize()
+
+            # A safe check. 
+            if lastPage < 0:
+                lastPage = 0
+
+            # First is the current page index, second is the last page index.
+            return ( self.page, lastPage )
 
         # Check pages whether we don't have (an) empty one(s)
         def checkPages(self):
@@ -149,7 +156,7 @@ init -900 python:
             # Checks for going down.
             elif direction == "down":
 
-                # Can move, nless we're on the first page.
+                # Can move, unless we're on the first page.
                 if self.page > 0:
                     return True
 
@@ -166,8 +173,15 @@ init -900 python:
         # This shows the page indexes when counting from 1 rather than 0.
         def getPagesRepr(self):
 
-            # self.page is obvious
-            return ( self.page + 1, (len(self.inventory) - 1) / self.getSize() + 1 )
+            # Calculate what the last page is.
+            lastPage = (len(self.inventory) - 1) / self.getSize() + 1
+
+            # Make sure the last page cannot be 0.
+            if lastPage == 0:
+                lastPage = 1
+
+            # self.page is the current page.
+            return ( self.page + 1, lastPage )
 
         ####################################
         ## Calculation with Slots
@@ -275,10 +289,13 @@ init -900 python:
             # Get the current and the last page.
             pages = self.getPages()
 
-            # Only the last page can be not full.
-            # As such, we can ignore other pages:
-            if pages[0] != pages[1]:
-                return 0
+            # Unless this is the only page...
+            if not pages[0] == 0:
+
+                # ...only the last page can be not full.
+                # As such, we can ignore other pages:
+                if pages[0] != pages[1]:
+                    return 0
 
             # Otherwise:
             return self.getSize() - len( self.getPageItems() )
