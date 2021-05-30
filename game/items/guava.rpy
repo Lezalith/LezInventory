@@ -25,9 +25,17 @@ init -800 python:
 
         def used(self):
 
-            shuffle(Inventory.inventory)
+            badIndex = Inventory.inventory.index(self)
 
-            Inventory.selectedSlot = Inventory.inventory.index( self )
+            # 5 Tries to generate a different slot than the current one.
+            for x in range(5):
 
+                generated = randint( 0 , len(Inventory.inventory) - 1 )
+
+                if not generated == badIndex:
+                    break
+
+            Inventory.remove()
+            Inventory.inventory.insert( generated , self )
 
     guava = Guava( "Guava" , "Kinda random, to be honest." , "images/13_Guava.png" )

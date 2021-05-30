@@ -25,17 +25,8 @@ init -800 python:
 
         def used(self):
 
-            badIndex = Inventory.inventory.index(self)
+            shuffle(Inventory.inventory)
 
-            # 5 Tries to generate a different slot than the current one.
-            for x in range(5):
+            Inventory.selectedSlot = Inventory.inventory.index( self )
 
-                generated = randint( 0 , len(Inventory.inventory) - 1 )
-
-                if not generated == badIndex:
-                    break
-
-            Inventory.remove()
-            Inventory.inventory.insert( generated , self )
-
-    wmelon = WMelon( "Watermelon" , "So big, almost seems endless. And slippery." , "images/23_Watermelon.png" )
+    wmelon = WMelon( "Watermelon" , "Bouncy enough to hit other items." , "images/23_Watermelon.png" )
