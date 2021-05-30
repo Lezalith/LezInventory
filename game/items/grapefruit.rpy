@@ -2,7 +2,7 @@ init -800 python:
 
     from random import shuffle
 
-    class Cranberry(UsableItem):
+    class Grapefruit(UsableItem):
 
         "Class for a Hemlet."
 
@@ -21,7 +21,7 @@ init -800 python:
             ##########################
 
             # Calls the parent class, Item, with everything that it needs.
-            super(Cranberry, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
+            super(Grapefruit, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
 
         def used(self):
             
@@ -31,4 +31,4 @@ init -800 python:
             Inventory.page = 0
 
 
-    cranberry = Cranberry( "Cranberries" , "Also the dev's favorite!" , "images/03_Cranberry.png" )
+    grapefruit = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "images/12_Grapefruit.png" )
