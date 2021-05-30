@@ -26,6 +26,7 @@ init -750 python:
     def addExampleItems():
         Inventory.add(dragonFruit)
         Inventory.add(durian)
+        Inventory.add(guava)
         Inventory.add(apricot)
         Inventory.add(orange)
         Inventory.add(wmelon)
