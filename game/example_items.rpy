@@ -25,13 +25,13 @@ init -750 python:
         # Equippables
         Inventory.add(durian)
         Inventory.add(grapes)
-        Inventory.add(cranberries)
         Inventory.add(lemon)
 
         # Passives
         Inventory.add(cherries)
         Inventory.add(orange)
         Inventory.add(apple)
+        Inventory.add(cranberries)
         Inventory.add(kiwi)
         Inventory.add(strawberry)
 
