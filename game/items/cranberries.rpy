@@ -1,0 +1,1 @@
+default cranberries = Item( "Cranberries" , "Ever heard of \"Hermelín\"?" , "images/03_Cranberry.png" )
