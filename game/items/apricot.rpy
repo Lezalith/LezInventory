@@ -3,34 +3,9 @@ label apricotLabel(selfItem):
     menu:
         "You can transform Apricot into any fruit. It will keep it's place in the inventory."
 
-        "Dragon fruit.":
-
-            $ Inventory.inventory[ Inventory.selectedSlot ] = dragonF( "Dragon Fruit" , "White as snow on the inside." , "images/07_Dragonfruit.png" )
-            $ Inventory.unselect()
-
         "Durian.":
 
             $ Inventory.inventory[ Inventory.selectedSlot ] = Durian( "Durian" , "World's smelliest fruit, supposedly." , "images/08_Durian.png" )
-            $ Inventory.unselect()
-
-        "Apricot.":
-
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "images/21_Apricot.png" )
-            $ Inventory.unselect()
-
-        "Orange.":
-
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "images/17_Orange.png" )
-            $ Inventory.unselect()
-
-        "Watermelon.":
-
-            $ Inventory.inventory[ Inventory.selectedSlot ] = WMelon( "Watermelon" , "So big, almost seems endless. And slippery." , "images/23_Watermelon.png" )
-            $ Inventory.unselect()
-
-        "Apple.":
-
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Apple" , "The King of all the fruits." , "images/16_Apple.png" )
             $ Inventory.unselect()
 
         "Grapes.":
@@ -38,12 +13,77 @@ label apricotLabel(selfItem):
             $ Inventory.inventory[ Inventory.selectedSlot ] = Grapes( "Grapes" , "So many balls..." , "images/11_Grapes_Green.png" )
             $ Inventory.unselect()
 
+        "Lemon.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Lemon( "Lemon" , "Not good in combination with other fruits." , "images/15_Lemon.png" ) 
+            $ Inventory.unselect()
+
+        "Cherries.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Cherries" , "Spit the seeds at your foes!" , "images/01_Cherry_Red.png" )
+            $ Inventory.unselect()
+
+        "Orange.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "images/17_Orange.png" )
+            $ Inventory.unselect()
+
+        "Apple.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Apple" , "The King of all the fruits." , "images/16_Apple.png" )
+            $ Inventory.unselect()
+
+        "Cranberries.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Cranberries" , "Ever heard of \"Hermelín\"?" , "images/03_Cranberry.png" )
+            $ Inventory.unselect()
+
+        "Kiwi.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Kiwi" , "Great as a tea with strawberries." , "images/14_Kiwi.png" )
+            $ Inventory.unselect()
+
+        "Strawberry.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Strawberry" , "Great as a tea with kiwis." , "images/22_Strawberry.png" )
+            $ Inventory.unselect()
+
+        "Dragon fruit.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = dragonF( "Dragon Fruit" , "White as snow on the inside." , "images/07_Dragonfruit.png" )
+            $ Inventory.unselect()
+
+        "Guava.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Guava( "Guava" , "Kinda random, to be honest." , "images/13_Guava.png" )
+            $ Inventory.unselect()
+
+        "Apricot.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "images/21_Apricot.png" )
+            $ Inventory.unselect()
+
+        "Watermelon.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = WMelon( "Watermelon" , "So big, almost seems endless. And slippery." , "images/23_Watermelon.png" )
+            $ Inventory.unselect()
+
         "Passion fruit.":
 
             $ Inventory.inventory[ Inventory.selectedSlot ] = passionF( "Passion Fruit" , "About as tropical as you can get." , "images/20_Passionfruit.png" )
             $ Inventory.unselect()
 
+        "Grapefruit.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "images/12_Grapefruit.png" )
+            $ Inventory.unselect()
+
     return
+
+# TODO: Create a custom menu to display all items
+screen apricotMenu(items):
+
+    text "None"
 
 # Grapes( "Grapes" , "So many balls..." , "images/11_Grapes_Green.png" )
 # Durian( "Durian" , "World's smelliest fruit, supposedly." , "images/08_Durian.png" )
