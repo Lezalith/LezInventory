@@ -21,18 +21,24 @@ init -750 python:
     # we start the game.
 
     def addExampleItems():
-        Inventory.add(cherries)
-        Inventory.add(dragonFruit)
-        Inventory.add(strawberry)
+
+        # Equippables
         Inventory.add(durian)
-        Inventory.add(guava)
-        Inventory.add(apricot)
-        Inventory.add(kiwi)
-        Inventory.add(orange)
-        Inventory.add(wmelon)
-        Inventory.add(apple)
-        Inventory.add(lemon)
         Inventory.add(grapes)
         Inventory.add(cranberries)
+        Inventory.add(lemon)
+
+        # Passives
+        Inventory.add(cherries)
+        Inventory.add(orange)
+        Inventory.add(apple)
+        Inventory.add(kiwi)
+        Inventory.add(strawberry)
+
+        # Usables
+        Inventory.add(dragonFruit)
+        Inventory.add(guava)
+        Inventory.add(apricot)
+        Inventory.add(wmelon)
         Inventory.add(passionFruit)
         Inventory.add(grapefruit)
