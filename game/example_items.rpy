@@ -21,6 +21,7 @@ init -750 python:
     # we start the game.
 
     def addExampleItems():
+        Inventory.add(cherries)
         Inventory.add(dragonFruit)
         Inventory.add(durian)
         Inventory.add(guava)
