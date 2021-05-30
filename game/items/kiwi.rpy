@@ -1,0 +1,1 @@
+default kiwi = Item( "Kiwi" , "Great as a tea with strawberries." , "images/14_Kiwi.png" )
