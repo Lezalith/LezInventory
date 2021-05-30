@@ -14,9 +14,6 @@ init -850:
     # we won't be able to call it until the game starts. This means that... -(1)-
     default Inventory = InventoryObject( (3, 3) )
 
-    default orange = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "images/17_Orange.png" )
-    default apple = Item( "Apple" , "The King of all the fruits." , "images/16_Apple.png" )
-
 init -750 python:
 
     # -(1)- ...running this straight away would give us "Inventory" not defined.
@@ -26,6 +23,7 @@ init -750 python:
     def addExampleItems():
         Inventory.add(dragonFruit)
         Inventory.add(durian)
+        Inventory.add(guava)
         Inventory.add(apricot)
         Inventory.add(orange)
         Inventory.add(wmelon)
@@ -33,3 +31,4 @@ init -750 python:
         Inventory.add(lemon)
         Inventory.add(grapes)
         Inventory.add(passionFruit)
+        Inventory.add(cranberry)
