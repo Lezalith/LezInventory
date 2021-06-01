@@ -1,6 +1,6 @@
 label apricotLabel(selfItem):
 
-    menu:
+    menu(screen = "apricotMenu"):
         "You can transform Apricot into any fruit. It will keep it's place in the inventory."
 
         "Durian.":
@@ -82,8 +82,22 @@ label apricotLabel(selfItem):
 
 # TODO: Create a custom menu to display all items
 screen apricotMenu(items):
+    style_prefix "choice"
 
-    text "None"
+    vbox:
+
+        for x, y in pairwise(items):
+
+            hbox:
+
+                textbutton x.caption action x.action
+                textbutton y.caption action y.action
+
+        if (len(items) % 2 ):
+
+            hbox:
+                xalign 0.5
+                textbutton items[-1].caption action items[-1].action
 
 # Grapes( "Grapes" , "So many balls..." , "images/11_Grapes_Green.png" )
 # Durian( "Durian" , "World's smelliest fruit, supposedly." , "images/08_Durian.png" )
@@ -93,7 +107,13 @@ screen apricotMenu(items):
 # Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "images/17_Orange.png" )
 # Item( "Apple" , "The King of all the fruits." , "images/16_Apple.png" )
 
-init -800 python:
+init -800 python:    
+
+    from itertools import izip
+
+    def pairwise(iterable):
+        a = iter(iterable)
+        return izip(a, a)
 
     class Apricot(UsableItem):
 
