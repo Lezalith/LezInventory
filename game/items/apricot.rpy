@@ -18,6 +18,11 @@ label apricotLabel(selfItem):
             $ Inventory.inventory[ Inventory.selectedSlot ] = Lemon( "Lemon" , "Not good in combination with other fruits." , "images/15_Lemon.png" ) 
             $ Inventory.unselect()
 
+        "Apple.":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Apple" , "The King of all the fruits." , "images/16_Apple.png" )
+            $ Inventory.unselect()
+
         "Cherries.":
 
             $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Cherries" , "Spit the seeds at your foes!" , "images/01_Cherry_Red.png" )
@@ -26,11 +31,6 @@ label apricotLabel(selfItem):
         "Orange.":
 
             $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "images/17_Orange.png" )
-            $ Inventory.unselect()
-
-        "Apple.":
-
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Apple" , "The King of all the fruits." , "images/16_Apple.png" )
             $ Inventory.unselect()
 
         "Cranberries.":

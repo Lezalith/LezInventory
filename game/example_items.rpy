@@ -26,11 +26,11 @@ init -750 python:
         Inventory.add(durian)
         Inventory.add(grapes)
         Inventory.add(lemon)
+        Inventory.add(apple)
 
         # Passives
         Inventory.add(cherries)
         Inventory.add(orange)
-        Inventory.add(apple)
         Inventory.add(cranberries)
         Inventory.add(kiwi)
         Inventory.add(strawberry)
