@@ -1,10 +1,19 @@
-﻿screen main_menu():
+﻿init -1 python:
+    def copyMyDisc():
+
+        import pygame.scrap
+       
+        pygame.scrap.put(pygame.scrap.SCRAP_TEXT, "Lezalith (LezCave.com)#2853".encode("utf-8"))
+
+        renpy.notify("Lez's Discord coppied to clipboard!")
+
+screen main_menu():
 
     add gui.main_menu_background
 
     frame:
         align (0.5, 0.5)
-        xysize (1400, 800)
+        xysize (1600, 800)
         ypadding 75
 
         vbox:
@@ -17,7 +26,8 @@
                 spacing 2
                 text "Welcome to my Inventory!"
                 text "I hope this framework will be of use to many creators."
-                text "You can always let me know where you've used it on Discord!"
+                text "You can always let me know where you've used it by writing me on Discord, I will always be happy to hear from you :)"
+                textbutton "Lezalith (LezCave.com)#2853" xalign 0.5 action Function(copyMyDisc)
                 text ""
                 text "Now, would you like to enter the Inventory from a screen, or from a label?"
 
