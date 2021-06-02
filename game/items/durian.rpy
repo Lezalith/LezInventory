@@ -1,3 +1,6 @@
+# Durian is an Equippable Item.
+# While Equipped, there is a dark green overlay over the player's screen.
+
 init -800 python:
 
     # Class of the Durian.

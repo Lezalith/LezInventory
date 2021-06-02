@@ -1,3 +1,6 @@
+# Grapefruit is a Usable Item.
+# When used, it will delete all of the Inventory's contents.
+
 init -800 python:
 
     # Class of the Grapefruit.

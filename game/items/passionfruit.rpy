@@ -1,3 +1,7 @@
+# Passion Fruit is a Usable item.
+# When used, it will take you to a label, where I personally ask you how tropical you're feeling.
+# If you say very tropical, I add one more Passion Fruit into your Inventory.
+
 # Label that we'll enter by Using the Item.
 label passionFLabel():
 

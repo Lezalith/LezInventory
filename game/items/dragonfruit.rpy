@@ -1,3 +1,6 @@
+# Dragon Fruit is a Usable Item.
+# When used, it will show a simple screen with some trivia.
+
 # Screen that we'll show by Using the Item.
 screen dragonScreen():
 

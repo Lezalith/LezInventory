@@ -1,3 +1,7 @@
+# Grapes are an Equippable Item.
+# When equipped, a screen will appear with all kinds of confusion.
+# When unequipped, it will hide the screen again.
+
 # Screen that we'll show by Using the Item.
 screen grapesScreen():
 

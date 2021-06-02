@@ -1,3 +1,7 @@
+# Apple is an Equippable Item.
+# When equipped, it will show a message.
+# When unequipped, it will show a different message.
+
 init -800 python:
 
     # Class of the Apple.

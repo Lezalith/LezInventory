@@ -1,3 +1,7 @@
+# Lemon is an Equippable Item.
+# When equipped, it hides all the other Items in the Inventory.
+# When unequipped, it returns it back to the original.
+
 init -800 python:
 
     # Class of the Lemon.
