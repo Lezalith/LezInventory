@@ -73,15 +73,15 @@ init -890 python:
         ############################
         
         # What happens when the Item is used.
-        def used(self):
+        def used(self, InventoryObject):
             return None 
 
         # What happens when the Item is Equipped.
-        def equipped(self):
+        def equipped(self, InventoryObject):
             return None 
 
         # What happens when the Item is Unequipped.
-        def unequipped(self):
+        def unequipped(self, InventoryObject):
             return None
 
     ###########################################
@@ -131,7 +131,7 @@ init -890 python:
         ############################
         
         # What happens when the Item is used.
-        def used(self):
+        def used(self, InventoryObject):
 
             return print("An Item {} has been used!".format(self.name))
             # return renpy.notify("An Item {} has been used!".format(self.name)) 
@@ -183,13 +183,13 @@ init -890 python:
         ############################
         
         # What happens when the Item is equipped.
-        def equipped(self):
+        def equipped(self, InventoryObject):
 
             return print("An Item {} has been equipped!".format(self.name))
             # return renpy.notify("An Item {} has been equipped!".format(self.name)) 
         
         # What happens when the Item is unequipped.
-        def unequipped(self):
+        def unequipped(self, InventoryObject):
 
             return print("An Item {} has been unequipped!".format(self.name))
             # return renpy.notify("An Item {} has been unequipped!".format(self.name)) 

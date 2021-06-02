@@ -23,7 +23,7 @@ init -800 python:
             # Calls the parent class, Item, with everything that it needs.
             super(Guava, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
 
-        def used(self):
+        def used(self, InventoryObject):
 
             badIndex = Inventory.inventory.index(self)
 

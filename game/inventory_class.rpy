@@ -344,7 +344,7 @@ init -900 python:
             self.equippedSlot = self.selectedSlot
 
             # Call Item's equipped() method.
-            self.getSelectedItem().equipped()
+            self.getSelectedItem().equipped(self)
 
         # Unequip currently equipped item.
         def unequip(self):
@@ -354,7 +354,7 @@ init -900 python:
                 return
 
             # Call Item's unequipped() method.
-            self.getEquippedItem().unequipped()
+            self.getEquippedItem().unequipped(self)
 
             self.equippedSlot = None
 
@@ -371,7 +371,7 @@ init -900 python:
         def use(self):
 
             # Call Item's used() method.
-            self.getSelectedItem().used()
+            self.getSelectedItem().used(self)
 
             # Remove the Item from the Inventory.
             self.remove()

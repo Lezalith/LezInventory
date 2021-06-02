@@ -22,11 +22,11 @@ init -800 python:
             super(Durian, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
 
 
-        def equipped(self):
+        def equipped(self, InventoryObject):
 
             return renpy.show( "NoTag", layer = "screens", zorder = 20, what = Solid( "32CD3233" ) , tag = "durTag" )
 
-        def unequipped(self):
+        def unequipped(self, InventoryObject):
 
             return renpy.hide("durTag", "screens")
 

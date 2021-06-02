@@ -25,20 +25,20 @@ init -800 python:
             self.equippedSlot = None
             self.inventory = None
 
-        def equipped(self):
+        def equipped(self, InventoryObject):
 
-            self.selectedSlot = Inventory.selectedSlot
-            self.equippedSlot = Inventory.equippedSlot
-            self.inventory = Inventory.inventory
+            self.selectedSlot = InventoryObject.selectedSlot
+            self.equippedSlot = InventoryObject.equippedSlot
+            self.inventory = InventoryObject.inventory
 
-            Inventory.selectedSlot = 0
-            Inventory.equippedSlot = 0
-            Inventory.inventory = [self]
+            InventoryObject.selectedSlot = 0
+            InventoryObject.equippedSlot = 0
+            InventoryObject.inventory = [self]
 
-        def unequipped(self):
+        def unequipped(self, InventoryObject):
 
-            Inventory.selectedSlot = self.selectedSlot
+            InventoryObject.selectedSlot = self.selectedSlot
             # Inventory.equippedSlot will get changed by Inventory.unequip anyway
-            Inventory.inventory = self.inventory
+            InventoryObject.inventory = self.inventory
 
     lemon = Lemon( "Lemon" , "Not good in combination with other fruits." , "images/15_Lemon.png" )

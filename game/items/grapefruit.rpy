@@ -23,12 +23,12 @@ init -800 python:
             # Calls the parent class, Item, with everything that it needs.
             super(Grapefruit, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
 
-        def used(self):
+        def used(self, InventoryObject):
             
-            Inventory.selectedSlot = None
-            Inventory.equippedSlot = None
-            Inventory.inventory = []
-            Inventory.page = 0
+            InventoryObject.selectedSlot = None
+            InventoryObject.equippedSlot = None
+            InventoryObject.inventory = []
+            InventoryObject.page = 0
 
 
     grapefruit = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "images/12_Grapefruit.png" )

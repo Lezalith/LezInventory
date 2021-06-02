@@ -100,11 +100,11 @@ init -800 python:
             super(Grapes, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
 
 
-        def equipped(self):
+        def equipped(self, InventoryObject):
 
             return renpy.show_screen("grapesScreen")
 
-        def unequipped(self):
+        def unequipped(self, InventoryObject):
 
             return renpy.hide_screen("grapesScreen")
 

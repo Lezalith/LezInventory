@@ -136,7 +136,7 @@ init -800 python:
             # Calls the parent class, Item, with everything that it needs.
             super(Apricot, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
 
-        def used(self):
+        def used(self, InventoryObject):
 
             return renpy.call_in_new_context("apricotLabel", selfItem = self)
 
