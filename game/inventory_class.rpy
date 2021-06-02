@@ -112,32 +112,27 @@ init -900 python:
 
                 self.page = pages[1]
 
-        # Moving up or down a page.
-        # Direction can be "up" or "down", raises an Exception otherwise.
+        # Moving up or down between pages. 1 goes up a page, -1 down a page.
+        # You can move multiple pages, but it won't let you go to an empty one.
         def changePage(self, direction):
 
             # Check whether the move can be executed.
             if not self.canChangePage(direction):
                 return None
 
-            # Going up.
-            if direction == "up":
-                self.page += 1
-                self.unselect()
+            try:
 
-            # Going down.
-            elif direction == "down":
-                self.page -= 1
+                self.page += direction
 
-            # Different direction given.
-            else:
+            # Not given a number.
+            except TypeError:
                 raise Exception("changePage() got invalid direction.")
+
 
             # Finally, unselect whatever's selected.
             self.unselect()
 
-        # Checks whether we can more up or down a page.
-        # Intended for the arrow buttons on a screen that change pages..
+        # Checks whether we can move between pages.
         # Moving is possible as long as we're not going past the first
         # or past the final page.
         def canChangePage(self, direction):
@@ -146,22 +141,24 @@ init -900 python:
             if self.getPages()[1] == 0:
                 return False
 
-            # Checks for going up.
-            if direction == "up":
+            try:
 
-                # Can move, unless we're on the final page.
-                if not self.page == self.getPages()[1]:
-                    return True
+                # Checks for going up.
+                if direction > 0:
 
-            # Checks for going down.
-            elif direction == "down":
+                    # Can move, unless it would lead us further than the last page.
+                    if not (self.page + direction) > self.getPages()[1]:
+                        return True
 
-                # Can move, unless we're on the first page.
-                if self.page > 0:
-                    return True
+                # Checks for going down.
+                elif direction < 0:
 
-            # Different direction given.
-            else:
+                    # Can move, unless we're on the first page.
+                    if self.page > 0:
+                        return True
+
+            # Not given a number.
+            except TypeError:
                 raise Exception("changePage() got invalid direction.")
 
             # If we get here, it means the check did not pass.

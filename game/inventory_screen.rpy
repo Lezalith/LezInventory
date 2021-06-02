@@ -497,8 +497,8 @@ screen inventoryScreen():
 
                 style_suffix "hbox_left" # Style: inventory_pages_hbox_left
 
-                sensitive Inventory.canChangePage("down")
-                action Function( Inventory.changePage, "down" )
+                sensitive Inventory.canChangePage( -1 )
+                action Function( Inventory.changePage, -1 )
 
             # Text with the current page and total pages.
             # .format expects two arguments.
@@ -513,5 +513,5 @@ screen inventoryScreen():
 
                 style_suffix "hbox_right" # Style: inventory_pages_hbox_right
 
-                sensitive Inventory.canChangePage("up")
-                action Function( Inventory.changePage, "up" )
+                sensitive Inventory.canChangePage( 1 )
+                action Function( Inventory.changePage, 1 )
