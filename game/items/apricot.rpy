@@ -1,4 +1,8 @@
+# Label that we'll enter by Using the Item.
 label apricotLabel(selfItem):
+
+    # All of the Menu options replaces the current Item with the selected one,
+    # before Unselecting it, so it is then not removed by the Inventory.
 
     menu(screen = "apricotMenu"):
         "You can transform Apricot into any fruit. It will keep it's place in the inventory."
@@ -78,14 +82,19 @@ label apricotLabel(selfItem):
             $ Inventory.inventory[ Inventory.selectedSlot ] = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "images/12_Grapefruit.png" )
             $ Inventory.unselect()
 
+    # Return back to the Inventory.
     return
 
-# TODO: Create a custom menu to display all items
+# A custom choice screen that is used instead of the default one,
+# since there are too many items for the default one to display all of them.
 screen apricotMenu(items):
+
+    # Still has the same style as default choice screen though
     style_prefix "choice"
 
     vbox:
 
+        # Iterates over every two items
         for x, y in pairwise(items):
 
             hbox:
@@ -93,39 +102,33 @@ screen apricotMenu(items):
                 textbutton x.caption action x.action
                 textbutton y.caption action y.action
 
+        # If there was a solo item at the end
         if (len(items) % 2 ):
 
             hbox:
                 xalign 0.5
                 textbutton items[-1].caption action items[-1].action
 
-# Grapes( "Grapes" , "So many balls..." , "images/11_Grapes_Green.png" )
-# Durian( "Durian" , "World's smelliest fruit, supposedly." , "images/08_Durian.png" )
-# passionF( "Passion Fruit" , "About as tropical as you can get." , "images/20_Passionfruit.png" )
-# WMelon( "Watermelon" , "So big, almost seems endless. And slippery." , "images/23_Watermelon.png" )
-# dragonF( "Dragon Fruit" , "White as snow on the inside." , "images/07_Dragonfruit.png" )
-# Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "images/17_Orange.png" )
-# Item( "Apple" , "The King of all the fruits." , "images/16_Apple.png" )
-
 init -800 python:    
 
+    # We need this for pairwise()
     from itertools import izip
 
+    # Lets us iterate over every two items instead of every single item.
     def pairwise(iterable):
         a = iter(iterable)
         return izip(a, a)
 
+    # Class of the Apricot.
     class Apricot(UsableItem):
 
-        "Class for a Hemlet."
-
+        # What happens upon the definition.
         def __init__(self, name, desc, image = None):
 
             # Gets all the arguments.
             args = locals()
 
-            # Manual check whether there are more/less
-            # arguments that should be.
+            # Manual check whether there are more/less arguments than should be.
             numOfArguments = 4
 
             if len( args.keys() ) > numOfArguments:
@@ -136,8 +139,13 @@ init -800 python:
             # Calls the parent class, Item, with everything that it needs.
             super(Apricot, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
 
+        # What happens when the Item is used.
         def used(self, InventoryObject):
 
+            # Enter the apricotLabel label defined above.
+            # The function might look scary, but to us, it's like a regular call.
+            # We pass it this Item, so that the label can figure out which Item to replace in the Inventory.
             return renpy.call_in_new_context("apricotLabel", selfItem = self)
 
+    # Apricot defined.
     apricot = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "images/21_Apricot.png" )

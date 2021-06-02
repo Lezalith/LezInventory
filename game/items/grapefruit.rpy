@@ -1,18 +1,15 @@
 init -800 python:
 
-    from random import shuffle
-
+    # Class of the Grapefruit.
     class Grapefruit(UsableItem):
 
-        "Class for a Hemlet."
-
+        # What happens upon the definition.
         def __init__(self, name, desc, image = None):
 
             # Gets all the arguments.
             args = locals()
 
-            # Manual check whether there are more/less
-            # arguments that should be.
+            # Manual check whether there are more/less arguments than should be.
             numOfArguments = 4
 
             if len( args.keys() ) > numOfArguments:
@@ -23,12 +20,14 @@ init -800 python:
             # Calls the parent class, Item, with everything that it needs.
             super(Grapefruit, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
 
+        # What happens when the Item is used.
         def used(self, InventoryObject):
             
+            # Wipe the Inventory clean.
             InventoryObject.selectedSlot = None
             InventoryObject.equippedSlot = None
             InventoryObject.inventory = []
             InventoryObject.page = 0
 
-
+    # Grapefruit defined.
     grapefruit = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "images/12_Grapefruit.png" )

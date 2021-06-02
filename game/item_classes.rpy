@@ -22,6 +22,7 @@ init -890 python:
         # a displayable, or the default None, which then
         # creates a Text Displayable from the name argument.
 
+        # What happens upon the definition.
         def __init__(self, name, desc, image = None):
 
             # Name of the Item.
@@ -36,11 +37,6 @@ init -890 python:
             else:
                 # Use Text Displayable if Image not given.
                 self.image = Text(name)
-
-            # My test version of .image.
-            # Overwrites the stuff above.
-            # # TODO: Remove this.
-            # self.image = Transform( image, zoom = 2.0) 
 
             # This is the base class for Items, 
             # so there is no functionality for these.
@@ -59,10 +55,12 @@ init -890 python:
         ## Checks
         ############################
 
+        # Used by the Inventory screen, whether Item can be Equipped.
         def isEquippable(self):
 
             return self.equippable
 
+        # Used by the Inventory screen, whether Item can be Used.
         def isUsable(self):
 
             return self.usable
@@ -92,17 +90,16 @@ init -890 python:
     ###########################################
     ###########################################
 
+    # Class for Usable Items.
     class UsableItem(Item):
 
-        "Class for usable Items."
-
+        # What happens upon the definition.
         def __init__(self, name, desc, image = None):
 
             # Gets all the arguments.
             args = locals()
 
-            # Manual check whether there are more/less
-            # arguments that should be.
+            # Manual check whether there are more/less arguments than should be.
             numOfArguments = 4
 
             if len( args.keys() ) > numOfArguments:
@@ -117,15 +114,6 @@ init -890 python:
             self.usable = True
 
         ############################
-        ## Checks
-        ############################
-
-        # Whether the Item is usable.
-        def isUsable(self):
-
-            return self.usable 
-
-        ############################
         ## To Be Overwritten
         ## Should be overwritten by child class
         ############################
@@ -133,8 +121,8 @@ init -890 python:
         # What happens when the Item is used.
         def used(self, InventoryObject):
 
+            # By default, just make a note in the console that it has been used.
             return print("An Item {} has been used!".format(self.name))
-            # return renpy.notify("An Item {} has been used!".format(self.name)) 
 
     ###########################################
     ###########################################
@@ -144,17 +132,16 @@ init -890 python:
     ###########################################
     ###########################################
 
+    # Class for Equippable Items.
     class EquippableItem(Item):
 
-        "Class for usable Items."
-
+        # What happens upon the definition.
         def __init__(self, name, desc, image = None):
 
             # Gets all the arguments.
             args = locals()
 
-            # Manual check whether there are more/less
-            # arguments that should be.
+            # Manual check whether there are more/less arguments than should be.
             numOfArguments = 4
 
             if len( args.keys() ) > numOfArguments:
@@ -169,15 +156,6 @@ init -890 python:
             self.equippable = True
 
         ############################
-        ## Checks
-        ############################
-
-        # Whether the Item is equippable.
-        def isEquippable(self):
-
-            return self.equippable 
-
-        ############################
         ## To Be Overwritten
         ## Should be overwritten by child class
         ############################
@@ -185,11 +163,11 @@ init -890 python:
         # What happens when the Item is equipped.
         def equipped(self, InventoryObject):
 
+            # By default, just make a note in the console that it has been equipped.
             return print("An Item {} has been equipped!".format(self.name))
-            # return renpy.notify("An Item {} has been equipped!".format(self.name)) 
         
         # What happens when the Item is unequipped.
         def unequipped(self, InventoryObject):
 
+            # By default, just make a note in the console that it has been unequipped.
             return print("An Item {} has been unequipped!".format(self.name))
-            # return renpy.notify("An Item {} has been unequipped!".format(self.name)) 
