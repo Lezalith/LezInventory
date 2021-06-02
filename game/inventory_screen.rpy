@@ -46,7 +46,7 @@
 
 # Main window of the Inventory.
 style inventory_main_frame:
-    xysize (1280, 720)
+    xysize InventorySettings.mainFrameSize
     align (0.5, 0.4)
 
 ##########################
@@ -63,14 +63,17 @@ style inventory_slots_grid:
 
 # One Slot for an Item inside the grid, when the slot is full.
 style inventory_slot:
-    background Frame("inventory/gui/slot.png", 6, 6, 6, 6)
-    selected_background Frame("inventory/gui/slot_selected.png", 6, 6, 6, 6)
-    xysize (180, 180)
+    idle_background InventorySettings.slotFullIdle
+    hover_background InventorySettings.slotFullHover
+    selected_idle_background InventorySettings.slotFullSelected
+    selected_hover_background InventorySettings.slotFullSelectedHover
+    xysize InventorySettings.slotSize
 
 # One Slot for an Item inside the grid, when the slot is empty.
 style inventory_slot_empty:
-    background Frame("inventory/gui/slot.png", 6, 6, 6, 6)
-    xysize (180, 180)
+    idle_background InventorySettings.slotEmptyIdle
+    hover_background InventorySettings.slotEmptyHover
+    xysize InventorySettings.slotSize
 
 ##########################
 ##  Side Menu

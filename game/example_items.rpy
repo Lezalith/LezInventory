@@ -8,11 +8,6 @@
 # At the time of writing this comment, there are no such connections present.
 # However, they are common, so I want to keep the practice going. 
 #
-init -850:
-
-    # Default sets the variable when the game Start()s. As such,
-    # we won't be able to call it until the game starts. This means that... -(1)-
-    default Inventory = InventoryObject( (3, 3) )
 
 init -750 python:
 

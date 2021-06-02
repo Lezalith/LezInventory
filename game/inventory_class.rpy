@@ -445,3 +445,8 @@ init -900 python:
         def isItemEquipped(self, item):
 
             return item == self.getEquippedItem()
+
+init -850:
+
+    # Default of the Inventory.
+    default Inventory = InventoryObject( InventorySettings.grid )
