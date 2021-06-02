@@ -31,4 +31,13 @@ init -920 python:
             self.slotEmptyIdle = Frame("inventory/gui/slot.png", 6, 6, 6, 6)
             self.slotEmptyHover = Frame("inventory/gui/slot.png", 6, 6, 6, 6)
 
+            # A highlight effect that the Inventory Slot which holds a currently
+            # equipped item will have.
+            # Is shown *below* the item.
+            self.equippedHighlight = "inventory/gui/equippedHighlight.png"
+
+            # A highlight effect that the Equipped Item Slot always has.
+            # Is shown *below* the item.
+            self.equippedHighlightSlot = "inventory/gui/equippedHighlightSlot.png"
+
     InventorySettings = InventorySettings()

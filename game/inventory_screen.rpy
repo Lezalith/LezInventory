@@ -306,10 +306,7 @@ screen inventoryScreen():
                     # Test whether this slot is Equipped.
                     if Inventory.isEquipped(index):
 
-                        # Custom screen statement. Check 01marker.rpy.
-                        marker:
-                            color "fc1"
-                            xysize (155, 155)
+                        add InventorySettings.equippedHighlightSlot align (0.5, 0.5)
 
                     #######################################################################
                     # Used before Slots got different backgrounds through "selected" below.
@@ -383,6 +380,11 @@ screen inventoryScreen():
 
                     style_suffix "vbox_equipped_slot" # Style: inventory_side_menu_vbox_equipped_slot
 
+                    # If there is an Equipped Item, create a marker around it.
+                    # Makes more clear how the equipped item is marked in the Inventory slots.
+                    # if Inventory.getEquippedItem():
+
+                    add InventorySettings.equippedHighlight align (0.5, 0.5)
                     # If there is an Equipped Item, add its Image in the middle.
                     if Inventory.getEquippedItem():
                         add Inventory.getEquippedItem().getImage():
@@ -391,16 +393,6 @@ screen inventoryScreen():
                             # as it turns out, add cannot have a style.
                             # So this is one of the few properties we have to manually write here. 
                             align (0.5, 0.5)
-
-
-                    # If there is an Equipped Item, create a marker around it.
-                    # Makes more clear how the equipped item is marked in the Inventory slots.
-                    # if Inventory.getEquippedItem():
-
-                    # Custom screen statement. Check 01marker.rpy.
-                    marker:
-                        color "fc1"
-                        xysize (175, 175) 
 
             # A vertical box. This one contains:
             # 1) Text of Item's name
