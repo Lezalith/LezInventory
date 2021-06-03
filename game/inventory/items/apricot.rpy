@@ -152,4 +152,4 @@ init -800 python:
             return renpy.call_in_new_context("apricotLabel", selfItem = self)
 
     # Apricot defined.
-    apricot = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "images/21_Apricot.png" )
+    apricot = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "inventory/images/21_Apricot.png" )

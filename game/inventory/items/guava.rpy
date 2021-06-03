@@ -48,4 +48,4 @@ init -800 python:
             InventoryObject.inventory.insert( generated , self )
 
     # Guava defined.
-    guava = Guava( "Guava" , "Kinda random, to be honest." , "images/13_Guava.png" )
+    guava = Guava( "Guava" , "Kinda random, to be honest." , "inventory/images/13_Guava.png" )

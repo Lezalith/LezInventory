@@ -33,4 +33,4 @@ init -800 python:
             InventoryObject.page = 0
 
     # Grapefruit defined.
-    grapefruit = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "images/12_Grapefruit.png" )
+    grapefruit = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "inventory/images/12_Grapefruit.png" )

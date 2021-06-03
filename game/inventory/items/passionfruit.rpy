@@ -53,4 +53,4 @@ init -800 python:
             return renpy.call_in_new_context("passionFLabel")
 
     # Passion Fruit defined.
-    passionFruit = passionF( "Passion Fruit" , "About as tropical as you can get." , "images/20_Passionfruit.png" )
+    passionFruit = passionF( "Passion Fruit" , "About as tropical as you can get." , "inventory/images/20_Passionfruit.png" )

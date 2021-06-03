@@ -59,4 +59,4 @@ init -800 python:
             return renpy.show_screen("dragonScreen")
 
     # Dragon Fruit defined.
-    dragonFruit = dragonF( "Dragon Fruit" , "White as snow on the inside." , "images/07_Dragonfruit.png" )
+    dragonFruit = dragonF( "Dragon Fruit" , "White as snow on the inside." , "inventory/images/07_Dragonfruit.png" )

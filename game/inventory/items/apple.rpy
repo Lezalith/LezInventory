@@ -37,4 +37,4 @@ init -800 python:
             return renpy.notify("Long live the king...")
 
     # Apple defined.
-    apple = Apple( "Apple" , "The King of all the fruits." , "images/16_Apple.png" )
+    apple = Apple( "Apple" , "The King of all the fruits." , "inventory/images/16_Apple.png" )

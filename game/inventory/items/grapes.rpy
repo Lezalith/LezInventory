@@ -129,4 +129,4 @@ init -800 python:
             return renpy.hide_screen("grapesScreen")
 
     # Grapes defined.
-    grapes = Grapes( "Grapes" , "So many balls..." , "images/11_Grapes_Green.png" )
+    grapes = Grapes( "Grapes" , "So many balls..." , "inventory/images/11_Grapes_Green.png" )
