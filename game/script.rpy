@@ -95,18 +95,12 @@ screen startScreen():
 
 label fromScreen:
 
-    # From example_items.rpy, adds pre-defined Items.
-    $ addExampleItems()
-
     call screen startScreen
 
     return
 
 
 label fromLabel:
-
-    # From example_items.rpy, adds pre-defined Items.
-    $ addExampleItems()
 
     "Lezalith" "This is a line of dialogue to show you we are inside a label.\nFeel free to play around with the Inventory, you'll end up back in this label when you click Return!"
 

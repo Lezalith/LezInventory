@@ -1,19 +1,11 @@
-
-# We execute inits in the logical order: Inventory -> Items -> ...
-# Lower numbers execute first. 
-#
-# This would be important if, for example, Items used some parts of the Inventory,
-# we'd need to make sure Inventory was defined before Items.
-#
-# At the time of writing this comment, there are no such connections present.
-# However, they are common, so I want to keep the practice going. 
-#
-
 init -750 python:
 
-    # -(1)- ...running this straight away would give us "Inventory" not defined.
-    # Which is why we're only setting it up here, and we'll run this when
-    # we start the game.
+    # Because Inventory is created with the help of
+    # the "default" statement, we can't interact with it during the init phase.
+
+    # Because of that, we'll prepare this function to insert all
+    # the example items, and add it to a callback so it gets automatically
+    # ran when the game starts.
 
     def addExampleItems():
 
@@ -37,3 +29,6 @@ init -750 python:
         Inventory.add(wmelon)
         Inventory.add(passionFruit)
         Inventory.add(grapefruit)
+
+    if addExampleItems not in config.start_callbacks:
+        config.start_callbacks.append(addExampleItems)
