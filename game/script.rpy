@@ -9,6 +9,8 @@
 
 screen main_menu():
 
+    tag main
+
     add gui.main_menu_background
 
     frame:
@@ -36,7 +38,7 @@ screen main_menu():
                 xalign 0.5
 
                 textbutton "Enter from a screen.":
-                    action Start("fromScreen")
+                    action Show("fromScreen")
 
 
                 textbutton "Enter from a label.":
@@ -80,25 +82,23 @@ screen info():
         textbutton "I understand!" align (0.5, 1.0) action Hide("info")
 
 
-screen startScreen():
+screen fromScreen():
+
+    tag main
+    modal True
 
     frame:
         align (0.5, 0.5)
         padding (100, 100)
 
         vbox:
+            spacing 2
 
-            text "Click the following button to enter the Inventory."
+            text "Sorry, didn't want to drop you into the Inventory straight away."
+            text "Click the button below to enter it." xalign 0.5
             text "I sincerely hope you'll enjoy!" xalign 0.5
             text ""
-            textbutton "Woosh!" action Show("inventoryScreen") xalign 0.5
-
-label fromScreen:
-
-    call screen startScreen
-
-    return
-
+            textbutton "Woosh!" action Show("inventoryScreen", howToLeave = "both") xalign 0.5
 
 label fromLabel:
 

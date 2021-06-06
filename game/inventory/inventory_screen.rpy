@@ -273,7 +273,12 @@ style inventory_pages_hbox_right_text:
 ###########################################
 ###########################################
 
-screen inventoryScreen():
+# Takes one argument, howToLeave. This specifies what
+# the Inventory does when the Return button is clicked.
+# "return" will Return(), "hide" will Hide("inventoryScreen"),
+# or "both" which will do both, first Hide, then Return.
+
+screen inventoryScreen( howToLeave = "return" ):
 
     # You cannot interact with other shown screens below.
     # This means not even clicking to continue dialogue.
@@ -477,7 +482,12 @@ screen inventoryScreen():
 
                 style_suffix "return_textbutton" # Style: inventory_side_menu_return_textbutton
 
-                action Return()
+                if howToLeave == "return":
+                    action Return()
+                elif howToLeave == "hide":
+                    action Hide("inventoryScreen")
+                elif howToLeave == "both":
+                    action Hide("inventoryScreen"), Return()
 
         # A horizontal box. This one contains:
         # 1) Left Arrow for controlling Inventory Pages
