@@ -7,6 +7,9 @@
 
         renpy.notify("Lez's Discord copied to clipboard!")
 
+# TODO: Lemon equipped when the only one on page
+# Entering from screen doesnt refill items
+
 screen main_menu():
 
     tag main
