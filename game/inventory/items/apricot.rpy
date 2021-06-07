@@ -103,15 +103,15 @@ screen apricotMenu(items):
 
             hbox:
 
-                textbutton x.caption action x.action
-                textbutton y.caption action y.action
+                textbutton x.caption action x.action text_color "000"
+                textbutton y.caption action y.action text_color "000"
 
         # If there was a solo item at the end
         if (len(items) % 2 ):
 
             hbox:
                 xalign 0.5
-                textbutton items[-1].caption action items[-1].action
+                textbutton items[-1].caption action items[-1].action text_color "000"
 
 init -800 python:    
 

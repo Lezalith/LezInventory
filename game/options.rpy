@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("LezCaveInventory")
+define config.name = _("LezInventory")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -37,7 +37,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "LezCaveInventory"
+define build.name = "LezInventory"
 
 
 ## Sounds and music ############################################################
@@ -142,7 +142,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "LezCaveInventory-1621567400"
+define config.save_directory = "LezInventory-1621567400"
 
 
 ## Icon ########################################################################
@@ -185,7 +185,7 @@ init python:
 
     ## To archive files, classify them as 'archive'.
 
-    # build.classify('game/**.png', 'archive')
+    build.classify('game/**.rpy', 'archive')
     # build.classify('game/**.jpg', 'archive')
 
     ## Files matching documentation patterns are duplicated in a mac app build,
