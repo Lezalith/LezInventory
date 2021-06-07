@@ -18,14 +18,14 @@ screen grapesScreen():
         at frameCC, frameAlpha
 
         # All the different Balls, spinning clockwise themselves.
-        add "images/11_Grapes_Green.png" align (0.125, 0.125) at grapesC
-        add "images/11_Grapes_Green.png" align (0.5, 0.0) at grapesC
-        add "images/11_Grapes_Green.png" align (0.875, 0.125) at grapesC
-        add "images/11_Grapes_Green.png" align (0.0, 0.5) at grapesC
-        add "images/11_Grapes_Green.png" align (1.0, 0.5) at grapesC
-        add "images/11_Grapes_Green.png" align (0.125, 0.875) at grapesC
-        add "images/11_Grapes_Green.png" align (0.5, 1.0) at grapesC
-        add "images/11_Grapes_Green.png" align (0.875, 0.875) at grapesC
+        add "inventory/images/11_Grapes_Green.png" align (0.125, 0.125) at grapesC
+        add "inventory/images/11_Grapes_Green.png" align (0.5, 0.0) at grapesC
+        add "inventory/images/11_Grapes_Green.png" align (0.875, 0.125) at grapesC
+        add "inventory/images/11_Grapes_Green.png" align (0.0, 0.5) at grapesC
+        add "inventory/images/11_Grapes_Green.png" align (1.0, 0.5) at grapesC
+        add "inventory/images/11_Grapes_Green.png" align (0.125, 0.875) at grapesC
+        add "inventory/images/11_Grapes_Green.png" align (0.5, 1.0) at grapesC
+        add "inventory/images/11_Grapes_Green.png" align (0.875, 0.875) at grapesC
 
     # Outer frame of the Balls.
     frame:
@@ -40,14 +40,14 @@ screen grapesScreen():
         at frameC, frameAlpha
 
         # All the different Balls, spinning counter-clockwise themselves.
-        add "images/11_Grapes_Green.png" align (0.125, 0.125) at grapesCC
-        add "images/11_Grapes_Green.png" align (0.5, 0.0) at grapesCC
-        add "images/11_Grapes_Green.png" align (0.875, 0.125) at grapesCC
-        add "images/11_Grapes_Green.png" align (0.0, 0.5) at grapesCC
-        add "images/11_Grapes_Green.png" align (1.0, 0.5) at grapesCC
-        add "images/11_Grapes_Green.png" align (0.125, 0.875) at grapesCC
-        add "images/11_Grapes_Green.png" align (0.5, 1.0) at grapesCC
-        add "images/11_Grapes_Green.png" align (0.875, 0.875) at grapesCC
+        add "inventory/images/11_Grapes_Green.png" align (0.125, 0.125) at grapesCC
+        add "inventory/images/11_Grapes_Green.png" align (0.5, 0.0) at grapesCC
+        add "inventory/images/11_Grapes_Green.png" align (0.875, 0.125) at grapesCC
+        add "inventory/images/11_Grapes_Green.png" align (0.0, 0.5) at grapesCC
+        add "inventory/images/11_Grapes_Green.png" align (1.0, 0.5) at grapesCC
+        add "inventory/images/11_Grapes_Green.png" align (0.125, 0.875) at grapesCC
+        add "inventory/images/11_Grapes_Green.png" align (0.5, 1.0) at grapesCC
+        add "inventory/images/11_Grapes_Green.png" align (0.875, 0.875) at grapesCC
 
 # Transform for smooth appear and disappear
 transform frameAlpha():

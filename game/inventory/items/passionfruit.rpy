@@ -14,7 +14,7 @@ label passionFLabel():
             "Lezalith" "Awesome! Have some more fruit then!"
 
             # Adds one more Passion Fruit into the Inventory.
-            $ Inventory.add( passionF( "Passion Fruit" , "About as tropical as you can get." , "images/20_Passionfruit.png" ) )
+            $ Inventory.add( passionF( "Passion Fruit" , "About as tropical as you can get." , "inventory/images/20_Passionfruit.png" ) )
 
         "Not tropical at all.":
 
