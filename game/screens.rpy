@@ -446,6 +446,43 @@ screen file_slots(title):
     text "This thing has no menu! Right click again, please!"
 
 
+## Quick Menu screen ###########################################################
+##
+## The quick menu is displayed in-game to provide easy access to the out-of-game
+## menus.
+
+screen quick_menu():
+
+    ## Ensure this appears on top of other screens.
+    zorder 100
+
+    if quick_menu:
+
+        hbox:
+            style_prefix "quick"
+            spacing -10
+            align (0.5, 1.0)
+
+            text "{u}Fruit art{/u} created by the amazing" yoffset 1
+            textbutton "Admurin" yoffset -4 action Function(copyText, text = "https://admurin.itch.io", notice = "Admurin's Itch.io copied to clipboard!") text_size 32
+
+
+## This code ensures that the quick_menu screen is displayed in-game, whenever
+## the player has not explicitly hidden the interface.
+init python:
+    config.overlay_screens.append("quick_menu")
+
+default quick_menu = True
+
+style quick_button is default
+style quick_button_text is button_text
+
+style quick_button:
+    properties gui.button_properties("quick_button")
+
+style quick_button_text:
+    properties gui.button_text_properties("quick_button")
+
 
 ################################################################################
 ## Additional screens
