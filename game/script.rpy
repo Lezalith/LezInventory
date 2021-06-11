@@ -1,11 +1,11 @@
 ﻿init -1 python:
-    def copyMyDisc():
+    def copyText(text, notice):
 
         import pygame.scrap
        
-        pygame.scrap.put(pygame.scrap.SCRAP_TEXT, "Lezalith (LezCave.com)#2853".encode("utf-8"))
+        pygame.scrap.put(pygame.scrap.SCRAP_TEXT, text.encode("utf-8"))
 
-        renpy.notify("Lez's Discord coppied to clipboard!")
+        renpy.notify(notice)
 
 screen main_menu():
 
@@ -65,7 +65,7 @@ screen main_menu():
                     xalign 0.5
                     yalign 1.0
                     text "And here, you can click to copy my Discord, let me know how you've liked my work."
-                    textbutton "Lezalith (LezCave.com)#2853" xalign 0.5 action Function(copyMyDisc)
+                    textbutton "Lezalith (LezCave.com)#2853" xalign 0.5 action Function(copyText, text = "Lezalith (LezCave.com)#2853", notice = "Lez's Discord copied!")
 
 
 screen info():
