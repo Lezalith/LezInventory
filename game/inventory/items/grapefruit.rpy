@@ -27,10 +27,7 @@ init -800 python:
         def used(self, InventoryObject):
             
             # Wipe the Inventory clean.
-            InventoryObject.selectedSlot = None
-            InventoryObject.equippedSlot = None
-            InventoryObject.inventory = []
-            InventoryObject.page = 0
+            InventoryObject.clear()
 
     # Grapefruit defined.
     grapefruit = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "inventory/images/12_Grapefruit.png" )

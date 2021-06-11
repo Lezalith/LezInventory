@@ -173,9 +173,11 @@ screen fromScreen():
             text "Click the button below to enter it." xalign 0.5
             text "I sincerely hope you'll enjoy!" xalign 0.5
             text ""
-            textbutton "Woosh!" action Show("inventoryScreen", howToLeave = "both") xalign 0.5
+            textbutton "Woosh!" action Function(resetInventory), Show("inventoryScreen", howToLeave = "both") xalign 0.5
 
 label fromLabel:
+
+    $ resetInventory()
 
     "Lezalith" "This is a line of dialogue to show you we are inside a label.\nFeel free to play around with the Inventory, you'll end up back in this label when you click Return!"
 

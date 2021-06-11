@@ -86,6 +86,14 @@ init -900 python:
 
             return self.grid["width"] * self.grid["heigth"]
 
+        # Clears the whole inventory.
+        def clear(self):
+
+            self.inventory = []
+            self.equippedSlot = None
+            self.selectedSlot = None
+            self.page = 0
+
         ###################
         ## Page Functions
         ###################
