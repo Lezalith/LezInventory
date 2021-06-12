@@ -30,5 +30,10 @@ init -750 python:
         Inventory.add(passionFruit)
         Inventory.add(grapefruit)
 
+    def resetInventory():
+
+        Inventory.clear()
+        addExampleItems()
+
     if addExampleItems not in config.start_callbacks:
-        config.start_callbacks.append(addExampleItems)
+        config.start_callbacks.append(resetInventory)

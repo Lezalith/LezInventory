@@ -23,12 +23,12 @@
 #
 # Hi there! So glad to see you!
 #
-# Welcome to my Inventory framework. 
+# Welcome to my LezInventory, Inventory framework. 
 # This code's purpose is to let other creators code an Inventory into their game(s),
 # an Inventory that I think is easy to set up, to use, to customize and relatively to understand.
 #
 # I've tried to comment every piece of code in these files, so while some knowledge of
-# Python classes will provide useful, an amateur should be able to get as far as an expert will.
+# Python classes will prove useful, an amateur should be able to get as far as an expert will.
 #
 ##############################################################################
 #
@@ -72,11 +72,11 @@
 # 
 # Here is where the classes knowledge really comes in handy, but really, you won't need to
 # code all that much. Just copy paste a template, change the name, give it
-# functionality in the marked spot, and done.
+# functionality in the marked spot, done.
 #
 # TODO: examples in the end files
 # I have included three example Items that aren't placed into the Inventory at any point from my side.
-# They are the most simple ones used in my Inventory Preview, they should guide you. The files are:
+# They are the most simple ones used in my LezInventory project, they should guide you. The files are:
 # apple.rpy for a simple look at how equip and unequip effects are done
 # passionfruit.rpy for a usable that leads to a label
 # dragonfruit.rpy for a usable that let's you show a screen
@@ -89,8 +89,17 @@
 # On top of that file (all the way up until about half of the file) are all the styles
 # used in the screen. They are commented so you know exactly what style controls what,
 # and once you change something in the style, it will change on the Inventory screen.
+# 
+# The names are written logically, as they go deeper.
+# If we take one of the complex examples...
+# 
+# inventory_ is a prefix all styles here have
+# side_menu is a frame containing everything on the right side.
+# vbox_interaction is a name I chose for the vbox containing most buttons.
+# throwaway_textbutton finally points at the textbutton of "Throw Away".
+# style inventory_side_menu_vbox_interaction_throwaway_textbutton
 #
-# inventory_settings.rpy
+# The second file is inventory_settings.rpy
 # This file has a InventorySettings class.
 # No functions here, you won't be using this one yourselves at all.
 #
@@ -100,7 +109,7 @@
 #
 ################################################################################
 #
-# There you go! If you go through all of this, you should understand the basics of my Inventory.
+# There you go! If you go through all of this, you should understand the basics of LezInventory.
 #
 # Well... All of it, hopefully. 
 # I really tried my best to write this Inventory to be as simple but at the same time
