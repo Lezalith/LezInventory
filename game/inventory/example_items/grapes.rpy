@@ -18,14 +18,14 @@ screen grapesScreen():
         at frameCC, frameAlpha
 
         # All the different Balls, spinning clockwise themselves.
-        add "inventory/images/11_Grapes_Green.png" align (0.125, 0.125) at grapesC
-        add "inventory/images/11_Grapes_Green.png" align (0.5, 0.0) at grapesC
-        add "inventory/images/11_Grapes_Green.png" align (0.875, 0.125) at grapesC
-        add "inventory/images/11_Grapes_Green.png" align (0.0, 0.5) at grapesC
-        add "inventory/images/11_Grapes_Green.png" align (1.0, 0.5) at grapesC
-        add "inventory/images/11_Grapes_Green.png" align (0.125, 0.875) at grapesC
-        add "inventory/images/11_Grapes_Green.png" align (0.5, 1.0) at grapesC
-        add "inventory/images/11_Grapes_Green.png" align (0.875, 0.875) at grapesC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.125) at grapesC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.5, 0.0) at grapesC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.125) at grapesC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.0, 0.5) at grapesC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (1.0, 0.5) at grapesC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.875) at grapesC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.5, 1.0) at grapesC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.875) at grapesC
 
     # Outer frame of the Balls.
     frame:
@@ -40,14 +40,14 @@ screen grapesScreen():
         at frameC, frameAlpha
 
         # All the different Balls, spinning counter-clockwise themselves.
-        add "inventory/images/11_Grapes_Green.png" align (0.125, 0.125) at grapesCC
-        add "inventory/images/11_Grapes_Green.png" align (0.5, 0.0) at grapesCC
-        add "inventory/images/11_Grapes_Green.png" align (0.875, 0.125) at grapesCC
-        add "inventory/images/11_Grapes_Green.png" align (0.0, 0.5) at grapesCC
-        add "inventory/images/11_Grapes_Green.png" align (1.0, 0.5) at grapesCC
-        add "inventory/images/11_Grapes_Green.png" align (0.125, 0.875) at grapesCC
-        add "inventory/images/11_Grapes_Green.png" align (0.5, 1.0) at grapesCC
-        add "inventory/images/11_Grapes_Green.png" align (0.875, 0.875) at grapesCC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.125) at grapesCC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.5, 0.0) at grapesCC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.125) at grapesCC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.0, 0.5) at grapesCC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (1.0, 0.5) at grapesCC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.875) at grapesCC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.5, 1.0) at grapesCC
+        add "inventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.875) at grapesCC
 
 # Transform for smooth appear and disappear
 transform frameAlpha():
@@ -129,4 +129,4 @@ init -800 python:
             return renpy.hide_screen("grapesScreen")
 
     # Grapes defined.
-    grapes = Grapes( "Grapes" , "So many balls..." , "inventory/images/11_Grapes_Green.png" )
+    grapes = Grapes( "Grapes" , "So many balls..." , "inventory/example_items/images/11_Grapes_Green.png" )

@@ -14,7 +14,7 @@ label passionFLabel():
             "Lezalith" "Awesome! Have some more fruit then!"
 
             # Adds one more Passion Fruit into the Inventory.
-            $ Inventory.add( passionF( "Passion Fruit" , "About as tropical as you can get." , "inventory/images/20_Passionfruit.png" ) )
+            $ Inventory.add( passionF( "Passion Fruit" , "About as tropical as you can get." , "inventory/example_items/images/20_Passionfruit.png" ) )
 
         "Not tropical at all.":
 
@@ -53,4 +53,4 @@ init -800 python:
             return renpy.call_in_new_context("passionFLabel")
 
     # Passion Fruit defined.
-    passionFruit = passionF( "Passion Fruit" , "About as tropical as you can get." , "inventory/images/20_Passionfruit.png" )
+    passionFruit = passionF( "Passion Fruit" , "About as tropical as you can get." , "inventory/example_items/images/20_Passionfruit.png" )

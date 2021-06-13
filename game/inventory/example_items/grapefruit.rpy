@@ -30,4 +30,4 @@ init -800 python:
             InventoryObject.clear()
 
     # Grapefruit defined.
-    grapefruit = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "inventory/images/12_Grapefruit.png" )
+    grapefruit = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "inventory/example_items/images/12_Grapefruit.png" )

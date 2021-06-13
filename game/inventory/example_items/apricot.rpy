@@ -13,77 +13,77 @@ label apricotLabel(selfItem):
 
         "Durian.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Durian( "Durian" , "World's smelliest fruit, supposedly." , "inventory/images/08_Durian.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Durian( "Durian" , "World's smelliest fruit, supposedly." , "inventory/example_items/images/08_Durian.png" )
             $ Inventory.unselect()
 
         "Grapes.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Grapes( "Grapes" , "So many balls..." , "inventory/images/11_Grapes_Green.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Grapes( "Grapes" , "So many balls..." , "inventory/example_items/images/11_Grapes_Green.png" )
             $ Inventory.unselect()
 
         "Lemon.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Lemon( "Lemon" , "Not good in combination with other fruits." , "inventory/images/15_Lemon.png" ) 
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Lemon( "Lemon" , "Not good in combination with other fruits." , "inventory/example_items/images/15_Lemon.png" ) 
             $ Inventory.unselect()
 
         "Apple.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Apple" , "The King of all the fruits." , "inventory/images/16_Apple.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Apple" , "The King of all the fruits." , "inventory/example_items/images/16_Apple.png" )
             $ Inventory.unselect()
 
         "Cherries.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Cherries" , "Spit the seeds at your foes!" , "inventory/images/01_Cherry_Red.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Cherries" , "Spit the seeds at your foes!" , "inventory/example_items/images/01_Cherry_Red.png" )
             $ Inventory.unselect()
 
         "Orange.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "inventory/images/17_Orange.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "inventory/example_items/images/17_Orange.png" )
             $ Inventory.unselect()
 
         "Cranberries.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Cranberries" , "Ever heard of \"Hermelín\"?" , "inventory/images/03_Cranberry.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Cranberries" , "Ever heard of \"Hermelín\"?" , "inventory/example_items/images/03_Cranberry.png" )
             $ Inventory.unselect()
 
         "Kiwi.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Kiwi" , "Great as a tea with strawberries." , "inventory/images/14_Kiwi.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Kiwi" , "Great as a tea with strawberries." , "inventory/example_items/images/14_Kiwi.png" )
             $ Inventory.unselect()
 
         "Strawberry.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Strawberry" , "Great as a tea with kiwis." , "inventory/images/22_Strawberry.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Strawberry" , "Great as a tea with kiwis." , "inventory/example_items/images/22_Strawberry.png" )
             $ Inventory.unselect()
 
         "Dragon fruit.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = dragonF( "Dragon Fruit" , "White as snow on the inside." , "inventory/images/07_Dragonfruit.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = dragonF( "Dragon Fruit" , "White as snow on the inside." , "inventory/example_items/images/07_Dragonfruit.png" )
             $ Inventory.unselect()
 
         "Guava.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Guava( "Guava" , "Kinda random, to be honest." , "inventory/images/13_Guava.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Guava( "Guava" , "Kinda random, to be honest." , "inventory/example_items/images/13_Guava.png" )
             $ Inventory.unselect()
 
         "Apricot.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "inventory/images/21_Apricot.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "inventory/example_items/images/21_Apricot.png" )
             $ Inventory.unselect()
 
         "Watermelon.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = WMelon( "Watermelon" , "So big, almost seems endless. And slippery." , "inventory/images/23_Watermelon.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = WMelon( "Watermelon" , "So big, almost seems endless. And slippery." , "inventory/example_items/images/23_Watermelon.png" )
             $ Inventory.unselect()
 
         "Passion fruit.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = passionF( "Passion Fruit" , "About as tropical as you can get." , "inventory/images/20_Passionfruit.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = passionF( "Passion Fruit" , "About as tropical as you can get." , "inventory/example_items/images/20_Passionfruit.png" )
             $ Inventory.unselect()
 
         "Grapefruit.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "inventory/images/12_Grapefruit.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "inventory/example_items/images/12_Grapefruit.png" )
             $ Inventory.unselect()
 
     # Return back to the Inventory.
@@ -152,4 +152,4 @@ init -800 python:
             return renpy.call_in_new_context("apricotLabel", selfItem = self)
 
     # Apricot defined.
-    apricot = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "inventory/images/21_Apricot.png" )
+    apricot = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "inventory/example_items/images/21_Apricot.png" )

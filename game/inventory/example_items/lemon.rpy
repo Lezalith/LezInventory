@@ -53,4 +53,4 @@ init -800 python:
             InventoryObject.inventory = self.inventory
 
     # Lemon defined.
-    lemon = Lemon( "Lemon" , "Not good in combination with other fruits." , "inventory/images/15_Lemon.png" )
+    lemon = Lemon( "Lemon" , "Not good in combination with other fruits." , "inventory/example_items/images/15_Lemon.png" )

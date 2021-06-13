@@ -1,10 +1,11 @@
-# Durian is an Equippable Item.
-# While Equipped, there is a dark green overlay over the player's screen.
+# Apple is an Equippable Item.
+# When equipped, it will show a message.
+# When unequipped, it will show a different message.
 
 init -800 python:
 
-    # Class of the Durian.
-    class Durian(EquippableItem):
+    # Class of the Apple.
+    class Apple(EquippableItem):
 
         # What happens upon the definition.
         def __init__(self, name, desc, image = None):
@@ -21,19 +22,19 @@ init -800 python:
             ##########################
 
             # Calls the parent class, Item, with everything that it needs.
-            super(Durian, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
+            super(Apple, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
 
         # What happens when the Item is Equipped
         def equipped(self, InventoryObject):
 
-            # Show a Solid color over the entire screen, with 33% opacity.
-            return renpy.show( "NoTag", layer = "screens", zorder = 20, what = Solid( "32CD3233" ) , tag = "durTag" )
+            # Create a Notify with a custom text.
+            return renpy.notify("I have been crowned the King of all Fruits!")
 
         # What happens when the Item is Unequipped
         def unequipped(self, InventoryObject):
 
-            # Remove the Solid color.
-            return renpy.hide("durTag", "screens")
+            # Create a Notify with a custom text.
+            return renpy.notify("Long live the king...")
 
-    # Durian defined.
-    durian = Durian( "Durian" , "World's smelliest fruit, supposedly." , "inventory/images/08_Durian.png" )
+    # Apple defined.
+    apple = Apple( "Apple" , "The King of all the fruits." , "inventory/example_items/images/16_Apple.png" )
