@@ -5,7 +5,7 @@
 init -800 python:
 
     # Class of the Lemon.
-    class Lemon(EquippableItem):
+    class Lemon(lezInv.EquippableItem):
 
         # What happens upon the definition.
         def __init__(self, name, desc, image = None):

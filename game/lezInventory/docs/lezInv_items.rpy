@@ -37,7 +37,7 @@
 # For regular items, you can simply define an Item object, like so:
 #
 # TODO: Probably change the image file.
-define lezInvExampleItem = Item("Example Item", "A simple example.", "lezInventory/example_items/images/16_Apple.png")
+define lezInvExampleItem = lezInv.Item("Example Item", "A simple example.", "lezInventory/example_items/images/16_Apple.png")
 #
 # This creates a regular item. Item (As well as EquippableItem and UsableItem, which 
 # we'll get to in a second) takes three arguments. 
@@ -57,7 +57,7 @@ define lezInvExampleItem = Item("Example Item", "A simple example.", "lezInvento
 init -1 python:
 
     # Give the class a different name, instead of the UsableItemExample.
-    class UsableItemExample(Item):
+    class UsableItemExample(lezInv.Item):
 
         # Default arguments: name, description, image.
         def __init__(self, name, desc, image = None):
@@ -131,7 +131,7 @@ define lezInvExampleUsableItem = UsableItemExample("Example Usable" , "A simple 
 init -1 python:
 
     # Give the class a different name, instead of the EquippableItemExample.
-    class EquippableItemExample(Item):
+    class EquippableItemExample(lezInv.Item):
 
         # Default arguments: name, description, image.
         def __init__(self, name, desc, image = None):

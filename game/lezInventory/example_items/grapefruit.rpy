@@ -4,7 +4,7 @@
 init -800 python:
 
     # Class of the Grapefruit.
-    class Grapefruit(UsableItem):
+    class Grapefruit(lezInv.UsableItem):
 
         # What happens upon the definition.
         def __init__(self, name, desc, image = None):

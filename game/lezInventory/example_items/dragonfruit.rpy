@@ -33,7 +33,7 @@ transform dragonTrans():
 init -800 python:
 
     # Class of the Dragon Fruit.
-    class dragonF(UsableItem):
+    class dragonF(lezInv.UsableItem):
 
         # What happens upon the definition.
         def __init__(self, name, desc, image = None):

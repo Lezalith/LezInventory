@@ -7,7 +7,7 @@ init -800 python:
     from random import randint
 
     # Class of the Guava.
-    class Guava(UsableItem):
+    class Guava(lezInv.UsableItem):
 
         def __init__(self, name, desc, image = None):
 

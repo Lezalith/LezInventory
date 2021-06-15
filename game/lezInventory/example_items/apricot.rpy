@@ -28,32 +28,32 @@ label apricotLabel(selfItem):
 
         "Apple.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Apple" , "The King of all the fruits." , "lezInventory/example_items/images/16_Apple.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = lezInv.Item( "Apple" , "The King of all the fruits." , "lezInventory/example_items/images/16_Apple.png" )
             $ Inventory.unselect()
 
         "Cherries.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = lezInv.Item( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png" )
             $ Inventory.unselect()
 
         "Orange.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "lezInventory/example_items/images/17_Orange.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = lezInv.Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "lezInventory/example_items/images/17_Orange.png" )
             $ Inventory.unselect()
 
         "Cranberries.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Cranberries" , "Ever heard of \"Hermelín\"?" , "lezInventory/example_items/images/03_Cranberry.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = lezInv.Item( "Cranberries" , "Ever heard of \"Hermelín\"?" , "lezInventory/example_items/images/03_Cranberry.png" )
             $ Inventory.unselect()
 
         "Kiwi.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Kiwi" , "Great as a tea with strawberries." , "lezInventory/example_items/images/14_Kiwi.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = lezInv.Item( "Kiwi" , "Great as a tea with strawberries." , "lezInventory/example_items/images/14_Kiwi.png" )
             $ Inventory.unselect()
 
         "Strawberry.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Strawberry" , "Great as a tea with kiwis." , "lezInventory/example_items/images/22_Strawberry.png" )
+            $ Inventory.inventory[ Inventory.selectedSlot ] = lezInv.Item( "Strawberry" , "Great as a tea with kiwis." , "lezInventory/example_items/images/22_Strawberry.png" )
             $ Inventory.unselect()
 
         "Dragon fruit.":
@@ -124,7 +124,7 @@ init -800 python:
         return izip(a, a)
 
     # Class of the Apricot.
-    class Apricot(UsableItem):
+    class Apricot(lezInv.UsableItem):
 
         # What happens upon the definition.
         def __init__(self, name, desc, image = None):

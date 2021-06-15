@@ -7,7 +7,7 @@ init -800 python:
     from random import shuffle
 
     # Class of the WMelon.
-    class WMelon(UsableItem):
+    class WMelon(lezInv.UsableItem):
 
         # What happens upon the definition.
         def __init__(self, name, desc, image = None):
