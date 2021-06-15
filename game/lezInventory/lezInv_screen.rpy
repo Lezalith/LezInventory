@@ -406,8 +406,6 @@ screen inventoryScreen( howToLeave = "return" ):
 
                 style_suffix "vbox_info" # Style: inventory_side_menu_vbox_info
 
-                # TODO: Wrap the Vbox so it can go onto another line.
-
                 # Item's Name.
                 # Underlined to create a line between this and...
                 text ( Inventory.getSelectedItem().name if Inventory.getSelectedItem() else "Nothing selected." ):
