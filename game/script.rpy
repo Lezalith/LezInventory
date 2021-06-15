@@ -7,9 +7,6 @@
 
         renpy.notify(notice)
 
-# TODO: Lemon equipped when the only one on page
-# Entering from screen doesnt refill items
-
 screen main_menu():
 
     tag main
