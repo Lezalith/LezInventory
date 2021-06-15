@@ -46,9 +46,11 @@
 # While they are used mainly by the Inventory screen, some you'll be using yourself, like:
 # Inventory.add(), which adds an Item to the Inventory.
 # Inventory.remove(), which removes an Item from the Inventory.
-# Inventory.use(), Inventory.equip() or Inventory.unequip() which interact with Items # TODO: LET THEM PASS ITEMS TO USE, NOT JUST SELECTED ITEMS
+# Inventory.use(), Inventory.equip() or Inventory.unequip() which interact with Items
 # Inventory.isInInventory(Item), to check whether Item is in the Inventory
 # Inventory.getEquippedItem() or Inventory.isEquipped(Item) to see which Item is currently equipped
+#
+# Inventory.use(Item) can also be used to trigger an Item's effect, like if it was used by the Inventory.
 #
 # I think you should only need more of them if you decide to do big changes to the Inventory screen,
 # but if that's up your alley, go for it. All the functions are documented as well as can be, 

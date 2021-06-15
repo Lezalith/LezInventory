@@ -375,8 +375,14 @@ init -900 python:
             # Return None if nothing is equipped.
             return None
 
-        # Use currently selected item.
-        def use(self):
+        # By default, use the currently selected item.
+        #
+        # Specified Item can be provided, in which case its effect is triggered
+        # like if it was used by the player. For this, it doesn't even have to be in the Inventory.
+        def use(self, specified = None):
+
+            if specified:
+                return specified.used(self)
 
             # Call Item's used() method.
             self.getSelectedItem().used(self)
