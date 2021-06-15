@@ -37,10 +37,9 @@
 # 95% of all the functionality is found in the inventory_class.rpy file. As there is
 # only one object that handles the whole Inventory, all of the functions are tied to it.
 #
-# Inventory is defined once, at the bottom of that file. It requires a single argument,
-# a tuple that says how the Inventory Slots grid will look. It is required in the
-# format of (width, height), and is taken from the InventorySettings class.
-# Default inventory uses (3, 3), which means a 3x3 grid.
+# Inventory is defined once, at the bottom of that file.
+# It is called "Inventory", however you can change it's name to whatever suits you,
+# or even delete the default altogether and define it yourselves somewhere else.
 #
 # After the Inventory is defined, we can use all the different functions/methods. 
 # While they are used mainly by the Inventory screen, some you'll be using yourself, like:

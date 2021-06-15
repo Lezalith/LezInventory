@@ -25,12 +25,12 @@ init -900 python:
 
         "Inventory that holds all the items and manages them."
 
-        def __init__(self, grid):
-
+        def __init__(self):
+ 
             # Dictionary that notes the width and height of cells.
             # Doesn't have to be a dict, but I wanted to make it clear
             # when we want to get grid["width"] rather than grid[0].
-            self.grid = {"width" : grid[0], "height" : grid[1]}
+            self.grid = {"width" : InventorySettings.grid[0], "height" : InventorySettings.grid[1]}
 
             # INDEX of the page that we're on.
             self.page = 0
@@ -463,4 +463,4 @@ init -900 python:
 init -850:
 
     # Default of the Inventory.
-    default Inventory = InventoryObject( InventorySettings.grid )
+    default Inventory = InventoryObject()
