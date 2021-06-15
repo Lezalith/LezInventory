@@ -260,8 +260,11 @@ init -900 python:
         # Returns Items from the current page.
         def getPageItems(self):
 
-            # Here, we set a topLimitIndex.
-            # This is the last possible index that can be included in the slice.
+            # bottomLimitIndex is the Index of the first item on the page.
+            # Simply put, it's 0 on page 0, 8 on page 1, 17 on page 2 etc...
+            bottomLimitIndex = self.page * self.getSize()
+
+            # topLimitIndex is the last possible index that can be included in the slice.
             # Slicing past the last index throws an IndexError.
             # Usually, the topLimitIndex is just the size of a page...
             topLimitIndex = self.page * self.getSize() + self.getSize()
@@ -271,7 +274,7 @@ init -900 python:
             if topLimitIndex > len(self.inventory) - 1:
                 topLimitIndex = len(self.inventory) - 1 + 1
 
-            # Returns Items between page's first index and topLimitIndex.
+            # Returns Items between bottomLimitIndex and topLimitIndex.
             #
             # For example:
             # On a full page with index 1, the slice is [9 : 18].
@@ -280,7 +283,7 @@ init -900 python:
             # Another example:
             # On the last page with index 2 that has 4 items, 
             # the slice is [18 : 22], indexes 19, 20, 21 and 22.
-            return self.inventory[ self.page * self.getSize() : topLimitIndex ]
+            return self.inventory[ bottomLimitIndex : topLimitIndex ]
 
         # Returns ALL Items from the Inventory.
         def getAllItems(self):
