@@ -375,48 +375,54 @@ screen inventoryScreen( howToLeave = "return" ):
 
                 style_suffix "vbox_equipped" # Style: inventory_side_menu_vbox_equipped
 
-                # Label
-                text "Equipped Item:":
+                if InventorySettings.showEquippedLabel:
 
-                    style_suffix "vbox_equipped_text" # Style: inventory_side_menu_vbox_equipped_text
+                    # Label
+                    text "Equipped Item:":
 
-                # Frame around the Slot.
-                frame:
+                        style_suffix "vbox_equipped_text" # Style: inventory_side_menu_vbox_equipped_text
 
-                    style_suffix "vbox_equipped_slot" # Style: inventory_side_menu_vbox_equipped_slot
+                if InventorySettings.showEquippedSlot:
 
-                    # If there is an Equipped Item, create a marker around it.
-                    # Makes more clear how the equipped item is marked in the Inventory slots.
-                    # if Inventory.getEquippedItem():
+                    # Frame around the Slot.
+                    frame:
 
-                    add InventorySettings.equippedHighlight align (0.5, 0.5)
-                    # If there is an Equipped Item, add its Image in the middle.
-                    if Inventory.getEquippedItem():
-                        add Inventory.getEquippedItem().getImage():
+                        style_suffix "vbox_equipped_slot" # Style: inventory_side_menu_vbox_equipped_slot
 
-                            # Normally I would put style_suffix "vbox_equipped_slot_image" here, but
-                            # as it turns out, add cannot have a style.
-                            # So this is one of the few properties we have to manually write here. 
-                            align (0.5, 0.5)
+                        # If there is an Equipped Item, create a marker around it.
+                        # Makes more clear how the equipped item is marked in the Inventory slots.
+                        # if Inventory.getEquippedItem():
 
-            # A vertical box. This one contains:
-            # 1) Text of Item's name
-            # 2) Text of Item's description
-            vbox:
+                        add InventorySettings.equippedHighlight align (0.5, 0.5)
+                        # If there is an Equipped Item, add its Image in the middle.
+                        if Inventory.getEquippedItem():
+                            add Inventory.getEquippedItem().getImage():
 
-                style_suffix "vbox_info" # Style: inventory_side_menu_vbox_info
+                                # Normally I would put style_suffix "vbox_equipped_slot_image" here, but
+                                # as it turns out, add cannot have a style.
+                                # So this is one of the few properties we have to manually write here. 
+                                align (0.5, 0.5)
 
-                # Item's Name.
-                # Underlined to create a line between this and...
-                text ( Inventory.getSelectedItem().name if Inventory.getSelectedItem() else "Nothing selected." ):
+            if InventorySettings.showInfo:
 
-                    style_suffix "vbox_info_name" # Style: inventory_side_menu_vbox_info_name
+                # A vertical box. This one contains:
+                # 1) Text of Item's name
+                # 2) Text of Item's description
+                vbox:
 
-                # Item's Description.
-                # Smaller Size.
-                text ( Inventory.getSelectedItem().description if Inventory.getSelectedItem() else "Nothing selected." ):
+                    style_suffix "vbox_info" # Style: inventory_side_menu_vbox_info
 
-                    style_suffix "vbox_info_description" # Style: inventory_side_menu_vbox_info_description
+                    # Item's Name.
+                    # Underlined to create a line between this and...
+                    text ( Inventory.getSelectedItem().name if Inventory.getSelectedItem() else "Nothing selected." ):
+
+                        style_suffix "vbox_info_name" # Style: inventory_side_menu_vbox_info_name
+
+                    # Item's Description.
+                    # Smaller Size.
+                    text ( Inventory.getSelectedItem().description if Inventory.getSelectedItem() else "Nothing selected." ):
+
+                        style_suffix "vbox_info_description" # Style: inventory_side_menu_vbox_info_description
 
             # A vertical box. This one contains:
             # 1) A horizontal box with the Equip, Unequip and Use buttons
@@ -433,47 +439,53 @@ screen inventoryScreen( howToLeave = "return" ):
 
                     style_suffix "vbox_interaction_equip_box" # Style: inventory_side_menu_vbox_interaction_equip_box
 
-                    # Checks whether the player can Unequip an item.
-                    # This means that NOT ONLY does an item have to be equipped,
-                    # that same item also has to in a selected slot.
-                    if Inventory.canUnequip():
+                    if InventorySettings.showEquipButton:
 
-                        textbutton "Unequip":
+                        # Checks whether the player can Unequip an item.
+                        # This means that NOT ONLY does an item have to be equipped,
+                        # that same item also has to in a selected slot.
+                        if Inventory.canUnequip():
 
-                            style_suffix "vbox_interaction_unequip_textbutton" # Style: inventory_side_menu_vbox_interaction_unequip_textbutton
+                            textbutton "Unequip":
 
-                            action Function(Inventory.unequip)
+                                style_suffix "vbox_interaction_unequip_textbutton" # Style: inventory_side_menu_vbox_interaction_unequip_textbutton
 
-                    # If you can't Unequip stuff, automatically show the Equip button.
-                    else:
+                                action Function(Inventory.unequip)
 
-                        textbutton "Equip": 
+                        # If you can't Unequip stuff, automatically show the Equip button.
+                        else:
 
-                            style_suffix "vbox_interaction_equip_textbutton" # Style: inventory_side_menu_vbox_interaction_equip_textbutton
+                            textbutton "Equip": 
 
-                            # .canEquip() decides whether you can actually click the button.
-                            # Depends on whether an Equippable is Selected.
-                            sensitive Inventory.canEquip()
-                            action Function(Inventory.equip)
+                                style_suffix "vbox_interaction_equip_textbutton" # Style: inventory_side_menu_vbox_interaction_equip_textbutton
 
-                    # Either way, the Use button is shown.
-                    textbutton "Use": 
+                                # .canEquip() decides whether you can actually click the button.
+                                # Depends on whether an Equippable is Selected.
+                                sensitive Inventory.canEquip()
+                                action Function(Inventory.equip)
 
-                        style_suffix "vbox_interaction_use_textbutton" # Style: inventory_side_menu_vbox_interaction_use_textbutton
-                        
-                        # .canUse() decides whether you can click this button,
-                        # and this one depends on the Item being Usable. 
-                        sensitive Inventory.canUse()
-                        action Function(Inventory.use)
+                    if InventorySettings.showUseButton:
 
-                # The Throw Away button.
-                textbutton "Throw Away":
+                        # Either way, the Use button is shown.
+                        textbutton "Use": 
 
-                    style_suffix "vbox_interaction_throwaway_textbutton" # Style: inventory_side_menu_vbox_interaction_throwaway_textbutton
+                            style_suffix "vbox_interaction_use_textbutton" # Style: inventory_side_menu_vbox_interaction_use_textbutton
+                            
+                            # .canUse() decides whether you can click this button,
+                            # and this one depends on the Item being Usable. 
+                            sensitive Inventory.canUse()
+                            action Function(Inventory.use)
 
-                    # Can be clicked if an item is Selected.
-                    sensitive Inventory.getSelectedItem()
-                    action Function(Inventory.remove)
+                if InventorySettings.showThrowAwayButton:
+
+                    # The Throw Away button.
+                    textbutton "Throw Away":
+
+                        style_suffix "vbox_interaction_throwaway_textbutton" # Style: inventory_side_menu_vbox_interaction_throwaway_textbutton
+
+                        # Can be clicked if an item is Selected.
+                        sensitive Inventory.getSelectedItem()
+                        action Function(Inventory.remove)
 
             # The Return button. Closes the Inventory.
             textbutton "Return":

@@ -40,4 +40,14 @@ init -920 python:
             # Is shown *below* the item.
             self.equippedHighlightSlot = "lezInventory/gui/equippedHighlightSlot.png"
 
+            # Variables that control what is showed on the Inventory screen.
+            # This allows the user to quickly reduce the Inventory's functionality,
+            # should they desire to do so.
+            self.showEquippedLabel = True
+            self.showEquippedSlot = True
+            self.showInfo = True
+            self.showEquipButton = True
+            self.showUseButton = True
+            self.showThrowAwayButton = True
+
     InventorySettings = InventorySettings()
