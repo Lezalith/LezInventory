@@ -292,7 +292,7 @@ screen inventoryScreen( howToLeave = "return" ):
 
         # Grid of all the Inventory Slots.
         # The grid size depends on the defined "grid" of an inventory.
-        grid Inventory.grid["width"] Inventory.grid["heigth"]:
+        grid Inventory.grid["width"] Inventory.grid["height"]:
 
             style_suffix "slots_grid" # Style: inventory_slots_grid
 

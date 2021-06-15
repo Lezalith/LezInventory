@@ -30,7 +30,7 @@ init -900 python:
             # Dictionary that notes the width and height of cells.
             # Doesn't have to be a dict, but I wanted to make it clear
             # when we want to get grid["width"] rather than grid[0].
-            self.grid = {"width" : grid[0], "heigth" : grid[1]}
+            self.grid = {"width" : grid[0], "height" : grid[1]}
 
             # INDEX of the page that we're on.
             self.page = 0
@@ -81,10 +81,10 @@ init -900 python:
             self.checkPages()
 
         # Calculates how many cells on a page by doing
-        # width * heigth of the grid.
+        # width * height of the grid.
         def getSize(self):
 
-            return self.grid["width"] * self.grid["heigth"]
+            return self.grid["width"] * self.grid["height"]
 
         # Clears the whole inventory.
         def clear(self):
