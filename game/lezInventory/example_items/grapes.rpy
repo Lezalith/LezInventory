@@ -96,7 +96,7 @@ transform grapesCC():
 init -800 python:
 
     # Class of the Grapes.
-    class Grapes(lezInv.EquippableItem):
+    class Grapes(EquippableItem):
 
         # What happens upon the definition.
         def __init__(self, name, desc, image = None):

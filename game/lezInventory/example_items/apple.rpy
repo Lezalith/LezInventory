@@ -5,7 +5,7 @@
 init -800 python:
 
     # Class of the Apple.
-    class Apple(lezInv.EquippableItem):
+    class Apple(EquippableItem):
 
         # What happens upon the definition.
         def __init__(self, name, desc, image = None):

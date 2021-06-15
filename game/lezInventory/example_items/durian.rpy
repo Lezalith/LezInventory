@@ -4,7 +4,7 @@
 init -800 python:
 
     # Class of the Durian.
-    class Durian(lezInv.EquippableItem):
+    class Durian(EquippableItem):
 
         # What happens upon the definition.
         def __init__(self, name, desc, image = None):

@@ -26,7 +26,7 @@ label passionFLabel():
 init -800 python:
 
     # Class of the Passion Fruit.
-    class passionF(lezInv.UsableItem):
+    class passionF(UsableItem):
 
         # What happens upon the definition.
         def __init__(self, name, desc, image = None):
