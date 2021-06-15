@@ -22,22 +22,22 @@ init -920 python:
             self.mainFrame = "gui/frame.png"
 
             # Backgrounds of an Inventory Slot that contains an Item.
-            self.slotFullIdle = Frame("inventory/gui/slot.png", 6, 6, 6, 6)
-            self.slotFullHover = Frame("inventory/gui/slot.png", 6, 6, 6, 6)
-            self.slotFullSelected = Frame("inventory/gui/slot_selected.png", 6, 6, 6, 6)
-            self.slotFullSelectedHover = Frame("inventory/gui/slot_selected.png", 6, 6, 6, 6)
+            self.slotFullIdle = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
+            self.slotFullHover = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
+            self.slotFullSelected = Frame("lezInventory/gui/slot_selected.png", 6, 6, 6, 6)
+            self.slotFullSelectedHover = Frame("lezInventory/gui/slot_selected.png", 6, 6, 6, 6)
 
             # Background of an Inventory Slot that is empty.
-            self.slotEmptyIdle = Frame("inventory/gui/slot.png", 6, 6, 6, 6)
-            self.slotEmptyHover = Frame("inventory/gui/slot.png", 6, 6, 6, 6)
+            self.slotEmptyIdle = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
+            self.slotEmptyHover = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
 
             # A highlight effect that the Inventory Slot which holds a currently
             # equipped item will have.
             # Is shown *below* the item.
-            self.equippedHighlight = "inventory/gui/equippedHighlight.png"
+            self.equippedHighlight = "lezInventory/gui/equippedHighlight.png"
 
             # A highlight effect that the Equipped Item Slot always has.
             # Is shown *below* the item.
-            self.equippedHighlightSlot = "inventory/gui/equippedHighlightSlot.png"
+            self.equippedHighlightSlot = "lezInventory/gui/equippedHighlightSlot.png"
 
     InventorySettings = InventorySettings()
