@@ -36,7 +36,7 @@ init -890 python:
                 self.image = image
             else:
                 # Use Text Displayable if Image not given.
-                self.image = Text(name)
+                self.image = Text(name, size = 20)
 
             # This is the base class for Items, 
             # so there is no functionality for these.
