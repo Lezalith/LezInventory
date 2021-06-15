@@ -178,15 +178,9 @@ init -900 python:
         # This shows the page indexes when counting from 1 rather than 0.
         def getPagesRepr(self):
 
-            # Calculate what the last page is.
-            lastPage = (len(self.inventory) - 1) // self.getSize() + 1
+            firstPage, lastPage = self.getPages()
 
-            # Make sure the last page cannot be 0.
-            if lastPage == 0:
-                lastPage = 1
-
-            # self.page is the current page.
-            return ( self.page + 1, lastPage )
+            return (firstPage + 1, lastPage + 1)
 
         ####################################
         ## Calculation with Slots
