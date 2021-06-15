@@ -210,6 +210,18 @@ init -1 python:
 ######################################################################################
 #
 # And when you're done reading this, you should be able to define
-# your own items, both simple and complex :)
+# your own items, both simple and complex :) 
+#
+# But of course, you might want to see some examples, first. I got you!
+#
+# I have included three example Items that aren't placed into the Inventory at any point from my side.
+# They are the most simple ones used in my LezInventory project, they should guide you. The files are:
+# apple.rpy for a simple look at how equip and unequip effects are done
+# passionfruit.rpy for a usable that leads to a label
+# dragonfruit.rpy for a usable that let's you show a screen
+#
+# Go check them out, they're commented and very simple to understand!
+#
+######################################################################################
 #
 # I can't wait to see what amazing Items people can create with this!

@@ -60,28 +60,12 @@
 #
 # Second, you should learn how to define some Items to place into your Inventory.
 #
-# TODO: CHANGE THIS
-# For that, you're going to want to jump over to the items.rpy file.
-# There, you'll find three different classes: Item, EquippableItem and UsableItem.
+# As might be expected, that's kind of a big topic in itself, so if you want to
+# learn how to do that (And you probably should, Items are kinda an important part
+# of an Inventory), jump over to lezInv_items.rpy, in the docs folder.
 #
-# For a simple Item that is not usable nor equippable,, you can define a simple Item() object.
-# This will create an Item that has a name, image and description, that can be added into
-# the Inventory and removed as well, one that the player might need if they want to get points
-# towards better endings or just as a little detail to show what the character currently posseses.
-#
-# If you want Equippable or Usable items, you will need to define your own class, and give
-# them an appropriate parent class, either EquippableItem or UsableItem. 
-# 
-# Here is where the classes knowledge really comes in handy, but really, you won't need to
-# code all that much. Just copy paste a template, change the name, give it
-# functionality in the marked spot, done.
-#
-# TODO: examples in the end files
-# I have included three example Items that aren't placed into the Inventory at any point from my side.
-# They are the most simple ones used in my LezInventory project, they should guide you. The files are:
-# apple.rpy for a simple look at how equip and unequip effects are done
-# passionfruit.rpy for a usable that leads to a label
-# dragonfruit.rpy for a usable that let's you show a screen
+# It's the same folder as this doc file is in, so you should've
+# encountered it already!
 #
 ################################################################################
 #
