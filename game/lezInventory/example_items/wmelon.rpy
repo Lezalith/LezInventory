@@ -37,4 +37,4 @@ init -800 python:
             Inventory.selectedSlot = Inventory.inventory.index( self )
 
     # Watermelon defined.
-    wmelon = WMelon( "Watermelon" , "Bouncy enough to hit other items." , "inventory/example_items/images/23_Watermelon.png" )
+    wmelon = WMelon( "Watermelon" , "Bouncy enough to hit other items." , "lezInventory/example_items/images/23_Watermelon.png" )

@@ -37,7 +37,7 @@
 # For regular items, you can simply define an Item object, like so:
 #
 # TODO: Probably change the image file.
-define lezInvExampleItem = Item("Example Item", "A simple example.", "inventory/example_items/images/16_Apple.png")
+define lezInvExampleItem = Item("Example Item", "A simple example.", "lezInventory/example_items/images/16_Apple.png")
 #
 # This creates a regular item. Item (As well as EquippableItem and UsableItem, which 
 # we'll get to in a second) takes three arguments. 
@@ -111,7 +111,7 @@ init -1 python:
 # As already stated, UsableItem takes the same arguments as the regular Item,
 # being the name, the description and the image. 
 #
-define lezInvExampleUsableItem = UsableItemExample("Example Usable" , "A simple example no.2" , "inventory/example_items/images/07_Dragonfruit.png") 
+define lezInvExampleUsableItem = UsableItemExample("Example Usable" , "A simple example no.2" , "lezInventory/example_items/images/07_Dragonfruit.png") 
 #
 # Since UsableItem is a subclass of Item, the arguments are passed to the parent class.
 # If you decide to change the number of arguments, numOfArguments should
@@ -196,7 +196,7 @@ init -1 python:
 # As already stated, UsableItem takes the same arguments as the regular Item,
 # being the name, the description and the image. 
 #
-define lezInvExampleEquippableItem = EquippableItemExample("Example Equippable" , "A simple example no.3" , "inventory/example_items/images/20_Passionfruit.png")
+define lezInvExampleEquippableItem = EquippableItemExample("Example Equippable" , "A simple example no.3" , "lezInventory/example_items/images/20_Passionfruit.png")
 #
 # These items are functional. If you want to see for youselves, you can
 # run this function ingame to add them to the Inventory.

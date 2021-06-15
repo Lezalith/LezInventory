@@ -36,4 +36,4 @@ init -800 python:
             return renpy.hide("durTag", "screens")
 
     # Durian defined.
-    durian = Durian( "Durian" , "World's smelliest fruit, supposedly." , "inventory/example_items/images/08_Durian.png" )
+    durian = Durian( "Durian" , "World's smelliest fruit, supposedly." , "lezInventory/example_items/images/08_Durian.png" )

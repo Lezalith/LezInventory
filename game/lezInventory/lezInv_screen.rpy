@@ -105,7 +105,7 @@ style inventory_side_menu_vbox_equipped:
 
 # The Equipped Slot.
 style inventory_side_menu_vbox_equipped_slot:
-    background Frame("inventory/gui/slot.png", 6, 6, 6, 6)
+    background Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
     xysize (200, 200)
     xalign 0.5
 
