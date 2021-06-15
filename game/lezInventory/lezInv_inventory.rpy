@@ -102,7 +102,7 @@ init -900 python:
         def getPages(self):
 
             # Calculate how many pages are there.
-            lastPage = (len(self.inventory) - 1) / self.getSize()
+            lastPage = (len(self.inventory) - 1) // self.getSize()
 
             # A safe check. 
             if lastPage < 0:
@@ -179,7 +179,7 @@ init -900 python:
         def getPagesRepr(self):
 
             # Calculate what the last page is.
-            lastPage = (len(self.inventory) - 1) / self.getSize() + 1
+            lastPage = (len(self.inventory) - 1) // self.getSize() + 1
 
             # Make sure the last page cannot be 0.
             if lastPage == 0:
