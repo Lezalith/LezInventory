@@ -196,15 +196,18 @@ init -900 python:
         # Giving it 6th item on 2nd page will return 15th item.
         def getFlattenedSlot(self, slot):
 
+            # The last index in the whole Inventory.
+            lastIndex = len( self.getAllItems() ) - 1
+
             # Check if the slot is valid.
-            # Checks whether index doesn't exceed one page.
-            if not slot > self.getSize():
+            # For a slot to be valid, it has to be within one page,
+            # and it must not point onto an empty slot.
 
-                # Checks whether index doesn't exceed the inventory.
-                # -1 at the end because len() gives length, we need the last index.
-                if not slot > len( self.getAllItems() ) - 1:
-
-                    return ( self.page * self.getSize() + slot )
+            if slot > self.getSize() or slot > lastIndex:
+                return None
+            
+            # Returns the slot index.
+            return ( self.page * self.getSize() + slot )
 
         # Compares whether slot from a page matches what is currently selected.
         def compareFlattenedSlotToSelected(self, slot):
