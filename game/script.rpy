@@ -1,4 +1,10 @@
-﻿init -1 python:
+﻿transform mySize():
+    size (240, 240)
+
+image side lezalith = At("myself.jpeg", mySize)
+define lez = Character("Lezalith", image = "lezalith")
+
+init -1 python:
     def copyText(text, notice):
 
         import pygame.scrap
@@ -19,6 +25,8 @@ screen main_menu():
         align (0.5, 0.5)
         xysize (1600, 800)
         ypadding 75
+
+        add "myself.jpeg" xalign 1.0 size (200, 200) offset (-15, -60)
 
         vbox:
             xalign 0.5
@@ -81,15 +89,17 @@ screen info():
         xysize (1800, 800)
         ypadding 120
 
+        add "myself.jpeg" xalign 1.0 size (120, 120) offset (-10, -110)
+
         vbox:
             xalign 0.5
-            spacing 40
+            spacing 50
 
             # text "Sorry, this is just a preview! The code will be out soon!"
 
             vbox:
                 spacing 5
-                text "If you go through the files of this project, you will find a .zip file named \"LezInventoryCode.zip\"."
+                text "If you go through the files of this project, you will find a .zip file \"LezInventoryCode.zip\"."
                 text "Inside this zip are all the files you need to set up the Inventory."
 
             vbox:
@@ -120,6 +130,8 @@ screen desc():
         align (0.5, 0.5)
         xysize (1850, 800)
         ypadding 120
+
+        add "myself.jpeg" xalign 1.0 size (120, 120) offset (-10, -110)
 
         vbox:
 
@@ -166,12 +178,15 @@ screen fromScreen():
 
         vbox:
             spacing 2
+            first_spacing 20
+
+            add "myself.jpeg" xalign 0.5 size (250, 250) yoffset -50
 
             text "Sorry, didn't want to drop you into the Inventory straight away."
             text "Click the button below to enter it." xalign 0.5
             text "I sincerely hope you'll enjoy!" xalign 0.5
             text ""
-            textbutton "Woosh!" action Function(resetInventory), Show("quick_menu"), Show("inventoryScreen", howToLeave = "both") xalign 0.5
+            textbutton "Woosh!" action Function(resetInventory), Show("quick_menu"), Show("inventoryScreen", howToLeave = "both"), Hide("fromScreen") xalign 0.5
 
 label fromLabel:
 
@@ -179,12 +194,12 @@ label fromLabel:
 
     show screen quick_menu
 
-    "Lezalith" "This is a line of dialogue to show you we are inside a label.\nFeel free to play around with the Inventory, you'll end up back in this label when you click Return!"
+    lez "This is a line of dialogue to show you we are inside a label.\nFeel free to play around with the Inventory, you'll end up back in this label when you click Return!"
 
     show screen quick_menu
 
     call screen inventoryScreen
 
-    "Lezalith" "Welcome back to the label! I hope you've enjoyed :)"
+    lez "Welcome back to the label! I hope you've enjoyed :)"
 
     return
