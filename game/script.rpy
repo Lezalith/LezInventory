@@ -188,7 +188,7 @@ screen fromScreen():
             text ""
             textbutton "Woosh!" action Function(resetInventory), Show("quick_menu"), Show("inventoryScreen", howToLeave = "both"), Hide("fromScreen") xalign 0.5
 
-label fromLabel:
+label fromLabel():
 
     $ resetInventory()
 
