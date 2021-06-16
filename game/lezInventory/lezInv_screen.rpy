@@ -39,12 +39,6 @@
 # Those styles already contain *something*, a placeholder that doesn't matter.
 # Most of the time, this is the "background" property set to "None", used in places
 # where the background is already None anyway, so it essentially doesn't change anything.
-#
-#---------------
-#
-# Some of the images can be changed by changing the images in lezInventory/gui,
-# but there are some default Ren'Py gui images used, too, namely the
-# main frame of the whole Inventory. 
 
 ##########################
 ## The Main Frame
