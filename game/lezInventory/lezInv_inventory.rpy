@@ -410,8 +410,15 @@ init -900 python:
             # Call Item's used() method.
             self.getSelectedItem().used(self)
 
-            # Remove the Item from the Inventory.
-            self.remove()
+            # An extra check whether an Item is still selected, in case
+            # the Item changed it. Guava from the project is a great example.
+            if self.getSelectedItem():
+
+                # Remove the Item if it's supposed to be consumed.
+                if self.getSelectedItem().consumedOnUse:
+
+                    # Remove the Item from the Inventory.
+                    self.remove()
 
         #####################################
         ## Checks
