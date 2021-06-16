@@ -94,6 +94,24 @@
 #
 ################################################################################
 #
+# After the Inventory is set up, it is ready to be shown!
+#
+# It can be shown either from a screen, a label, as demonstrated in the
+# LezInventory project, to suit all your needs.
+#
+# To show it through a label, simply use "call screen inventoryScreen".
+#
+# To show it through a screen, use the action Show("inventoryScreen", howToLeave = "both").
+# As you can see, it has one argument, howToLeave. This determines what happens when
+# the Return button is clicked, being "both" in the LezInventory project. 
+# "return" will Return(), "hide" will Hide("inventoryScreen"), and "both" will first Hide(), then Return().
+#
+# You can also use the Ren'Py function for showing or calling a screen,
+# renpy.show_screen("inventoryScreen") for showing it,
+# renpy.call_screen("inventoryScreen") for calling it.
+#
+#################################################################################
+#
 # There you go! If you go through all of this, you should understand the basics of LezInventory.
 #
 # Well... All of it, hopefully. 
