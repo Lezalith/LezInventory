@@ -181,6 +181,8 @@ label fromLabel:
 
     "Lezalith" "This is a line of dialogue to show you we are inside a label.\nFeel free to play around with the Inventory, you'll end up back in this label when you click Return!"
 
+    show screen quick_menu
+
     call screen inventoryScreen
 
     "Lezalith" "Welcome back to the label! I hope you've enjoyed :)"
