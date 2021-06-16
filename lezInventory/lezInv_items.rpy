@@ -64,6 +64,7 @@ init -890 python:
             # This is the base class for Items, 
             # so there is no functionality for these.
             self.usable = False
+            self.consumedOnUse = False
             self.equippable = False
 
         ############################
@@ -117,13 +118,13 @@ init -890 python:
     class UsableItem(Item):
 
         # What happens upon the definition.
-        def __init__(self, name, desc, image = None):
+        def __init__(self, name, desc, image = None, consumedOnUse = True):
 
             # Gets all the arguments.
             args = locals()
 
             # Manual check whether there are more/less arguments than should be.
-            numOfArguments = 4
+            numOfArguments = 5
 
             if len( args.keys() ) > numOfArguments:
                 raise TypeError( "__init__() takes {} arguments ({} given)".format( numOfArguments , len( args.keys() ) ) )
@@ -135,6 +136,9 @@ init -890 python:
 
             # That's the point of this class.
             self.usable = True
+
+            # Whether the Item is removed from the Inventory when Used.
+            self.consumedOnUse = consumedOnUse
 
         ############################
         ## To Be Overwritten
