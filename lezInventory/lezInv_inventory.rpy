@@ -76,8 +76,34 @@ init -900 python:
 
             self.inventory.append(Item)
 
-        # Removes the selected Item from the inventory.
-        def remove(self):
+        # Removes an Item from the inventory.
+        # If Item is not specified, it will remove the selected item.
+        def remove(self, Item = None):
+
+            # Specified Item
+            if Item != None:
+
+                if Item in self.inventory:
+
+                    # Unequip the Item if it's equipped.
+                    if Item == self.getEquippedItem():
+
+                        self.unequip()
+
+                    # Unselect the Item if it's selected.
+                    if Item == self.getSelectedItem():
+                        self.unselect()
+
+                    # Remove the Item from the inventory.
+                    self.inventory.remove(Item)
+
+                    # Check pages whether we don't have
+                    # (an) empty one(s) after the removal.
+                    self.checkPages()
+
+                    return
+
+            # Removing Selected Item:
 
             # Do nothing if nothing is selected
             if self.selectedSlot == None:
