@@ -86,6 +86,11 @@ label apricotLabel(selfItem):
             $ Inventory.inventory[ Inventory.selectedSlot ] = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "lezInventory/example_items/images/12_Grapefruit.png" )
             $ Inventory.unselect()
 
+        "Peach...?":
+
+            $ Inventory.inventory[ Inventory.selectedSlot ] = Peach( "Peachpricot" , "An intriguing combination\nof peach and apricot.", image = "lezInventory/example_items/images/0X_Peachpricot.png" )
+            $ Inventory.unselect()
+
     # Return back to the Inventory.
     return
 

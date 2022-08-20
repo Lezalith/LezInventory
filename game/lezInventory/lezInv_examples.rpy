@@ -29,6 +29,9 @@ init -750 python:
         Inventory.add(wmelon)
         Inventory.add(passionFruit)
         Inventory.add(grapefruit)
+        Inventory.add(peach1)
+        Inventory.add(peach2)
+        Inventory.add(peach3)
 
     def resetInventory():
 
