@@ -26,12 +26,6 @@ init -800 python:
         # How many times an Item of the Peach class has been used.
         howManyTimesUsed = 0
 
-        # What happens upon the definition.
-        def __init__(self, name, desc, **kwargs):
-
-            # Calls the parent class, Item, with everything that it needs.
-            super(Peach, self).__init__( name = name, desc = desc, **kwargs )
-
         # What happens when the Item is used.
         def used(self, InventoryObject):
 
