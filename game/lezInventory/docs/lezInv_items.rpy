@@ -62,11 +62,13 @@ init -1 python:
     # Give the class a different name, instead of the UsableItemExample.
     class UsableItemExample(Item):
 
-        # This is what makes the Item usable.
+        # This marks the Item as usable.
         usable = True
 
         # TODO: Maybe make a config var for this?
         consumedOnUse = True
+        
+        ## __init__ got ommited, as Apple doesn't take/need any extra arguments.
         
         # What happens when the Item is used.
         def used(self, InventoryObject):
