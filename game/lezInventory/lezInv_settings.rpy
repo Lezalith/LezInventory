@@ -31,6 +31,10 @@ init -920 python:
 
         def __init__(self):
 
+            ############################
+            ## Variables of the Inventory screen.
+            ############################
+
             # How the grid of Inventory Slots looks.
             # Tuple in the form of (width, height), a 3x3 grid by default.
             self.grid = (3, 3)
@@ -72,5 +76,13 @@ init -920 python:
             self.showEquipButton = True
             self.showUseButton = True
             self.showThrowAwayButton = True
+
+            ############################
+            ## Variables of Item functionality
+            ############################
+
+            # If True, usable items get removed upon use by default.
+            # Whatever this value is, it can be overwritten in a custom Item.
+            self.defaultConsume = True
 
     InventorySettings = InventorySettings()

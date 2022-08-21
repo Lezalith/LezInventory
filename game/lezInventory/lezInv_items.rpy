@@ -36,10 +36,13 @@ init -890 python:
         "Base class for all the items."
         
         # This is the base class for Items, 
-        # so there is no functionality for these.
+        # so it's neither usable nor equippable.
         usable = False
-        consumedOnUse = False
         equippable = False
+
+        # Taken from InventorySettings, default of whether
+        # usable items get removed from the Inventory when used.
+        consumedOnUse = InventorySettings.defaultConsume
 
         # Initialization. Arguments:
         #

@@ -12,10 +12,10 @@ init -800 python:
         # This marks the Item as usable.
         usable = True
 
-        # Item removed after being used.
-        consumedOnUse = True
-
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
+
+        # Keep this Item in Inventory even after using it.
+        consumedOnUse = False
 
         # What happens when the Item is used.
         def used(self, InventoryObject):

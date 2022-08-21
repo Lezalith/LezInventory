@@ -26,9 +26,6 @@ init -800 python:
         # This marks the Item as usable.
         usable = True
 
-        # Item removed after being used.
-        consumedOnUse = True
-
         # Signature function of Peach.
         # How many times an Item of the Peach class has been used.
         howManyTimesUsed = 0
