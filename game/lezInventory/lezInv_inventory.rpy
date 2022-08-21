@@ -23,6 +23,9 @@
 
 init -900 python:
 
+    # Holds the Inventory.
+    from collections import OrderedDict
+
     ###########################################
     ###########################################
     #
@@ -58,32 +61,34 @@ init -900 python:
             # INDEX of the page that we're on.
             self.page = 0
 
-            # List with all the Item objects
-            self.inventory = []
+            # OrderedDict. Keys are Item objects, Values are Ints representing a count.
+            self.inventory = OrderedDict()
 
-            # Currently selected INDEX of SELF.INVENTORY
-            self.selectedSlot = None
+            # Currently selected Item (Key of self.inventory).
+            self.selectedItem = None
 
-            # Currently equipped INDEX of SELF.INVENTORY
-            self.equippedSlot = None
+            # Currently equipped Item (Key of self.inventory)
+            self.equippedItem = None
 
         ##########################################
         ## Inventory - Add, Remove, Size Functions
         ##########################################
 
         # Adds an Item to inventory.
-        def add(self, Item):
+        def add(self, Item, count = 0):
 
-            self.inventory.append(Item)
+            self.inventory[Item] = count
 
         # Removes an Item from the inventory.
         # If Item is not specified, it will remove the selected item.
-        def remove(self, Item = None):
+        # If count is not 0 and the item is stackable, it will instead remove
+        # the stacks, and only the Item if stacks go below 0.
+        def remove(self, Item = None, count = 0):
 
             # Specified Item
             if Item != None:
 
-                if Item in self.inventory:
+                if Item in self.inventory.keys():
 
                     # Unequip the Item if it's equipped.
                     if Item == self.getEquippedItem():
@@ -95,7 +100,7 @@ init -900 python:
                         self.unselect()
 
                     # Remove the Item from the inventory.
-                    self.inventory.remove(Item)
+                    del self.inventory[Item]
 
                     # Check pages whether we don't have
                     # (an) empty one(s) after the removal.
@@ -106,19 +111,19 @@ init -900 python:
             # Removing Selected Item:
 
             # Do nothing if nothing is selected
-            if self.selectedSlot == None:
+            if self.selectedItem == None:
                 return
 
             # Unequip if this Item was equipped
-            if self.selectedSlot == self.equippedSlot:
+            if self.selectedItem == self.equippedItem:
                 self.unequip()
 
             # Make note of the Item index to be removed 
-            toRemove = self.selectedSlot
+            toRemove = self.selectedItem
             # Unselect this item
             self.unselect()
             # Pop the noted Item index
-            self.inventory.pop( toRemove )
+            del self.inventory[toRemove]
 
             # If we try to pop it straight away before unselecting it,
             # the screen manages to render one more time, and throws
@@ -138,9 +143,9 @@ init -900 python:
         # Clears the whole inventory.
         def clear(self):
 
-            self.inventory = []
-            self.equippedSlot = None
-            self.selectedSlot = None
+            self.inventory = OrderedDict()
+            self.equippedItem = None
+            self.selectedItem = None
             self.page = 0
 
         ###################
@@ -258,13 +263,13 @@ init -900 python:
             # Returns the slot index.
             return ( self.page * self.getSize() + slot )
 
-        # Compares whether slot from a page matches what is currently selected.
-        def compareFlattenedSlotToSelected(self, slot):
-            return ( self.getFlattenedSlot(slot) == self.selectedSlot )
+        # # Compares whether slot from a page matches what is currently selected.
+        # def compareFlattenedSlotToSelected(self, slot):
+        #     return ( self.getFlattenedSlot(slot) == self.selectedSlot )
 
-        # Compares whether slot from a page matches what is currently equipped.
-        def compareFlattenedSlotToEquipped(self, slot):
-            return ( self.getFlattenedSlot(slot) == self.equippedSlot )
+        # # Compares whether slot from a page matches what is currently equipped.
+        # def compareFlattenedSlotToEquipped(self, slot):
+        #     return ( self.getFlattenedSlot(slot) == self.equippedSlot )
 
         ####################################################################
         ## Selection of Items
@@ -273,14 +278,14 @@ init -900 python:
         # Unselects selected item.
         def unselect(self):
 
-            self.selectedSlot = None
+            self.selectedItem = None
 
         # Handles selecting items.
         # This is the Function on Item Slot's button.
-        def selectToggle(self, slot):
+        def selectToggle(self, Item):
 
             # If clicked an already selected slot
-            if self.compareFlattenedSlotToSelected(slot):
+            if self.selectedItem == Item:
 
                 # Unselect it, and by that end this function.
                 return self.unselect()
@@ -288,16 +293,12 @@ init -900 python:
             # Any other slot clicked
 
             # Set it to the index gotten from the flattened slot.
-            self.selectedSlot = self.getFlattenedSlot(slot)
+            self.selectedItem = Item
 
         # Returns currently selected Item.
         def getSelectedItem(self):
 
-            if self.selectedSlot != None:
-                return self.inventory[ self.selectedSlot ]
-
-            # Return None if nothing is equipped.
-            return None
+            return self.selectedItem
 
         ###############################
         ## Calculations with Items
@@ -317,8 +318,8 @@ init -900 python:
 
             # ...Unless the page is not full, which can happen only on the last page.
             # That means it will only get the remaining items. 
-            if topLimitIndex > len(self.inventory) - 1:
-                topLimitIndex = len(self.inventory) - 1 + 1
+            if topLimitIndex > len(self.inventory.keys()) - 1:
+                topLimitIndex = len(self.inventory.keys()) - 1 + 1
 
             # Returns Items between bottomLimitIndex and topLimitIndex.
             #
@@ -329,7 +330,7 @@ init -900 python:
             # Another example:
             # On the last page with index 2 that has 4 items, 
             # the slice is [18 : 22], indexes 19, 20, 21 and 22.
-            return self.inventory[ bottomLimitIndex : topLimitIndex ]
+            return self.inventory.keys()[ bottomLimitIndex : topLimitIndex ]
 
         # Returns ALL Items from the Inventory.
         def getAllItems(self):
@@ -393,33 +394,33 @@ init -900 python:
         def equip(self):
 
             # Something was already equipped
-            if self.equippedSlot != None:
+            if self.equippedItem != None:
 
                 # Unequip it first.
                 self.unequip()
 
-            self.equippedSlot = self.selectedSlot
+            self.equippedItem = self.selectedItem
 
             # Call Item's equipped() method.
-            self.getSelectedItem().equipped(self)
+            self.equippedItem.equipped(self)
 
         # Unequip currently equipped item.
         def unequip(self):
 
             # Do nothing if nothing is equipped.
-            if self.equippedSlot == None:
+            if self.equippedItem == None:
                 return
 
             # Call Item's unequipped() method.
-            self.getEquippedItem().unequipped(self)
+            self.equippedItem.unequipped(self)
 
-            self.equippedSlot = None
+            self.equippedItem = None
 
         # Returns currently equipped Item
         def getEquippedItem(self):
 
-            if self.equippedSlot != None:
-                return self.inventory[ self.equippedSlot ]
+            if self.equippedItem != None:
+                return self.equippedItem
 
             # Return None if nothing is equipped.
             return None
@@ -452,15 +453,15 @@ init -900 python:
 
         # Whether currently normalized slot is the one selected.
         # Same functionality as compareFlattenedSlotToSelected but with friendly name.
-        def isSelected(self, slot):
+        def isSelected(self, Item):
             
-            return self.compareFlattenedSlotToSelected(slot)
+            return self.selectedItem == Item
 
         # Whether currently normalized slot is the one equipped.
         # Same functionality as compareFlattenedSlotToEquipped but with friendly name.
         def isEquipped(self, slot):
             
-            return self.compareFlattenedSlotToEquipped(slot)
+            return self.equippedItem == Item
 
         # Intended for a button on a screen.
         # Whether the Unequip button can be used.
@@ -469,7 +470,7 @@ init -900 python:
 
             # There's an extra check for selectedSlot not None, because
             # when nothing is selected/equipped, selectedSlot/equippedSlot take the value of None.
-            return ( self.selectedSlot == self.equippedSlot and self.selectedSlot != None )
+            return ( self.selectedItem == self.equippedItem )
 
         # Intended for a button on a screen.
         # Whether the Equip button can be used.
@@ -477,8 +478,8 @@ init -900 python:
         def canEquip(self):
 
             # If an Item is selected.
-            if self.selectedSlot != None:
-                return self.getSelectedItem().isEquippable()
+            if self.selectedItem != None:
+                return self.selectedItem.isEquippable()
 
             # If an Item isn't selected.
             return False 
@@ -489,7 +490,7 @@ init -900 python:
         def canUse(self):
 
             # If an Item is selected.
-            if self.selectedSlot != None:
+            if self.selectedItem != None:
                 return self.getSelectedItem().isUsable()
 
             # If an Item isn't selected.

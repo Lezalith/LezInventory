@@ -55,7 +55,7 @@ init -890 python:
         # creates a Text Displayable from the name argument.
 
         # What happens upon the definition.
-        def __init__(self, name, desc, image = None):
+        def __init__(self, name, desc, image = None, stackable = None, stacksize = 0):
 
             # Name of the Item.
             self.name = name
@@ -69,6 +69,15 @@ init -890 python:
             else:
                 # Use Text Displayable if Image not given.
                 self.image = Text(name, size = 20)
+
+            if stackable != None:
+                self.stackable = stackable
+            else:
+                self.stackable = InventorySettings.defaultStack
+
+            # How many Items are on the stack.
+            self.stacked = 0
+
 
         ############################
         ## Getters

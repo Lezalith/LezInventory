@@ -332,7 +332,7 @@ screen inventoryScreen( howToLeave = "return" ):
                     style_suffix "slot" # Style: inventory_slot
 
                     # Test whether this slot is Equipped.
-                    if Inventory.isEquipped(index):
+                    if Inventory.isEquipped(item):
 
                         add InventorySettings.equippedHighlightSlot align (0.5, 0.5)
 
@@ -352,11 +352,11 @@ screen inventoryScreen( howToLeave = "return" ):
 
                     # We further use .isSelected as means of telling Ren'Py
                     # when the button is selected, for example for background purposes.
-                    selected Inventory.isSelected(index)
+                    selected Inventory.isSelected(item)
 
                     # Triggers .selectToggle(), a method which manages
                     # selecting and deselecting items.
-                    action Function( Inventory.selectToggle , index )
+                    action Function( Inventory.selectToggle , item )
                     
                     # An Image of the item inside the frame.
                     add item.getImage():

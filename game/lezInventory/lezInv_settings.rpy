@@ -81,8 +81,16 @@ init -920 python:
             ## Variables of Item functionality
             ############################
 
+            # Whatever these values are, they can be overwritten in a specific Item.
+
             # If True, usable items get removed upon use by default.
-            # Whatever this value is, it can be overwritten in a custom Item.
             self.defaultConsume = True
+
+            # If True, Items are stackable by default.
+            self.defaultStack = False
+
+            # Int. Used if an Item is stackable and stacksize isn't given.
+            # Don't set this to 
+            self.defaultStackSize = 3
 
     InventorySettings = InventorySettings()
