@@ -20,6 +20,10 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
+#####
+#TODO: REWRITE THIS FILE ###############################
+#####
+##############################################################################
 #
 # Hey! 
 # Welcome to the Docs that tell you how to define your own items.
@@ -58,42 +62,18 @@ init -1 python:
     # Give the class a different name, instead of the UsableItemExample.
     class UsableItemExample(Item):
 
-        # Default arguments: name, description, image.
-        def __init__(self, name, desc, image = None):
+        # This is what makes the Item usable.
+        usable = True
 
-            ###########################
-            # No need to change this.
-            ###########################
-
-            # Gets all the arguments.
-            args = locals()
-
-            # Manual check whether there are more/less arguments than should be.
-            numOfArguments = 4
-
-            if len( args.keys() ) > numOfArguments:
-                raise TypeError( "__init__() takes {} arguments ({} given)".format( numOfArguments , len( args.keys() ) ) )
-
-            ################################################################
-            # Here, change the UsableItemExample to the name of your class.
-            ################################################################
-
-            # Calls the parent class, Item, with everything that it needs.
-            super(UsableItemExample, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
-
-            # That's the point of this class.
-            self.usable = True
-
-        ############################
-        ## To Be Overwritten
-        ## Should be overwritten by child class
-        ############################
+        # TODO: Maybe make a config var for this?
+        consumedOnUse = True
         
         # What happens when the Item is used.
         def used(self, InventoryObject):
 
             ##############################################
             # Here is what happens when the Item is used.
+            # Change this to your desires!
             ##############################################
 
             # By default, just make a note in the console that it has been used.
@@ -110,7 +90,7 @@ init -1 python:
 # As already stated, UsableItem takes the same arguments as the regular Item,
 # being the name, the description and the image. 
 #
-define lezInvExampleUsableItem = UsableItemExample("Example Usable" , "A simple example no.2" , None) 
+define lezInvExampleUsableItem = UsableItemExample(name = "Example Usable" , desc = "A simple example no.2" , image = None) 
 #
 # Since UsableItem is a subclass of Item, the arguments are passed to the parent class.
 # If you decide to change the number of arguments, numOfArguments should
@@ -130,33 +110,15 @@ define lezInvExampleUsableItem = UsableItemExample("Example Usable" , "A simple 
 init -1 python:
 
     # Give the class a different name, instead of the EquippableItemExample.
-    class EquippableItemExample(Item):
+    class EquippableItemExample(EquippableItem):
 
-        # Default arguments: name, description, image.
-        def __init__(self, name, desc, image = None):
-
-            ###########################
-            # No need to change this.
-            ###########################
-
-            # Gets all the arguments.
-            args = locals()
-
-            # Manual check whether there are more/less arguments than should be.
-            numOfArguments = 4
-
-            if len( args.keys() ) > numOfArguments:
-                raise TypeError( "__init__() takes {} arguments ({} given)".format( numOfArguments , len( args.keys() ) ) )
-
-            ####################################################################
-            # Here, change the EquippableItemExample to the name of your class.
-            ####################################################################
+        # What happens upon the definition.
+        # THIS CAN BE OMMITED, in case *you* don't need something special in the __init__.
+        # It is ommited in some examples, check those out. 
+        def __init__(self, *args, **kwargs):
 
             # Calls the parent class, Item, with everything that it needs.
-            super(EquippableItemExample, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
-
-            # That's the point of this class.
-            self.equippable = True
+            super(UsableItemExample, self).__init__( *args, **kwargs )
 
         ############################
         ## To Be Overwritten
@@ -195,7 +157,7 @@ init -1 python:
 # As already stated, UsableItem takes the same arguments as the regular Item,
 # being the name, the description and the image. 
 #
-define lezInvExampleEquippableItem = EquippableItemExample("Example Equippable" , "A simple example no.3" , None)
+# define lezInvExampleEquippableItem = EquippableItemExample("Example Equippable" , "A simple example no.3" , None)
 #
 # These items are functional. If you want to see for youselves, you can
 # run this function ingame to add them to the Inventory.

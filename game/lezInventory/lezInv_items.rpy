@@ -34,6 +34,12 @@ init -890 python:
     class Item():
 
         "Base class for all the items."
+        
+        # This is the base class for Items, 
+        # so there is no functionality for these.
+        usable = False
+        consumedOnUse = False
+        equippable = False
 
         # Initialization. Arguments:
         #
@@ -60,12 +66,6 @@ init -890 python:
             else:
                 # Use Text Displayable if Image not given.
                 self.image = Text(name, size = 20)
-
-            # This is the base class for Items, 
-            # so there is no functionality for these.
-            self.usable = False
-            self.consumedOnUse = False
-            self.equippable = False
 
         ############################
         ## Getters
@@ -118,27 +118,18 @@ init -890 python:
     class UsableItem(Item):
 
         # What happens upon the definition.
-        def __init__(self, name, desc, image = None, consumedOnUse = True):
-
-            # Gets all the arguments.
-            args = locals()
-
-            # Manual check whether there are more/less arguments than should be.
-            numOfArguments = 5
-
-            if len( args.keys() ) > numOfArguments:
-                raise TypeError( "__init__() takes {} arguments ({} given)".format( numOfArguments , len( args.keys() ) ) )
+        def __init__(self, *args, **kwargs):
 
             ##########################
 
             # Calls the parent class, Item, with everything that it needs.
-            super(UsableItem, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
+            super(UsableItem, self).__init__( *args, **kwargs )
 
             # That's the point of this class.
             self.usable = True
 
             # Whether the Item is removed from the Inventory when Used.
-            self.consumedOnUse = consumedOnUse
+            self.consumedOnUse = True
 
         ############################
         ## To Be Overwritten
@@ -163,21 +154,10 @@ init -890 python:
     class EquippableItem(Item):
 
         # What happens upon the definition.
-        def __init__(self, name, desc, image = None):
-
-            # Gets all the arguments.
-            args = locals()
-
-            # Manual check whether there are more/less arguments than should be.
-            numOfArguments = 4
-
-            if len( args.keys() ) > numOfArguments:
-                raise TypeError( "__init__() takes {} arguments ({} given)".format( numOfArguments , len( args.keys() ) ) )
-
-            ##########################
+        def __init__(self, *args, **kwargs):
 
             # Calls the parent class, Item, with everything that it needs.
-            super(EquippableItem, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
+            super(EquippableItem, self).__init__( *args, **kwargs )
 
             # That's the point of this class.
             self.equippable = True
