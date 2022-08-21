@@ -57,29 +57,32 @@ define lezInvExampleItem = Item("Example Item", "A simple example.", None)
 # (I say template, this is actually the real UsableItem class, just
 # with different name so it doesn't get in the way.)
 #
-init -1 python:
 
-    # Give the class a different name, instead of the UsableItemExample.
-    class UsableItemExample(Item):
+# TODO: OUTDATED EXAMPLE. Great examples of usables are Grapefruit and Guava.
 
-        # This marks the Item as usable.
-        usable = True
+# init -1 python:
 
-        # TODO: Maybe make a config var for this?
-        consumedOnUse = True
+#     # Give the class a different name, instead of the UsableItemExample.
+#     class UsableItemExample(Item):
+
+#         # This marks the Item as usable.
+#         usable = True
+
+#         # TODO: Maybe make a config var for this?
+#         consumedOnUse = True
+
+#         ## __init__ got ommited, as Apple doesn't take/need any extra arguments.
         
-        ## __init__ got ommited, as Apple doesn't take/need any extra arguments.
-        
-        # What happens when the Item is used.
-        def used(self, InventoryObject):
+#         # What happens when the Item is used.
+#         def used(self, InventoryObject):
 
-            ##############################################
-            # Here is what happens when the Item is used.
-            # Change this to your desires!
-            ##############################################
+#             ##############################################
+#             # Here is what happens when the Item is used.
+#             # Change this to your desires!
+#             ##############################################
 
-            # By default, just make a note in the console that it has been used.
-            return print("An Item {} has been used!".format(self.name))
+#             # By default, just make a note in the console that it has been used.
+#             return print("An Item {} has been used!".format(self.name))
 #
 # As is written in the last comment, by default, all UsableItem does is
 # print out the Item used into the console.
@@ -92,7 +95,7 @@ init -1 python:
 # As already stated, UsableItem takes the same arguments as the regular Item,
 # being the name, the description and the image. 
 #
-define lezInvExampleUsableItem = UsableItemExample(name = "Example Usable" , desc = "A simple example no.2" , image = None) 
+# TODO: OUTDATED: define lezInvExampleUsableItem = UsableItemExample(name = "Example Usable" , desc = "A simple example no.2" , image = None) 
 #
 # Since UsableItem is a subclass of Item, the arguments are passed to the parent class.
 # If you decide to change the number of arguments, numOfArguments should
@@ -109,43 +112,46 @@ define lezInvExampleUsableItem = UsableItemExample(name = "Example Usable" , des
 # Again, copy the template below for starters.
 # (And again, it's the actual class, just with an example name.
 #
-init -1 python:
 
-    # Give the class a different name, instead of the EquippableItemExample.
-    class EquippableItemExample(EquippableItem):
+# TODO: OUTDATED EXAMPLE. Great examples of equippables are Apple and Lemon.
 
-        # What happens upon the definition.
-        # THIS CAN BE OMMITED, in case *you* don't need something special in the __init__.
-        # It is ommited in some examples, check those out. 
-        def __init__(self, *args, **kwargs):
+# init -1 python:
 
-            # Calls the parent class, Item, with everything that it needs.
-            super(UsableItemExample, self).__init__( *args, **kwargs )
+#     # Give the class a different name, instead of the EquippableItemExample.
+#     class EquippableItemExample(EquippableItem):
 
-        ############################
-        ## To Be Overwritten
-        ## Should be overwritten by child class
-        ############################
+#         # What happens upon the definition.
+#         # THIS CAN BE OMMITED, in case *you* don't need something special in the __init__.
+#         # It is ommited in some examples, check those out. 
+#         def __init__(self, *args, **kwargs):
+
+#             # Calls the parent class, Item, with everything that it needs.
+#             super(UsableItemExample, self).__init__( *args, **kwargs )
+
+#         ############################
+#         ## To Be Overwritten
+#         ## Should be overwritten by child class
+#         ############################
         
-        # What happens when the Item is equipped.
-        def equipped(self, InventoryObject):
+#         # What happens when the Item is equipped.
+#         def equipped(self, InventoryObject):
 
-            ###################################################
-            # Here is what happens when the Item is equipped.
-            ###################################################
+#             ###################################################
+#             # Here is what happens when the Item is equipped.
+#             ###################################################
 
-            # By default, just make a note in the console that it has been equipped.
-            return print("An Item {} has been equipped!".format(self.name))
+#             # By default, just make a note in the console that it has been equipped.
+#             return print("An Item {} has been equipped!".format(self.name))
         
-        # What happens when the Item is unequipped.
-        def unequipped(self, InventoryObject):
+#         # What happens when the Item is unequipped.
+#         def unequipped(self, InventoryObject):
 
-            ###################################################
-            # Here is what happens when the Item is unequipped.
-            ###################################################
+#             ###################################################
+#             # Here is what happens when the Item is unequipped.
+#             ###################################################
 
-            # By default, just make a note in the console that it has been unequipped.
-            return print("An Item {} has been unequipped!".format(self.name))# 
+#             # By default, just make a note in the console that it has been unequipped.
+#             return print("An Item {} has been unequipped!".format(self.name))# 
 #
 # As is the case with UsableItem, all it does by default is
 # print out the Item equipped/unequipped into the console.
@@ -159,17 +165,20 @@ init -1 python:
 # As already stated, UsableItem takes the same arguments as the regular Item,
 # being the name, the description and the image. 
 #
-# define lezInvExampleEquippableItem = EquippableItemExample("Example Equippable" , "A simple example no.3" , None)
+# TODO: OUTDATED: define lezInvExampleEquippableItem = EquippableItemExample("Example Equippable" , "A simple example no.3" , None)
 #
 # These items are functional. If you want to see for youselves, you can
 # run this function ingame to add them to the Inventory.
-#
-init -1 python:
+# #
 
-    def addDocItems():
-        Inventory.add(lezInvExampleItem)
-        Inventory.add(lezInvExampleUsableItem)
-        Inventory.add(lezInvExampleEquippableItem)
+# TODO: OUTDATED FUNCTION.
+
+# init -1 python:
+
+#     def addDocItems():
+#         Inventory.add(lezInvExampleItem)
+#         Inventory.add(lezInvExampleUsableItem)
+#         Inventory.add(lezInvExampleEquippableItem)
 #
 ######################################################################################
 #

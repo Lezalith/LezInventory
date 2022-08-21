@@ -32,8 +32,6 @@ init -750 python:
         Inventory.add(peach1)
         Inventory.add(peach2)
         Inventory.add(peach3)
-        
-        Inventory.add(lezInvExampleUsableItem)
 
     def resetInventory():
 
