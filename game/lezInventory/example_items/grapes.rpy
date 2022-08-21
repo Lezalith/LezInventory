@@ -96,25 +96,12 @@ transform grapesCC():
 init -800 python:
 
     # Class of the Grapes.
-    class Grapes(EquippableItem):
+    class Grapes(Item):
 
-        # What happens upon the definition.
-        def __init__(self, name, desc, image = None):
+        # This marks the Item as equippable.
+        equippable = True
 
-            # Gets all the arguments.
-            args = locals()
-
-            # Manual check whether there are more/less arguments than should be.
-            numOfArguments = 4
-
-            if len( args.keys() ) > numOfArguments:
-                raise TypeError( "__init__() takes {} arguments ({} given)".format( numOfArguments , len( args.keys() ) ) )
-
-            ##########################
-
-            # Calls the parent class, Item, with everything that it needs.
-            super(Grapes, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
-
+        ## __init__ got ommited, as Apple doesn't take/need any extra arguments.
 
         # What happens when the Item is Equipped
         def equipped(self, InventoryObject):
