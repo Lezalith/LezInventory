@@ -5,14 +5,14 @@
 label peachLabel():
 
     "Lezalith" "Did you..."
-    "Lezalith" "Did you just...{p=1.0}eat a peach number 4..?"
+    "Lezalith" "Did you just...{p=1.0}Eat a peach number 4..?"
     "Lezalith" "But how? I put just three into the inventory!"
 
     "Lezalith" "..."
     "Lezalith" "Oh right, the Apricot."
     "Lezalith" "That's clever. I completely forgot about that."
 
-    "Lezalith" "(...I didn't really.{p=1.0}I'm the one who coded the feature.)"
+    "Lezalith" "(...I didn't really.{p=1.0}I'm the one who wrote this dialogue.)"
 
     # Return back to the Inventory.
     return
@@ -21,10 +21,19 @@ label peachLabel():
 init -800 python:
 
     # Class of the Peach.
-    class Peach(UsableItem):
+    class Peach(Item):
 
+        # This marks the Item as usable.
+        usable = True
+
+        # Item removed after being used.
+        consumedOnUse = True
+
+        # Signature function of Peach.
         # How many times an Item of the Peach class has been used.
         howManyTimesUsed = 0
+
+        ## __init__ got ommited, as Item doesn't take/need any extra arguments.
 
         # What happens when the Item is used.
         def used(self, InventoryObject):
