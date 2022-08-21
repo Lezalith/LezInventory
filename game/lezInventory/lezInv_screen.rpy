@@ -323,6 +323,7 @@ screen inventoryScreen( howToLeave = "return" ):
             # to be shown on the current inventory page.
             #
             # Enumerate gives us a tuple of (index, item) for every iteration.
+            # TODO: index no longer used. Keep it? It doesn't harm anything rn.
             for index, item in enumerate( Inventory.getPageItems() ):
 
                 # One Slot.

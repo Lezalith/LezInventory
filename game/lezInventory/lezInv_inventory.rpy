@@ -152,6 +152,10 @@ init -900 python:
         ## Page Functions
         ###################
 
+        # Returns the index of the current page.
+        def getCurrentPage(self):
+            return self.page
+
         # Returns tuple of two ints - (Current Page INDEX, Final Page INDEX ).
         def getPages(self):
 
