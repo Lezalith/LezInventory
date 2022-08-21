@@ -33,7 +33,7 @@ init -800 python:
         # How many times an Item of the Peach class has been used.
         howManyTimesUsed = 0
 
-        ## __init__ got ommited, as Item doesn't take/need any extra arguments.
+        ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is used.
         def used(self, InventoryObject):

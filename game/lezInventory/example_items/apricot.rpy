@@ -137,7 +137,7 @@ init -800 python:
         # Item removed after being used.
         consumedOnUse = True
 
-        ## __init__ got ommited, as Apple doesn't take/need any extra arguments.
+        ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is used.
         def used(self, InventoryObject):

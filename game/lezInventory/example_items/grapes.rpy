@@ -101,7 +101,7 @@ init -800 python:
         # This marks the Item as equippable.
         equippable = True
 
-        ## __init__ got ommited, as Apple doesn't take/need any extra arguments.
+        ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is Equipped
         def equipped(self, InventoryObject):
