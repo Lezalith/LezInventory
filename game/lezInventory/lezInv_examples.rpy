@@ -23,7 +23,7 @@ init -750 python:
         Inventory.add(strawberry)
 
         # Usables
-        Inventory.add(dragonFruit)
+        Inventory.add(dragonFruit, count = 3)
         Inventory.add(guava)
         Inventory.add(apricot)
         Inventory.add(wmelon)

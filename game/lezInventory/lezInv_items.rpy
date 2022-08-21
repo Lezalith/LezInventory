@@ -75,9 +75,7 @@ init -890 python:
             else:
                 self.stackable = InventorySettings.defaultStack
 
-            # How many Items are on the stack.
-            self.stacked = 0
-
+            self.stackSize = stacksize
 
         ############################
         ## Getters

@@ -366,6 +366,12 @@ screen inventoryScreen( howToLeave = "return" ):
                         # as it turns out, add cannot have a style.
                         # So this is one of the few properties we have to manually write here. 
                         align (0.5, 0.5)
+
+                    $ itemCount = Inventory.getItemCount(item)
+                    if itemCount <= 1:
+                        $ itemCount = ""
+
+                    text str(itemCount) align (0.8, 0.8)
                         
             # .getEmptyCells() fetches the number of cells that have
             # been left empty on a non-full page and fills them with empty space.
