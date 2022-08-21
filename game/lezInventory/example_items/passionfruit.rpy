@@ -11,14 +11,14 @@ label passionFLabel():
 
         "Very tropical!":
 
-            "Lezalith" "Awesome! Have some more fruit then!"
+            "Lezalith" "Great! I'll add some more passion fruit to your Inventory then!"
 
             # Adds one more Passion Fruit into the Inventory.
             $ Inventory.add( passionF( "Passion Fruit" , "About as tropical as you can get." , "lezInventory/example_items/images/20_Passionfruit.png" ) )
 
         "Not tropical at all.":
 
-            "Lezalith" "Aww. That's okay, it will come eventually!"
+            "Lezalith" "Aww. That's okay, it will come to you eventually!"
 
     # Return back to the Inventory.
     return
@@ -26,24 +26,15 @@ label passionFLabel():
 init -800 python:
 
     # Class of the Passion Fruit.
-    class passionF(UsableItem):
+    class passionF(Item):
 
-        # What happens upon the definition.
-        def __init__(self, name, desc, image = None):
+        # This marks the Item as usable.
+        usable = True
 
-            # Gets all the arguments.
-            args = locals()
+        # Item removed after being used.
+        consumedOnUse = True
 
-            # Manual check whether there are more/less arguments than should be.
-            numOfArguments = 4
-
-            if len( args.keys() ) > numOfArguments:
-                raise TypeError( "__init__() takes {} arguments ({} given)".format( numOfArguments , len( args.keys() ) ) )
-
-            ##########################
-
-            # Calls the parent class, Item, with everything that it needs.
-            super(passionF, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
+        ## __init__ got ommited, as Apple doesn't take/need any extra arguments.
 
         # What happens when the Item is used.
         def used(self, InventoryObject):

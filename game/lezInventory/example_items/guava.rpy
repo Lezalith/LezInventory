@@ -7,23 +7,15 @@ init -800 python:
     from random import randint
 
     # Class of the Guava.
-    class Guava(UsableItem):
+    class Guava(Item):
 
-        def __init__(self, name, desc, image = None):
+        # This marks the Item as usable.
+        usable = True
 
-            # Gets all the arguments.
-            args = locals()
+        # Item removed after being used.
+        consumedOnUse = True
 
-            # Manual check whether there are more/less arguments than should be.
-            numOfArguments = 4
-
-            if len( args.keys() ) > numOfArguments:
-                raise TypeError( "__init__() takes {} arguments ({} given)".format( numOfArguments , len( args.keys() ) ) )
-
-            ##########################
-
-            # Calls the parent class, Item, with everything that it needs.
-            super(Guava, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
+        ## __init__ got ommited, as Apple doesn't take/need any extra arguments.
 
         # What happens when the Item is used.
         def used(self, InventoryObject):
@@ -38,7 +30,7 @@ init -800 python:
                 generated = randint( 0 , len(InventoryObject.inventory) - 1 )
 
                 # If it's the same index as the original one, use it.
-                # Otherwise, take another change.
+                # Otherwise, try the roll again.
                 if not generated == badIndex:
                     break
 

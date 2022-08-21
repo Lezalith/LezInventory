@@ -5,25 +5,18 @@
 init -800 python:
 
     # Class of the Lemon.
-    class Lemon(EquippableItem):
+    class Lemon(Item):
+
+        # This marks the Item as equippable.
+        equippable = True
 
         # What happens upon the definition.
-        def __init__(self, name, desc, image = None):
-
-            # Gets all the arguments.
-            args = locals()
-
-            # Manual check whether there are more/less
-            # arguments that should be.
-            numOfArguments = 4
-
-            if len( args.keys() ) > numOfArguments:
-                raise TypeError( "__init__() takes {} arguments ({} given)".format( numOfArguments , len( args.keys() ) ) )
-
-            ##########################
+        # THIS CAN BE OMMITED, in case *you* don't need something special in the __init__.
+        # But in this case, we do - we need the memory.
+        def __init__(self, *args, **kwargs):
 
             # Calls the parent class, Item, with everything that it needs.
-            super(Lemon, self).__init__( name = args.get("name"), desc = args.get("desc"), image = args.get("image") )
+            super(Lemon, self).__init__( *args, **kwargs )
 
             # Prepares a little memory that will temporarily remember the Inventory's state. 
             self.selectedSlot = None
@@ -47,7 +40,7 @@ init -800 python:
         def unequipped(self, InventoryObject):
 
             # Loads up the original Inventory state back into the Inventory.
-
+            
             InventoryObject.selectedSlot = self.selectedSlot
             # Inventory.equippedSlot will get changed by Inventory.unequip anyway
             InventoryObject.inventory = self.inventory
