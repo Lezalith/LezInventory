@@ -35,6 +35,7 @@ init -750 python:
         Inventory.add(peach2)
         Inventory.add(peach3)
         Inventory.add(plum)
+        Inventory.add(fig)
 
     def resetInventory():
 
