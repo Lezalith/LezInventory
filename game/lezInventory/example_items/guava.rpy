@@ -7,6 +7,7 @@ init -800 python:
 
     # randint lets us choose a random number.
     from random import randint
+    from collections import OrderedDict
 
     # Class of the Guava.
     class Guava(Item):
@@ -22,24 +23,31 @@ init -800 python:
         # What happens when the Item is used.
         def used(self, InventoryObject):
 
-            # Find out where the Item currently is.
-            badIndex = InventoryObject.inventory.index(self)
+            l = list(InventoryObject.inventory.keys())
 
-            # 5 Tries to generate a different slot than the current one.
+            # Find out where the Item currently is.
+            badIndex = l.index(self)
+
+            # 5 Tries to generate a different index than the current one.
             for x in range(5):
 
                 # Generated Index
-                generated = randint( 0 , len(InventoryObject.inventory) - 1 )
+                newIndex = randint( 0 , len(InventoryObject.inventory.keys()) - 1 )
 
                 # If it's the same index as the original one, use it.
                 # Otherwise, try the roll again.
-                if not generated == badIndex:
-                    break
+                if newIndex != badIndex:
+                    break            
 
-            # Removes this Item from the Inventory...
-            InventoryObject.remove()
-            # ...Before inserting it in the new spot.
-            InventoryObject.inventory.insert( generated , self )
+            l.pop(badIndex)
+            l.insert(newIndex, self)
+
+            d = OrderedDict()
+            for key in l:
+                d[key] = InventoryObject.inventory[key]
+
+            InventoryObject.inventory = d
+            InventoryObject.unselect()
 
     # Guava defined.
     guava = Guava( "Guava" , "Kinda random, to be honest." , "lezInventory/example_items/images/13_Guava.png" )
