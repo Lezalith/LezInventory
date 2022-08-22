@@ -79,20 +79,33 @@ init -900 python:
 
             if Item.stackable:
 
-                self.addItemCount(Item, count)
+                return self.addItemCount(Item, count)
 
             self.inventory[Item] = count
 
         def addItemCount(self, Item, count = 1):
 
+            # print("Adding count of {}.".format(count))
+
             if Item in self.inventory.keys():
 
-                self.inventory[Item] += count
+                # print("Present.")
 
-                if self.inventory[Item] >= Item.stackSize:
+                if self.inventory[Item] + count > Item.stackSize:
+                    # print("Is over stack size.")
                     self.inventory[Item] = Item.stackSize
 
+                else:
+                    # print("Is not over stack size")
+                    self.inventory[Item] = self.inventory[Item] + count
+
                 return 
+
+            else:
+
+                # print("Not present.")
+
+                self.inventory[Item] = count
 
         # Removes an Item from the inventory.
         # If Item is not specified, it will remove the selected item.
