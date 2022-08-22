@@ -79,16 +79,20 @@ init -900 python:
 
             if Item.stackable:
 
-                if Item in self.inventory.keys():
-
-                    self.inventory[Item] += count
-
-                    if self.inventory[Item] >= Item.stackSize:
-                        self.inventory[Item] = Item.stackSize
-
-                    return
+                self.addItemCount(Item, count)
 
             self.inventory[Item] = count
+
+        def addItemCount(self, Item, count = 1):
+
+            if Item in self.inventory.keys():
+
+                self.inventory[Item] += count
+
+                if self.inventory[Item] >= Item.stackSize:
+                    self.inventory[Item] = Item.stackSize
+
+                return 
 
         # Removes an Item from the inventory.
         # If Item is not specified, it will remove the selected item.
@@ -109,17 +113,54 @@ init -900 python:
             # Stackable Items
             if Item.stackable:
 
-                print("Stackable")
+                self.removeItemCount(Item, count)
 
-                if Item in self.inventory.keys():
+            # Unstackable Items
+            else:
 
-                    print("Present")
+                # Unequip if this Item was equipped
+                if Item == self.equippedItem:
+                    self.unequip()
 
-                    self.inventory[Item] -= count
+                # Unselect this item
+                print("Unselected.")
+                self.unselect()
+                # Pop the noted Item index
+                self.remove(Item)
 
-                    if self.inventory[Item] <= 0:
+                # If we try to remove it straight away before unselecting it,
+                # the screen manages to render one more time, and throws
+                # an error because it doesn't find the selected item
+                # inside the inventory.
 
-                        print("Went to 0")
+            # Check pages whether we don't have
+            # (an) empty one(s) after the removal.
+            self.checkPages()
+
+        def removeItemCount(self, Item, count = 1):
+
+            if not Item.stackable:
+                raise Exception("Inventory.removeItemCount called with unstackable Item - {}".format(Item))
+
+            print("Stackable")
+
+            if Item in self.inventory.keys():
+
+                print("Present")
+
+                self.inventory[Item] -= count
+
+                if self.inventory[Item] <= 0:
+
+                    print("Went to 0")
+
+                    # Make an exception, if the last item of the stack got removed.
+                    if Item == self.equippedItem:
+                        self.inventory[Item] = 1
+
+                        print("Is Equippable")
+
+                    else:
 
                         # Remove the Item from the inventory.
                         del self.inventory[Item]
@@ -133,33 +174,10 @@ init -900 python:
                         if Item == self.getSelectedItem():
                             self.unselect()
 
-                    # Check pages whether we don't have
-                    # (an) empty one(s) after the removal.
-                    self.checkPages()
+                # Check pages whether we don't have
+                # (an) empty one(s) after the removal.
+                self.checkPages()
 
-            # Unstackable Items
-            else:
-
-                # Unequip if this Item was equipped
-                if self.selectedItem == self.equippedItem:
-                    self.unequip()
-
-                # Make note of the Item index to be removed 
-                toRemove = self.selectedItem
-                # Unselect this item
-                print("Unselected.")
-                self.unselect()
-                # Pop the noted Item index
-                self.remove(toRemove)
-
-                # If we try to remove it straight away before unselecting it,
-                # the screen manages to render one more time, and throws
-                # an error because it doesn't find the selected item
-                # inside the inventory.
-
-            # Check pages whether we don't have
-            # (an) empty one(s) after the removal.
-            self.checkPages()
 
         def getItemCount(self, Item):
 
@@ -434,7 +452,12 @@ init -900 python:
         ###############################
 
         # Equip currently selected item.
+        # TODO: Add the Item argument, for specified Item rather than selected.
         def equip(self):
+
+            # Do nothing if nothing is selected.
+            if not self.selectedItem:
+                return
 
             # Something was already equipped
             if self.equippedItem != None:
@@ -442,10 +465,10 @@ init -900 python:
                 # Unequip it first.
                 self.unequip()
 
-            self.equippedItem = self.selectedItem
-
             # Call Item's equipped() method.
-            self.equippedItem.equipped(self)
+            self.selectedItem.equipped(self)
+
+            self.equippedItem = self.selectedItem
 
         # Unequip currently equipped item.
         def unequip(self):
@@ -461,12 +484,7 @@ init -900 python:
 
         # Returns currently equipped Item
         def getEquippedItem(self):
-
-            if self.equippedItem != None:
-                return self.equippedItem
-
-            # Return None if nothing is equipped.
-            return None
+            return self.equippedItem
 
         # By default, use the currently selected item.
         #
@@ -502,7 +520,7 @@ init -900 python:
 
         # Whether currently normalized slot is the one equipped.
         # Same functionality as compareFlattenedSlotToEquipped but with friendly name.
-        def isEquipped(self, slot):
+        def isEquipped(self, Item):
             
             return self.equippedItem == Item
 

@@ -19,7 +19,7 @@ init -750 python:
         Inventory.add(cherries)
         Inventory.add(orange)
         Inventory.add(cranberries)
-        Inventory.add(kiwi)
+        Inventory.add(kiwi, count = 2)
         Inventory.add(strawberry)
 
         # Usables

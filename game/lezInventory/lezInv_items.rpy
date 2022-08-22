@@ -53,9 +53,16 @@ init -890 python:
         # image - Image of the Item. Can be a file,
         # a displayable, or the default None, which then
         # creates a Text Displayable from the name argument.
-
+        #
+        # stackable - True if the Item should stack.
+        # Only regular Items and Usable Items can be stackable, 
+        # Equippable Items cannot.
+        #
+        # stacksize - How big can this Item's stack be.
+        # Ignored if stackable is False.
+        #
         # What happens upon the definition.
-        def __init__(self, name, desc, image = None, stackable = None, stacksize = 0):
+        def __init__(self, name, desc, image = None, stackable = False, stacksize = 0):
 
             # Name of the Item.
             self.name = name
@@ -70,12 +77,20 @@ init -890 python:
                 # Use Text Displayable if Image not given.
                 self.image = Text(name, size = 20)
 
+            # TODO: Make these into Class Vars? #########
+            #
             if stackable != None:
                 self.stackable = stackable
             else:
                 self.stackable = InventorySettings.defaultStack
-
+            #
             self.stackSize = stacksize
+            #
+            # But maybe not this? ######################
+            #
+            if self.stackable and self.equippable:
+                raise Exception("Equippable Items cannot be stackable - {} is.".format(self))
+            #############################################
 
         ############################
         ## Getters
