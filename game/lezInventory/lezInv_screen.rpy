@@ -98,6 +98,14 @@ style inventory_slot_empty:
     hover_background InventorySettings.slotEmptyHover
     xysize InventorySettings.slotSize
 
+# Text - Number of items on the stack.
+style inventory_slot_text:
+    align (0.9, 0.9) 
+    bold True
+    size 48
+    color "000"
+    outlines [ (absolute(4), "ffcc11", absolute(0), absolute(0)) ]
+
 ##########################
 ##  Side Menu
 ##########################
@@ -371,7 +379,8 @@ screen inventoryScreen( howToLeave = "return" ):
                     if itemCount <= 1:
                         $ itemCount = ""
 
-                    text str(itemCount) align (0.8, 0.8)
+                    text str(itemCount):
+                        style_suffix "slot_text"
                         
             # .getEmptyCells() fetches the number of cells that have
             # been left empty on a non-full page and fills them with empty space.

@@ -2,8 +2,6 @@
 # When used, it will take you to a label, where you can choose a fruit to transform 
 # the Apricot into. Since it's a transform and not remove-then-add, it will keep it's Inventory Slot.
 
-# TODO: FIX
-
 # Label that we'll enter by Using the Item.
 label apricotLabel(selfItem):
 

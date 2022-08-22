@@ -1,8 +1,6 @@
 # Watermelon is a Usable Item.
 # When Used, it randomly shuffles all of the Inventory Items.
 
-# TODO: FIX
-
 init -800 python:
 
     # Shuffle randomly shuffles a list.

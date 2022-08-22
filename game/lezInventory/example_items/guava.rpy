@@ -1,8 +1,6 @@
 # Guava is a Usable Item.
 # When used, it is placed into a random slot within the Inventory.
 
-# TODO: FIX
-
 init -800 python:
 
     # randint lets us choose a random number.
