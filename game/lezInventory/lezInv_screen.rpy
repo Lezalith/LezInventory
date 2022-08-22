@@ -100,7 +100,8 @@ style inventory_slot_empty:
 
 # Text - Number of items on the stack.
 style inventory_slot_text:
-    align (0.9, 0.9) 
+    align (1.0, 1.0)
+    offset (-10, -5)
     bold True
     size 48
     color "000"
