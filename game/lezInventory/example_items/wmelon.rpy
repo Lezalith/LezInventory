@@ -7,6 +7,7 @@ init -800 python:
 
     # Shuffle randomly shuffles a list.
     from random import shuffle
+    from collections import OrderedDict
 
     # Class of the WMelon.
     class WMelon(Item):
@@ -19,12 +20,15 @@ init -800 python:
         # What happens when the Item is used.
         def used(self, InventoryObject):
 
-            # Randomly shuffle the list.
-            shuffle(Inventory.inventory)
+            l = list(InventoryObject.inventory.keys())
 
-            # Set this Item as selected again,
-            # so rest of Inventory code can be executed properly.
-            Inventory.selectedSlot = Inventory.inventory.index( self )
+            shuffle(l)
+
+            d = OrderedDict()
+            for key in l:
+                d[key] = InventoryObject.inventory[key]
+
+            InventoryObject.inventory = d
 
     # Watermelon defined.
     wmelon = WMelon( "Watermelon" , "Bouncy enough to hit other items." , "lezInventory/example_items/images/23_Watermelon.png" )
