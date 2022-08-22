@@ -125,8 +125,8 @@ init -900 python:
                 # Unselect this item
                 print("Unselected.")
                 self.unselect()
-                # Pop the noted Item index
-                self.remove(Item)
+
+                del self.inventory[Item]
 
                 # If we try to remove it straight away before unselecting it,
                 # the screen manages to render one more time, and throws
@@ -391,7 +391,7 @@ init -900 python:
             # Another example:
             # On the last page with index 2 that has 4 items, 
             # the slice is [18 : 22], indexes 19, 20, 21 and 22.
-            return self.inventory.keys()[ bottomLimitIndex : topLimitIndex ]
+            return list(self.inventory.keys())[ bottomLimitIndex : topLimitIndex ]
 
         # Returns ALL Items from the Inventory.
         def getAllItems(self):
@@ -466,7 +466,7 @@ init -900 python:
                 self.unequip()
 
             # Call Item's equipped() method.
-            self.selectedItem.equipped(self)
+            self.selectedItem.equipped(InventoryObject = self)
 
             self.equippedItem = self.selectedItem
 
