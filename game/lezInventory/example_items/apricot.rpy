@@ -15,70 +15,89 @@ label apricotLabel(selfItem):
 
         "Durian.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Durian( "Durian" , "World's smelliest fruit, supposedly." , "lezInventory/example_items/images/08_Durian.png" )
+            $ r = Durian( "Durian" , "World's smelliest fruit, supposedly." , "lezInventory/example_items/images/08_Durian.png" )
 
         "Grapes.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Grapes( "Grapes" , "So many balls..." , "lezInventory/example_items/images/11_Grapes_Green.png" )
+            $ r = Grapes( "Grapes" , "So many balls..." , "lezInventory/example_items/images/11_Grapes_Green.png" )
 
         "Lemon.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Lemon( "Lemon" , "Not good in combination with other fruits." , "lezInventory/example_items/images/15_Lemon.png" ) 
+            $ r = Lemon( "Lemon" , "Not good in combination with other fruits." , "lezInventory/example_items/images/15_Lemon.png" ) 
 
         "Apple.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Apple" , "The King of all the fruits." , "lezInventory/example_items/images/16_Apple.png" )
+            $ r = Item( "Apple" , "The King of all the fruits." , "lezInventory/example_items/images/16_Apple.png" )
 
         "Cherries.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png" )
+            $ r = Item( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png" )
 
         "Orange.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "lezInventory/example_items/images/17_Orange.png" )
+            $ r = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "lezInventory/example_items/images/17_Orange.png" )
 
         "Cranberries.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Cranberries" , "Ever heard of \"Hermelín\"?" , "lezInventory/example_items/images/03_Cranberry.png" )
+            $ r = Item( "Cranberries" , "Ever heard of \"Hermelín\"?" , "lezInventory/example_items/images/03_Cranberry.png" )
 
         "Kiwi.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Kiwi" , "Great as a tea with strawberries." , "lezInventory/example_items/images/14_Kiwi.png" )
+            $ r = Item( "Kiwi" , "Great as a tea with strawberries." , "lezInventory/example_items/images/14_Kiwi.png" )
 
         "Strawberry.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Item( "Strawberry" , "Great as a tea with kiwis." , "lezInventory/example_items/images/22_Strawberry.png" )
+            $ r = Item( "Strawberry" , "Great as a tea with kiwis." , "lezInventory/example_items/images/22_Strawberry.png" )
 
         "Dragon fruit.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = dragonF( "Dragon Fruit" , "White as snow on the inside." , "lezInventory/example_items/images/07_Dragonfruit.png" )
+            $ r = dragonF( "Dragon Fruit" , "White as snow on the inside." , "lezInventory/example_items/images/07_Dragonfruit.png" )
 
         "Guava.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Guava( "Guava" , "Kinda random, to be honest." , "lezInventory/example_items/images/13_Guava.png" )
+            $ r = Guava( "Guava" , "Kinda random, to be honest." , "lezInventory/example_items/images/13_Guava.png" )
 
         "Apricot.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "lezInventory/example_items/images/21_Apricot.png" )
+            $ r = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "lezInventory/example_items/images/21_Apricot.png" )
 
         "Watermelon.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = WMelon( "Watermelon" , "So big, almost seems endless. And slippery." , "lezInventory/example_items/images/23_Watermelon.png" )
+            $ r = WMelon( "Watermelon" , "So big, almost seems endless. And slippery." , "lezInventory/example_items/images/23_Watermelon.png" )
 
         "Passion fruit.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = passionF( "Passion Fruit" , "About as tropical as you can get." , "lezInventory/example_items/images/20_Passionfruit.png" )
+            $ r = passionF( "Passion Fruit" , "About as tropical as you can get." , "lezInventory/example_items/images/20_Passionfruit.png" )
 
         "Grapefruit.":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "lezInventory/example_items/images/12_Grapefruit.png" )
+            $ r = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "lezInventory/example_items/images/12_Grapefruit.png" )
 
         "Peach...?":
 
-            $ Inventory.inventory[ Inventory.selectedSlot ] = Peach( "Peachpricot" , "An intriguing combination\nof peach and apricot.", image = "lezInventory/example_items/images/0X_Peachpricot.png" )
+            $ r = Peach( "Peachpricot" , "An intriguing combination\nof peach and apricot.", image = "lezInventory/example_items/images/0X_Peachpricot.png" )
 
-    # After the transform, the new Item stays selected.
-    # Unselecting it prevents it from being consumed when this function is finished.
+
+    python:
+
+        l = list(Inventory.inventory.keys())
+
+        currentIndex = l.index(selfItem)
+
+        d = OrderedDict()
+        for key in l:
+
+            if key == selfItem:
+                d[r] = 1
+
+            else:
+                d[key] = Inventory.inventory[key]
+
+        Inventory.inventory = d
+
+    # Apricot is still selected, and finishing up of Inventory.used() will throw an error,
+    # because of not being able to remove it.
+    # Unselecting it prevents this.
     $ Inventory.unselect()
 
     # Return back to the Inventory.
