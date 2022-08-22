@@ -4,6 +4,8 @@
 
 init -800 python:
 
+    from collections import OrderedDict
+
     # Class of the Lemon.
     class Lemon(Item):
 
@@ -19,30 +21,22 @@ init -800 python:
             super(Lemon, self).__init__( *args, **kwargs )
 
             # Prepares a little memory that will temporarily remember the Inventory's state. 
-            self.selectedSlot = None
-            self.equippedSlot = None
-            self.inventory = None
+            self.inventory = OrderedDict()
 
         # What happens when the Item is Equipped
         def equipped(self, InventoryObject):
 
             # Remembers the current Inventory state...
-            self.selectedSlot = InventoryObject.selectedSlot
-            self.equippedSlot = InventoryObject.equippedSlot
             self.inventory = InventoryObject.inventory
 
-            # ...before clearing it out.
-            InventoryObject.selectedSlot = 0
-            InventoryObject.equippedSlot = 0
-            InventoryObject.inventory = [self]
+            # ...before clearing it.
+            InventoryObject.inventory = OrderedDict()
+            InventoryObject.inventory[self] = 1
 
         # What happens when the Item is Unequipped
         def unequipped(self, InventoryObject):
 
             # Loads up the original Inventory state back into the Inventory.
-            
-            InventoryObject.selectedSlot = self.selectedSlot
-            # Inventory.equippedSlot will get changed by Inventory.unequip anyway
             InventoryObject.inventory = self.inventory
 
     # Lemon defined.
