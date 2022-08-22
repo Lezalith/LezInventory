@@ -17,10 +17,12 @@ init -750 python:
 
         # Passives
         Inventory.add(cherries)
-        Inventory.add(orange)
         Inventory.add(cranberries)
-        Inventory.add(kiwi, count = 2)
+        Inventory.add(kiwi)
         Inventory.add(strawberry)
+
+        # Stackable Passive
+        Inventory.add(orange, count = 2579)
 
         # Usables
         Inventory.add(dragonFruit, count = 3)
