@@ -369,7 +369,7 @@ screen inventoryScreen( howToLeave = "return" ):
                     action Function( Inventory.select , item )
                     
                     # An Image of the item inside the frame.
-                    add item.getImage():
+                    add item.image:
 
                         # Normally I would put style_suffix "slot_image" here, but
                         # as it turns out, add cannot have a style.

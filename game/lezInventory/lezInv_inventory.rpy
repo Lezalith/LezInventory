@@ -262,8 +262,20 @@ init -900 python:
             # Call Item's unequipped() method.
             self.equippedItem.unequipped(self)
 
+            # Store the item so we can unequip it.***
+            i = self.equippedItem
+
             # Set Item equipped to None.
             self.equippedItem = None
+
+            # Check if the item is supposed to be consumed.
+            if self.equippedItem.consumedOnUnequip:
+
+                # Remove the Item from the Inventory.
+                # *** It cannot just be self.equippedItem, since remove() will call unequip() again.
+                self.remove(i)
+
+                # TODO: Create an example on consumedOnUnequip.
 
         # Use an Item.
         # If item is not given, tries to use currently selectedItem.

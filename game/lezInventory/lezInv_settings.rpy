@@ -84,7 +84,10 @@ init -920 python:
             # Whatever these values are, they can be overwritten in a specific Item.
 
             # If True, usable items get removed upon use by default.
-            self.defaultConsume = True
+            self.defaultUseConsume = True
+
+            # If True, equippable items get removed upon unequip by default.
+            self.defaultUnequipConsume = True
 
             # If True, Items are stackable by default.
             self.defaultStack = False

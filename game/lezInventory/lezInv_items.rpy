@@ -42,7 +42,11 @@ init -890 python:
 
         # Taken from InventorySettings, default of whether
         # usable items get removed from the Inventory when used.
-        consumedOnUse = InventorySettings.defaultConsume
+        consumedOnUse = InventorySettings.defaultUseConsume
+
+        # Taken from InventorySettings, default of whether
+        # usable items get removed from the Inventory when used.
+        consumedOnUnequip = InventorySettings.defaultUnequipConsume
 
         # Initialization. Arguments:
         #
@@ -54,15 +58,16 @@ init -890 python:
         # a displayable, or the default None, which then
         # creates a Text Displayable from the name argument.
         #
-        # stackable - True if the Item should stack.
+        # stackable - True if the Item can stack, False if not.
+        # If not given, default of None refers to InventorySettings.defaultStack.
         # Only regular Items and Usable Items can be stackable, 
         # Equippable Items cannot.
         #
-        # stacksize - How big can this Item's stack be.
-        # Ignored if stackable is False.
+        # stacksize - How big this Item's stack can be.
+        # Never brought up if stackable is False.
         #
         # What happens upon the definition.
-        def __init__(self, name, desc, image = None, stackable = False, stacksize = 0):
+        def __init__(self, name, desc, image = None, stackable = None, stacksize = 0):
 
             # Name of the Item.
             self.name = name
@@ -73,32 +78,28 @@ init -890 python:
             # Image of the Item.
             if image:
                 self.image = image
+            # If not given, use a Text displayable with the Item's name.
             else:
-                # Use Text Displayable if Image not given.
                 self.image = Text(name, size = 20)
 
-            # TODO: Make these into Class Vars? #########
-            #
+            # Stackability
             if stackable != None:
                 self.stackable = stackable
+            # Default from InventorySettings if not given.
             else:
                 self.stackable = InventorySettings.defaultStack
-            #
+            
+            # Max number of items in the stack.
             self.stackSize = stacksize
-            #
-            # But maybe not this? ######################
-            #
+
+            # Check for things that aren't allowed.
+            self.check()
+
+        # Checks for things that aren't allowed. Items:
+        # - Cannot be both stackable and equippable.
+        def check(self):
             if self.stackable and self.equippable:
-                raise Exception("Equippable Items cannot be stackable - {} is.".format(self))
-            #############################################
-
-        ############################
-        ## Getters
-        ############################
-
-        def getImage(self):
-
-            return self.image
+                raise Exception("Item Check failed: Equippable Items cannot be stackable - {} is.".format(self))
 
         ############################
         ## Checks
@@ -115,8 +116,8 @@ init -890 python:
             return self.usable
 
         ############################
-        ## To Be Overwritten
-        ## Should be overwritten by child class
+        ## These do nothing by default, and are to be overwritten
+        ## when you create your own usable and equippable Items.
         ############################
         
         # What happens when the Item is used.
