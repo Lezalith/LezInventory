@@ -47,7 +47,7 @@ init -900 python:
     # which gives you the "real" number rather than the index.
     # That is the one that should be used for printing purposes.
 
-    class InventoryObject():
+    class InventoryObject(object):
 
         "Inventory that holds all the items and manages them."
 
@@ -71,75 +71,97 @@ init -900 python:
             self.equippedItem = None
 
         ##########################################
-        ## Inventory - Add, Remove, Size Functions
+        ## Inventory - Add, Remove and Clear Functions
         ##########################################
 
         # Adds an Item to inventory.
-        def add(self, Item, count = 1):
+        # If the Item is stackable, count can be given to add more than one.
+        def add(self, item, count = 1):
 
-            if Item.stackable:
+            # Item is not stackable.
+            if not item.stackable:
 
-                return self.addItemCount(Item, count)
+                # Put one into the Inventory.
+                self.inventory[item] = 1
 
-            self.inventory[Item] = count
-
-        def addItemCount(self, Item, count = 1):
-
-            # print("Adding count of {}.".format(count))
-
-            if Item in self.inventory.keys():
-
-                # print("Present.")
-
-                if self.inventory[Item] + count > Item.stackSize:
-                    # print("Is over stack size.")
-                    self.inventory[Item] = Item.stackSize
-
-                else:
-                    # print("Is not over stack size")
-                    self.inventory[Item] = self.inventory[Item] + count
-
-                return 
-
+            # Item is stackable.
             else:
 
-                # print("Not present.")
+                # Item is already in the Inventory.
+                if item in self.inventory.keys():
 
-                self.inventory[Item] = count
+                    # Increment the Item count.
+                    self.inventory[item] = self.inventory[item] + count
+
+                # Item is not already in the Inventory.
+                else:
+
+                    # Set the Item count.
+                    self.inventory[item] = count
+
+            # Check whether the count hasn't gone over Item's stackSize.
+            if self.inventory[item] > item.stackSize:
+
+                # Set it to max value if it has.
+                self.inventory[item] = item.stackSize
 
         # Removes an Item from the inventory.
-        # If Item is not specified, it will remove the selected item.
+        # If item is not specified, it will remove the selected item,
+        # unless there isn't one selected, in which case it does nothing.
         # If count is not 0 and the item is stackable, it will instead remove
-        # the stacks, and only the Item if stacks go below 0.
-        def remove(self, Item = None, count = 1):
+        # the stacks, and only the Item if the stack goes below 1.
+        def remove(self, item = None, count = 1):
 
-            # Item not provided.
+            # item not provided.
             # Attempting to use the SelectedItem instead.
-            if Item == None:
+            if item == None:
 
                 # Do nothing if nothing is selected
                 if self.selectedItem == None:
                     return
 
-                Item = self.selectedItem
+                item = self.selectedItem
 
-            # Stackable Items
-            if Item.stackable:
+            # Item is stackable.
+            if item.stackable:
 
-                self.removeItemCount(Item, count)
+                # Item is present in the Inventory.
+                if item in self.inventory.keys():
 
-            # Unstackable Items
+                    # Decrement the count.
+                    self.inventory[item] -= count
+
+                    # If the count has gone below 1.
+                    if self.inventory[item] < 1:
+
+                        # Unequip the Item if it's equipped.
+                        if item == self.equipped:
+
+                            self.unequip()
+
+                        # Unselect the Item if it's selected.
+                        if item == self.selected:
+                            self.unselect()
+
+                        # Completely remove the Item from the inventory.
+                        del self.inventory[item]
+
+                    # Check pages whether we don't have
+                    # (an) empty one(s) after the removal.
+                    self.checkPages()
+
+            # Unstackable Item
             else:
 
                 # Unequip if this Item was equipped
-                if Item == self.equippedItem:
+                if item == self.equippedItem:
                     self.unequip()
 
                 # Unselect this item
                 print("Unselected.")
                 self.unselect()
 
-                del self.inventory[Item]
+                del self.inventory[item]
 
                 # If we try to remove it straight away before unselecting it,
                 # the screen manages to render one more time, and throws
@@ -150,66 +172,6 @@ init -900 python:
             # (an) empty one(s) after the removal.
             self.checkPages()
 
-        def removeItemCount(self, Item, count = 1):
-
-            if not Item.stackable:
-                raise Exception("Inventory.removeItemCount called with unstackable Item - {}".format(Item))
-
-            print("Stackable")
-
-            if Item in self.inventory.keys():
-
-                print("Present")
-
-                self.inventory[Item] -= count
-
-                if self.inventory[Item] <= 0:
-
-                    print("Went to 0")
-
-                    # Make an exception, if the last item of the stack got removed.
-                    if Item == self.equippedItem:
-                        self.inventory[Item] = 1
-
-                        print("Is Equippable")
-
-                    else:
-
-                        # Remove the Item from the inventory.
-                        del self.inventory[Item]
-
-                        # Unequip the Item if it's equipped.
-                        if Item == self.getEquippedItem():
-
-                            self.unequip()
-
-                        # Unselect the Item if it's selected.
-                        if Item == self.getSelectedItem():
-                            self.unselect()
-
-                # Check pages whether we don't have
-                # (an) empty one(s) after the removal.
-                self.checkPages()
-
-
-        def getItemCount(self, Item):
-
-            if not Item.stackable:
-
-                return 1
-
-            if Item in self.inventory.keys():
-
-                return self.inventory[Item]
-
-            return 0
-
-        # Calculates how many cells on a page by doing
-        # width * height of the grid.
-        def getSize(self):
-
-            return self.grid["width"] * self.grid["height"]
-
         # Clears the whole inventory.
         def clear(self):
 
@@ -217,6 +179,175 @@ init -900 python:
             self.equippedItem = None
             self.selectedItem = None
             self.page = 0
+
+        # Lets us read inventory with InventoryObject.items
+        @property
+        def items(self):
+            return self.inventory
+
+        ####################################################################
+        ## Selection of Items
+        ####################################################################
+
+        # Selects an Item.
+        def select(self, item):
+
+            # If given item is already selected.
+            if self.selectedItem == item:
+
+                # Unselect it, and with that end this function.
+                return self.unselect()
+
+            # Set the item as selected.
+            self.selectedItem = item
+
+        # Unselects the selected item.
+        def unselect(self):
+
+            self.selectedItem = None
+
+        # Lets us read selectedItem with InventoryObject.selected
+        @property
+        def selected(self):
+            return self.selectedItem
+
+        ###############################
+        ## Equipping and Using of Items
+        ###############################
+
+        # Equips an Item.
+        # If item is not given, tries to equip currently selectedItem.
+        # If item is given, a specific item is Equipped, being added into
+        # inventory in the process if it's not already present.
+        def equip(self, item = None):
+
+            # Specific item not given.
+            if not item:
+
+                # Do nothing if nothing is selected.
+                if not self.selectedItem:
+                    return
+
+                # Refer to the selectedItem.
+                item = self.selectedItem
+
+            # Specific item given.
+            else:
+
+                # Add it to the Inventory, if it's not present.
+                if not item in self.inventory.keys():
+                    self.add(item)
+
+            # (Continue with the equip process.)
+
+            # Something was already equipped.
+            if self.equippedItem != None:
+
+                # Unequip it first.
+                self.unequip()
+
+            # Call Item's equipped() method.
+            item.equipped(InventoryObject = self)
+
+            # Set the Item as equipped.
+            self.equippedItem = item
+
+        # Unequip currently equipped Item.
+        def unequip(self):
+
+            # Do nothing if nothing is equipped.
+            if self.equippedItem == None:
+                return
+
+            # Call Item's unequipped() method.
+            self.equippedItem.unequipped(self)
+
+            # Set Item equipped to None.
+            self.equippedItem = None
+
+        # Use an Item.
+        # If item is not given, tries to use currently selectedItem.
+        # If item is given, a specific item is Used. It doesn't have to be present in the Inventory.
+        def use(self, item = None):
+
+            # Specific item given.
+            if item:
+
+                # Call Item's used() method.
+                return item.used(self)
+
+            # Do nothing if nothing is selected.
+            if not self.selectedItem:
+                return
+
+            # Call Item's used() method.
+            self.selectedItem.used(self)
+
+            # An extra check whether an Item is still selected, in case the Item's
+            # effect messed around with it. Guava Item is a good example of that.
+            if self.selectedItem:
+
+                # Check if the item is supposed to be consumed.
+                if self.selectedItem.consumedOnUse:
+
+                    # Remove the Item from the Inventory.
+                    self.remove()
+
+        # Lets us read equippedItem with InventoryObject.equipped
+        @property
+        def equipped(self):
+            return self.equippedItem
+
+        ##################################################
+        ## Checks, used mostly in the Inventory Screen
+        ##################################################
+
+        # Whether given item is currently selected.
+        def isSelected(self, item):
+            
+            return self.selectedItem == item
+
+        # Whether given item is currently equipped.
+        def isEquipped(self, item):
+            
+            return self.equippedItem == item
+
+        # Whether currently equipped item can be unequipped.
+        # Returns True if the equipped item is also the one currently selected.
+        def canUnequip(self):
+
+            return self.selectedItem == self.equippedItem
+
+        # Whether an item can be equipped.
+        # Returns True if an equippable item is currently selected.
+        def canEquip(self):
+
+            # If an Item is selected.
+            if self.selectedItem != None:
+
+                # Check the equippable property.
+                return self.selectedItem.isEquippable()
+
+            # If an Item isn't selected.
+            return False 
+
+        # Whether an item can be used.
+        # Returns True if a usable item is currently selected.
+        def canUse(self):
+
+            # If an Item is selected.
+            if self.selectedItem != None:
+
+                # Check the usable property.
+                return self.selectedItem.isUsable()
+
+            # If an Item isn't selected.
+            return False 
+
+        # Whether an item is present in inventory.
+        def isInInventory(self, item):
+
+            return item in self.inventory.keys()
 
         ###################
         ## Page Functions
@@ -300,83 +431,24 @@ init -900 python:
             # If we get here, it means the check did not pass.
             return False
 
-
-
         # Returns tuple of two ints - (Current Page, Final Page).
-        # This shows the page indexes when counting from 1 rather than 0.
+        # This shows the page indexes when counting from 1 rather than 0,
+        # for the purposes of printing.
         def getPagesRepr(self):
 
             firstPage, lastPage = self.getPages()
 
             return (firstPage + 1, lastPage + 1)
 
-        ####################################
-        ## Calculation with Slots
-        ####################################
+        ################################################
+        ## Calculations used by the Inventory Screen
+        ################################################
 
-        # Gets an index from a slot on a page, with the help of the page index.
-        #
-        # For example:
-        # Giving it slot 5 while on page 1 will return index 14.
-        # (With the default grid size of 9.)
-        #
-        # Converted from indexes to "real" numbers:
-        # Giving it 6th item on 2nd page will return 15th item.
-        def getFlattenedSlot(self, slot):
+        # Calculates how many cells on a page by doing
+        # width * height of the grid.
+        def getSize(self):
 
-            # The last index in the whole Inventory.
-            lastIndex = len( self.getAllItems() ) - 1
-
-            # Check if the slot is valid.
-            # For a slot to be valid, it has to be within one page,
-            # and it must not point onto an empty slot.
-
-            if slot > self.getSize() or slot > lastIndex:
-                return None
-            
-            # Returns the slot index.
-            return ( self.page * self.getSize() + slot )
-
-        # # Compares whether slot from a page matches what is currently selected.
-        # def compareFlattenedSlotToSelected(self, slot):
-        #     return ( self.getFlattenedSlot(slot) == self.selectedSlot )
-
-        # # Compares whether slot from a page matches what is currently equipped.
-        # def compareFlattenedSlotToEquipped(self, slot):
-        #     return ( self.getFlattenedSlot(slot) == self.equippedSlot )
-
-        ####################################################################
-        ## Selection of Items
-        ####################################################################
-
-        # Unselects selected item.
-        def unselect(self):
-
-            self.selectedItem = None
-
-        # Handles selecting items.
-        # This is the Function on Item Slot's button.
-        def selectToggle(self, Item):
-
-            # If clicked an already selected slot
-            if self.selectedItem == Item:
-
-                # Unselect it, and by that end this function.
-                return self.unselect()
-
-            # Any other slot clicked
-
-            # Set it to the index gotten from the flattened slot.
-            self.selectedItem = Item
-
-        # Returns currently selected Item.
-        def getSelectedItem(self):
-
-            return self.selectedItem
-
-        ###############################
-        ## Calculations with Items
-        ###############################
+            return self.grid["width"] * self.grid["height"]
 
         # Returns Items from the current page.
         def getPageItems(self):
@@ -406,11 +478,6 @@ init -900 python:
             # the slice is [18 : 22], indexes 19, 20, 21 and 22.
             return list(self.inventory.keys())[ bottomLimitIndex : topLimitIndex ]
 
-        # Returns ALL Items from the Inventory.
-        def getAllItems(self):
-
-            return self.inventory
-
         # Takes the amount of Items on the current page and calculates
         # how many slots on the page will be empty.
         def getEmptyCells(self):
@@ -429,167 +496,15 @@ init -900 python:
             # Otherwise:
             return self.getSize() - len( self.getPageItems() )
 
-        # Returns the Item object on the given slot.
-        def getItemFromSlot(slot):
+        # Returns how many of given item are in present inventory.
+        # int, 0 if the item isn't present.
+        def getItemCount(self, item):
 
-            # Checks whether index doesn't exceed the inventory.
-            # -1 at the end because len() gives length, we need the last index.
-            if not slot > len( self.getAllItems() ) - 1:
+            if item in self.inventory.keys():
 
-                return self.inventory[slot] 
+                return self.inventory[item]
 
-            # Returns None otherwise.
-            return None
-
-        # Returns the Item object on the given flattened slot.
-        def getItemFromFlattenedSlot(slot):
-
-            # Get non-flatted version first
-            slot = self.getFlattenedSlot(slot)
-
-            # Check if the item exists.
-            # Checks whether index doesn't exceed one page.
-            if not slot > self.getSize():
-
-                # Checks whether index doesn't exceed the inventory.
-                # -1 at the end because len() gives length, we need the last index.
-                if not slot > len( self.getAllItems() ) - 1:
-
-                    return self.inventory[ slot ]
-
-            # Returns None otherwise.
-            return None
-
-        ###############################
-        ## Equipping and Using of Items
-        ###############################
-
-        # Equip currently selected item.
-        # TODO: Add the Item argument, for specified Item rather than selected.
-        def equip(self):
-
-            # Do nothing if nothing is selected.
-            if not self.selectedItem:
-                return
-
-            # Something was already equipped
-            if self.equippedItem != None:
-
-                # Unequip it first.
-                self.unequip()
-
-            # Call Item's equipped() method.
-            self.selectedItem.equipped(InventoryObject = self)
-
-            self.equippedItem = self.selectedItem
-
-        # Unequip currently equipped item.
-        def unequip(self):
-
-            # Do nothing if nothing is equipped.
-            if self.equippedItem == None:
-                return
-
-            # Call Item's unequipped() method.
-            self.equippedItem.unequipped(self)
-
-            self.equippedItem = None
-
-        # Returns currently equipped Item
-        def getEquippedItem(self):
-            return self.equippedItem
-
-        # By default, use the currently selected item.
-        #
-        # Specified Item can be provided, in which case its effect is triggered
-        # like if it was used by the player. For this, it doesn't even have to be in the Inventory.
-        def use(self, specified = None):
-
-            if specified:
-                return specified.used(self)
-
-            # Call Item's used() method.
-            self.selectedItem.used(self)
-
-            # An extra check whether an Item is still selected, in case
-            # the Item changed it. Guava from the project is a great example.
-            if self.selectedItem:
-
-                # Remove the Item if it's supposed to be consumed.
-                if self.selectedItem.consumedOnUse:
-
-                    # Remove the Item from the Inventory.
-                    self.remove()
-
-        #####################################
-        ## Checks
-        #####################################
-
-        # Whether currently normalized slot is the one selected.
-        # Same functionality as compareFlattenedSlotToSelected but with friendly name.
-        def isSelected(self, Item):
-            
-            return self.selectedItem == Item
-
-        # Whether currently normalized slot is the one equipped.
-        # Same functionality as compareFlattenedSlotToEquipped but with friendly name.
-        def isEquipped(self, Item):
-            
-            return self.equippedItem == Item
-
-        # Intended for a button on a screen.
-        # Whether the Unequip button can be used.
-        # It can be used only when the selectedSlot is the same as equippedSlot.
-        def canUnequip(self):
-
-            # There's an extra check for selectedSlot not None, because
-            # when nothing is selected/equipped, selectedSlot/equippedSlot take the value of None.
-            return ( self.selectedItem == self.equippedItem )
-
-        # Intended for a button on a screen.
-        # Whether the Equip button can be used.
-        # It can be used if the selectedSlot Item is Equippable.
-        def canEquip(self):
-
-            # If an Item is selected.
-            if self.selectedItem != None:
-                return self.selectedItem.isEquippable()
-
-            # If an Item isn't selected.
-            return False 
-
-        # Indended for a button on a screen.
-        # Whether the Use button can be used.
-        # It can be used if the selectedSlot Item is Usable.
-        def canUse(self):
-
-            # If an Item is selected.
-            if self.selectedItem != None:
-                return self.getSelectedItem().isUsable()
-
-            # If an Item isn't selected.
-            return False 
-
-        #---------------------------------
-        # Following Checks aren't used anywhere myself, but should prove useful to coders.
-        #---------------------------------
-
-        # Returns True if item is present somewhere in the Inventory, False otherwise.
-        def isInInventory(self, item):
-
-            return item in self.inventory
-
-        # Returns True if the item is selected, False otherwise.
-        # Checks for Item, rather than a Slot like .isSelected()  
-        def isItemSelected(self, item):
-
-            return item == self.getSelectedItem()
-
-        # Returns True if item is equipped, False otherwise.
-        # Checks for Item, rather than a Slot like .isEquipped()
-        def isItemEquipped(self, item):
-
-            return item == self.getEquippedItem()
+            return 0
 
 init -850:
 

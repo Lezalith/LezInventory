@@ -17,7 +17,7 @@ init -800 python:
         # What happens when the Item is used.
         def used(self, InventoryObject):
 
-            InventoryObject.add( Item = self, count = InventoryObject.inventory[self] / 5 + 1 )
+            InventoryObject.add( item = self, count = InventoryObject.inventory[self] / 5 + 1 )
 
             # if InventoryObject.inventory[self] >= self.stackSize:
             #     InventoryObject.inventory[self] = 1

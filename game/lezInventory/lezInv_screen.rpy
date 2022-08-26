@@ -364,9 +364,9 @@ screen inventoryScreen( howToLeave = "return" ):
                     # when the button is selected, for example for background purposes.
                     selected Inventory.isSelected(item)
 
-                    # Triggers .selectToggle(), a method which manages
+                    # Triggers .select(), a method which manages
                     # selecting and deselecting items.
-                    action Function( Inventory.selectToggle , item )
+                    action Function( Inventory.select , item )
                     
                     # An Image of the item inside the frame.
                     add item.getImage():
@@ -431,12 +431,12 @@ screen inventoryScreen( howToLeave = "return" ):
 
                         # If there is an Equipped Item, create a marker around it.
                         # Makes more clear how the equipped item is marked in the Inventory slots.
-                        # if Inventory.getEquippedItem():
+                        # if Inventory.equipped:
 
                         add InventorySettings.equippedHighlight align (0.5, 0.5)
                         # If there is an Equipped Item, add its Image in the middle.
-                        if Inventory.getEquippedItem():
-                            add Inventory.getEquippedItem().getImage():
+                        if Inventory.equipped:
+                            add Inventory.equipped.image:
 
                                 # Normally I would put style_suffix "vbox_equipped_slot_image" here, but
                                 # as it turns out, add cannot have a style.
@@ -454,13 +454,13 @@ screen inventoryScreen( howToLeave = "return" ):
 
                     # Item's Name.
                     # Underlined to create a line between this and...
-                    text ( Inventory.getSelectedItem().name if Inventory.getSelectedItem() else "Nothing selected." ):
+                    text ( Inventory.selected.name if Inventory.selected else "Nothing selected." ):
 
                         style_suffix "vbox_info_name" # Style: inventory_side_menu_vbox_info_name
 
                     # Item's Description.
                     # Smaller Size.
-                    text ( Inventory.getSelectedItem().description if Inventory.getSelectedItem() else "Nothing selected." ):
+                    text ( Inventory.selected.description if Inventory.selected else "Nothing selected." ):
 
                         style_suffix "vbox_info_description" # Style: inventory_side_menu_vbox_info_description
 
@@ -524,7 +524,7 @@ screen inventoryScreen( howToLeave = "return" ):
                         style_suffix "vbox_interaction_throwaway_textbutton" # Style: inventory_side_menu_vbox_interaction_throwaway_textbutton
 
                         # Can be clicked if an item is Selected.
-                        sensitive Inventory.getSelectedItem()
+                        sensitive Inventory.selected
                         action Function(Inventory.remove)
 
             # The Return button. Closes the Inventory.
