@@ -269,7 +269,7 @@ init -900 python:
             self.equippedItem = None
 
             # Check if the item is supposed to be consumed.
-            if self.equippedItem.consumedOnUnequip:
+            if i.consumedOnUnequip:
 
                 # Remove the Item from the Inventory.
                 # *** It cannot just be self.equippedItem, since remove() will call unequip() again.

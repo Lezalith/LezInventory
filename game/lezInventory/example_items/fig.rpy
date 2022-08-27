@@ -1,75 +1,53 @@
-# Dragon Fruit is a Usable Item.
-# When used, it will show a simple screen with some trivia.
+# Fig is an equippable Item.
+# Equipping it will bring up a screen, hinting at the fact that it will be consumed upon being unequipped.
 
-# Screen that we'll show by Using the Item.
-screen figScreen( trans ):
+# Overlay to darken Inventory behind the frame.
+define figOverlay = At( Solid("000"), Transform(alpha = 0.5) )
 
-    # Small frame in the bottom right corner
+# Screen shown when the Item is equipped.
+screen figScreen():
+
+    # Add the overlay.
+    add figOverlay
+
+    # Frame in the middle of the screen
     frame:
 
-        align (1.0, 1.0)
+        align (0.5, 0.5)
         padding (10, 10)
-        offset (-50, -50)
-        
-        # Transition.r
-        at trans
 
-        # Short trivia text.
-        text "Something Something Fig!"
+        vbox:
+            text "As you bite into the fig, a sweet taste fills your mouth."
+            text "Savour the flavour while you can!"
+    
+    # So that player cannot interact with stuff below this screen.
+    modal True
 
-    timer 3.0 action Hide("figScreen")
-
-# Transition, for smooth appear and disappear
-transform figTrans1():
-
-    on show:
-        alpha 1.0
-        align (0.5, 1.0)
-        yoffset 100
-        
-        parallel:
-            linear 4.0 alpha 0.0
-
-        parallel:
-            linear 3.0 yoffset -700
-
-transform figTrans2():
-
-    on show:
-        alpha 1.0
-        align (0.0, 0.0)
-        xoffset -100
-        yoffset -100
-        
-        parallel:
-            linear 4.0 alpha 0.0
-
-        parallel:
-            linear 3.0 xoffset 2000 yoffset 1000
+    # Hide the screen on click.
+    key "dismiss" action Hide("figScreen")
 
 init -800 python:
-
-    from random import choice
 
     # Class of the Dragon Fruit.
     class Fig(Item):
 
-        # This marks the Item as usable.
-        usable = True
+        # This marks the Item as equippable.
+        equippable = True
+
+        # Remove the Item once it's unequipped.
+        consumedOnUnequip = True
 
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
-        # What happens when the Item is used.
-        def used(self, InventoryObject):
+        # What happens when the Item is equipped.
+        def equipped(self, InventoryObject):
 
-            t = choice( [figTrans1, figTrans2] )
+            return renpy.show_screen("figScreen")
 
-            # Show a screen.
-            return renpy.show_screen("figScreen", trans = t)
+        # What happens when the Item is unequipped.
+        def unequipped(self, InventoryObject):
 
-        # TODO: The Fig will have a cooldown between uses! ....Hopefully.
-        def reload(self):
-            pass
+            return renpy.notify("The flavour fades away...")
 
-    # Dragon Fruit defined.
-    fig = Fig( "Fig" , "Strange fruit from the Mediterranean." , "lezInventory/example_items/images/09_Fig.png", stackable = True, stacksize = 3 )
+    # Fig defined.
+    fig = Fig( "Fig" , "Strange fruit from the Mediterranean." , "lezInventory/example_items/images/09_Fig.png" )

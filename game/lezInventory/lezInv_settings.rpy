@@ -87,7 +87,7 @@ init -920 python:
             self.defaultUseConsume = True
 
             # If True, equippable items get removed upon unequip by default.
-            self.defaultUnequipConsume = True
+            self.defaultUnequipConsume = False
 
             # If True, Items are stackable by default.
             self.defaultStack = False
