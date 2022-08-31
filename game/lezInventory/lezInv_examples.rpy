@@ -1,3 +1,5 @@
+default addWhichItems = "basic"
+
 init -750 python:
 
     # Because Inventory is created with the help of
@@ -9,37 +11,53 @@ init -750 python:
 
     def addExampleItems():
 
+        if store.addWhichItems == "basic" or store.addWhichItems == "both":
+            addBasicItems() 
+
+        if store.addWhichItems == "advanced" or store.addWhichItems == "both":
+            addAdvancedItems()
+
+    def addBasicItems():
+
         # Equippables
         Inventory.add(durian)
-        Inventory.add(grapes)
-        Inventory.add(lemon)
         Inventory.add(apple)
 
         # Passives
+        Inventory.add(orange, count = 2579)
+
         Inventory.add(cherries)
         Inventory.add(cranberries)
         Inventory.add(kiwi)
         Inventory.add(strawberry)
 
-        # Stackable Passive
-        Inventory.add(orange, count = 2579)
-
         # Usables
         Inventory.add(dragonFruit, count = 3)
+        Inventory.add(passionFruit)
+        Inventory.add(plum)
+        Inventory.add(grapefruit)
+
+    def addAdvancedItems():
+
+        # Equippables
+        Inventory.add(grapes)
+        Inventory.add(lemon)
+
+        # Passives
+
+        # Usables
         Inventory.add(guava)
         Inventory.add(apricot)
         Inventory.add(wmelon)
-        Inventory.add(passionFruit)
-        Inventory.add(grapefruit)
         Inventory.add(peach1)
         Inventory.add(peach2)
         Inventory.add(peach3)
-        Inventory.add(plum)
         Inventory.add(fig)
 
     def resetInventory():
 
         Inventory.clear()
+
         addExampleItems()
 
     if addExampleItems not in config.start_callbacks:

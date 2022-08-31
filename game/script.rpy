@@ -23,14 +23,15 @@ screen main_menu():
 
     frame:
         align (0.5, 0.5)
-        xysize (1600, 800)
+        xysize (1800, 900)
         ypadding 75
 
         add "myself.jpeg" xalign 1.0 size (200, 200) offset (-15, -60)
 
         vbox:
             xalign 0.5
-            spacing 50
+            yoffset -40
+            spacing 35
 
             vbox:
                 xalign 0.5
@@ -47,7 +48,7 @@ screen main_menu():
                 vbox:
                     xalign 0.5
                     spacing 2
-                    text "Welcome to LezInventory!"
+                    text "Welcome to LezInventory!" xalign 0.5
                     text "An Inventory framework that I hope will be of use to many creators."
 
                 hbox:
@@ -61,15 +62,27 @@ screen main_menu():
                 text "You can try LezInventory by clicking one of the buttons below." xalign 0.5
 
                 hbox:
-                    spacing 250
+                    spacing 150
                     xalign 0.5
 
                     textbutton "Enter from a screen.":
+                        yalign 0.5
                         action Show("fromScreen")
 
-
                     textbutton "Enter from a label.":
+                        yalign 0.5
                         action Start("fromLabel")
+
+
+                vbox:
+                    xalign 0.5
+                    spacing -5
+
+                    text "What Example Items do you want in the preview?" size 26 xalign 0.5
+
+                    textbutton "Basic ones, that show simplicity." xalign 0.5 action SetVariable("addWhichItems", "basic") text_size 26 text_selected_color "ff6242"
+                    textbutton "Advanced ones, that show off what LezInventory can do." xalign 0.5 action SetVariable("addWhichItems", "advanced") text_size 26 text_selected_color "ff6242"
+                    textbutton "ALL THE ITEMS!" xalign 0.5 action SetVariable("addWhichItems", "both") text_size 26 text_selected_color "ff6242"
 
                 vbox:
                     xalign 0.5
