@@ -10,25 +10,12 @@ screen dragonScreen():
         align (1.0, 1.0)
         padding (10, 10)
         offset (-50, -50)
-        
-        # Transition, for smooth appear and disappear
-        at dragonTrans
 
         # Short trivia text, as well as a button to close this screen.
         vbox:
             text "Did you know that Dragon Fruit is actually called Pitahaya?"
             textbutton "Glad to know!" action Hide("dragonScreen") xalign 0.5
 
-# Transition, for smooth appear and disappear
-transform dragonTrans():
-
-    on show:
-        alpha 0.0
-        linear 0.5 alpha 1.0
-
-    on hide:
-        alpha 1.0
-        linear 0.5 alpha 0.0
 
 init -800 python:
 

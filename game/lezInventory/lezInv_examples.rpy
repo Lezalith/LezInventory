@@ -27,14 +27,14 @@ init -750 python:
         Inventory.add(orange, count = 2579)
 
         Inventory.add(cherries)
-        Inventory.add(cranberries)
+        # Inventory.add(cranberries)
         Inventory.add(kiwi)
         Inventory.add(strawberry)
 
         # Usables
-        Inventory.add(dragonFruit, count = 3)
+        Inventory.add(dragonFruit)
         Inventory.add(passionFruit)
-        Inventory.add(plum)
+        Inventory.add(plum, count = 2)
         Inventory.add(grapefruit)
 
     def addAdvancedItems():
