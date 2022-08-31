@@ -1,11 +1,11 @@
 # Watermelon is a Usable Item.
-# When Used, it randomly shuffles all of the Inventory Items.
+# When Used, it randomly shuffles all of the Inventory Items and is consumed.
 
 init -800 python:
 
     # Shuffle randomly shuffles a list.
     from random import shuffle
-    from collections import OrderedDict
+    # Inventory is an OrderedDict, we need it to recreate it.
 
     # Class of the WMelon.
     class WMelon(Item):
@@ -18,14 +18,23 @@ init -800 python:
         # What happens when the Item is used.
         def used(self, InventoryObject):
 
+            # Create a list that we can shuffle, since we cannot
+            # change order of items in OrderedDict.
             l = list(InventoryObject.inventory.keys())
 
+            # Shuffle the list with the items.
             shuffle(l)
 
+            # Prepare a new OrderedDict.
             d = OrderedDict()
+
+            # Insert everything into the prepared OrderedDict.
+            # keys are taken from the list which has had order of items changed,
+            # values are taken from the original Inventory.
             for key in l:
                 d[key] = InventoryObject.inventory[key]
 
+            # Update Inventory to the new OrderedDict.
             InventoryObject.inventory = d
 
     # Watermelon defined.

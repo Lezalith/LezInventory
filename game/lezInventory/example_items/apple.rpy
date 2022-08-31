@@ -15,13 +15,13 @@ init -800 python:
         # What happens when the Item is Equipped
         def equipped(self, InventoryObject):
 
-            # Create a Notify with a custom text.
+            # Bring up a Notify with a custom text.
             return renpy.notify("I have been crowned the King of all Fruits!")
 
         # What happens when the Item is Unequipped
         def unequipped(self, InventoryObject):
 
-            # Create a Notify with a custom text.
+            # Bring up a Notify with a custom text.
             return renpy.notify("Long live the king...")
 
     # Apple defined.

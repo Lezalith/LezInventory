@@ -4,6 +4,7 @@
 
 init -800 python:
 
+    # Inventory is an OrderedDict, we need it to recreate it.
     from collections import OrderedDict
 
     # Class of the Lemon.
@@ -29,8 +30,10 @@ init -800 python:
             # Remembers the current Inventory state...
             self.inventory = InventoryObject.inventory
 
-            # ...before clearing it.
+            # ...before clearing it...
             InventoryObject.inventory = OrderedDict()
+
+            # ...and keeping only the lemon.
             InventoryObject.inventory[self] = 1
 
         # What happens when the Item is Unequipped

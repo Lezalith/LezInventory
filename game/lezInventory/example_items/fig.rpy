@@ -42,11 +42,13 @@ init -800 python:
         # What happens when the Item is equipped.
         def equipped(self, InventoryObject):
 
+            # Show the screen.
             return renpy.show_screen("figScreen")
 
         # What happens when the Item is unequipped.
         def unequipped(self, InventoryObject):
 
+            # Message showing the removal.
             return renpy.notify("The flavour fades away...")
 
     # Fig defined.

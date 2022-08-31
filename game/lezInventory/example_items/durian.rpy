@@ -1,5 +1,5 @@
 # Durian is an Equippable Item.
-# While Equipped, there is a dark green overlay over the player's screen.
+# While Equipped, there is a dark green overlay image displayed over the screen.
 
 init -800 python:
 
@@ -14,8 +14,8 @@ init -800 python:
         # What happens when the Item is Equipped
         def equipped(self, InventoryObject):
 
-            # Show a Solid color over the entire screen, with 33% opacity.
-            return renpy.show( "NoTag", layer = "screens", zorder = 20, what = Solid( "32CD3233" ) , tag = "durTag" )
+            # Show a Solid color over the entire screen.
+            return renpy.show( "NoTag", layer = "screens", zorder = 20, what = Solid( "32CD3233" ) , tag = "durTag", at_list = [ Transform(alpha = 0.33) ] )
 
         # What happens when the Item is Unequipped
         def unequipped(self, InventoryObject):

@@ -1,2 +1,2 @@
-# A regular item that doesn't have a functionality.
+# A regular Item, showing off stackability.
 default orange = Item( "Orange" , "Lezalith's massive stash of oranges for making juice." , "lezInventory/example_items/images/17_Orange.png" , stackable = True, stacksize = 2579)

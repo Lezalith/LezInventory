@@ -1,10 +1,11 @@
 # Guava is a Usable Item.
-# When used, it is placed into a random slot within the Inventory.
+# When used, it is moved into a random slot within the Inventory.
 
 init -800 python:
 
     # randint lets us choose a random number.
     from random import randint
+    # Inventory is an OrderedDict, we need it to recreate it.
     from collections import OrderedDict
 
     # Class of the Guava.
@@ -21,30 +22,47 @@ init -800 python:
         # What happens when the Item is used.
         def used(self, InventoryObject):
 
+            # We cannot change the order of OrderedDict, which is what the Inventory is.
+            # So, we'll create a list, copy stuff over there, deal with the Guava functionality, then update the OrderedDict.
             l = list(InventoryObject.inventory.keys())
 
-            # Find out where the Item currently is.
+            # Find out where the Guava currently is.
             badIndex = l.index(self)
 
-            # 5 Tries to generate a different index than the current one.
-            for x in range(5):
+            # 5 Tries to generate a different index than where it currently is.
+            # Only 8 tries to not affect performance, in case we'd get REALLY unlucky.
+            for x in range(8):
 
                 # Generated Index
                 newIndex = randint( 0 , len(InventoryObject.inventory.keys()) - 1 )
 
-                # If it's the same index as the original one, use it.
-                # Otherwise, try the roll again.
+                # If it's the same index as the original one, try the roll again.
+                # If not, use it.
                 if newIndex != badIndex:
-                    break            
+                    break        
 
+                # Keep the index if 8 rolls weren't enough.
+
+            # Get rid of original Guava.
             l.pop(badIndex)
+
+            # Insert Guava at the generated index..
             l.insert(newIndex, self)
 
+            # Prepare a new OrderedDict for the Inventory.
             d = OrderedDict()
+
+            # Insert everything into the prepared OrderedDict.
+            # keys are taken from the list which has had order of items changed,
+            # values are taken from the original Inventory.
             for key in l:
                 d[key] = InventoryObject.inventory[key]
 
+            # Update Inventory to the new OrderedDict.
             InventoryObject.inventory = d
+
+            # Unselect the Item, since selection depends on index:
+            # If the order changed, a different item would be in place and kept selected.
             InventoryObject.unselect()
 
     # Guava defined.

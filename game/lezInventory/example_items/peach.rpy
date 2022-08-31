@@ -1,5 +1,6 @@
 # Peach is a Usable item.
 # When used, it shows a message stating how many peaches have been used so far.
+# This means that multiple different Peaches can be defined, but they all share the same counter.
 
 # A little secret label that can be shown instead of peach's renpy.notify.
 label peachLabel():
@@ -38,6 +39,7 @@ init -800 python:
             # Up the class variable counter.
             Peach.howManyTimesUsed += 1
 
+            # Show the count.
             if Peach.howManyTimesUsed != 4:
                 renpy.notify("*Munching sounds...*\nYou just ate a peach number {}!".format(Peach.howManyTimesUsed))
 
