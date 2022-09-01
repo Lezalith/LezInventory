@@ -42,11 +42,11 @@ init -890 python:
 
         # Taken from lezInvSettings, default of whether
         # usable items get removed from the Inventory when used.
-        consumedOnUse = lezInvSettings.defaultUseConsume
+        consumedOnUse = lezInvSettings.consumedOnUse
 
         # Taken from lezInvSettings, default of whether
         # usable items get removed from the Inventory when used.
-        consumedOnUnequip = lezInvSettings.defaultUnequipConsume
+        consumedOnUnequip = lezInvSettings.consumedOnUnequip
 
         # Initialization. Arguments:
         #
@@ -87,7 +87,7 @@ init -890 python:
                 self.stackable = stackable
             # Default from lezInvSettings if not given.
             else:
-                self.stackable = lezInvSettings.defaultStack
+                self.stackable = lezInvSettings.stackable
             
             # Max number of items in the stack.
             self.stackSize = stacksize

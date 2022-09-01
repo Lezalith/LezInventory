@@ -443,7 +443,7 @@ screen inventoryScreen( howToLeave = "return" ):
                                 # So this is one of the few properties we have to manually write here. 
                                 align (0.5, 0.5)
 
-            if lezInvSettings.showInfo:
+            if lezInvSettings.showDescription:
 
                 # A vertical box. This one contains:
                 # 1) Text of Item's name

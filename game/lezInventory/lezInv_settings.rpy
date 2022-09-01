@@ -73,7 +73,7 @@ define lezInvSettings.equippedHighlightSlot = "lezInventory/gui/equippedHighligh
 # should they desire to do so.
 define lezInvSettings.showEquippedLabel = True
 define lezInvSettings.showEquippedSlot = True
-define lezInvSettings.showInfo = True
+define lezInvSettings.showDescription = True
 define lezInvSettings.showEquipButton = True
 define lezInvSettings.showUseButton = True
 define lezInvSettings.showThrowAwayButton = True
@@ -85,14 +85,14 @@ define lezInvSettings.showThrowAwayButton = True
 # Whatever these values are, they can be overwritten in a specific Item.
 
 # If True, usable items get removed upon use by default.
-define lezInvSettings.defaultUseConsume = True
+define lezInvSettings.consumedOnUse = True
 
 # If True, equippable items get removed upon unequip by default.
-define lezInvSettings.defaultUnequipConsume = False
+define lezInvSettings.consumedOnUnequip = False
 
 # If True, Items are stackable by default.
-define lezInvSettings.defaultStack = False
+define lezInvSettings.stackable = False
 
 # Int. Used if an Item is stackable and stacksize isn't given.
 # Don't set this to 
-define lezInvSettings.defaultStackSize = 3
+define lezInvSettings.stacksize = 3
