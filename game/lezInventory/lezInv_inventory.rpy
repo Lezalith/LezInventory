@@ -53,10 +53,9 @@ init -900 python:
 
         def __init__(self):
  
-            # Dictionary that notes the width and height of cells.
-            # Doesn't have to be a dict, but I wanted to make it clear
-            # when we want to get grid["width"] rather than grid[0].
-            self.grid = {"width" : InventorySettings.grid[0], "height" : InventorySettings.grid[1]}
+            # In slots, width and height of the Inventory.
+            self.width = lezInvSettings.width
+            self.height = lezInvSettings.height
 
             # INDEX of the page that we're on.
             self.page = 0
@@ -460,7 +459,7 @@ init -900 python:
         # width * height of the grid.
         def getSize(self):
 
-            return self.grid["width"] * self.grid["height"]
+            return self.width * self.height
 
         # Returns Items from the current page.
         def getPageItems(self):

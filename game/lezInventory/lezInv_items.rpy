@@ -40,13 +40,13 @@ init -890 python:
         usable = False
         equippable = False
 
-        # Taken from InventorySettings, default of whether
+        # Taken from lezInvSettings, default of whether
         # usable items get removed from the Inventory when used.
-        consumedOnUse = InventorySettings.defaultUseConsume
+        consumedOnUse = lezInvSettings.defaultUseConsume
 
-        # Taken from InventorySettings, default of whether
+        # Taken from lezInvSettings, default of whether
         # usable items get removed from the Inventory when used.
-        consumedOnUnequip = InventorySettings.defaultUnequipConsume
+        consumedOnUnequip = lezInvSettings.defaultUnequipConsume
 
         # Initialization. Arguments:
         #
@@ -59,7 +59,7 @@ init -890 python:
         # creates a Text Displayable from the name argument.
         #
         # stackable - True if the Item can stack, False if not.
-        # If not given, default of None refers to InventorySettings.defaultStack.
+        # If not given, default of None refers to lezInvSettings.defaultStack.
         # Only regular Items and Usable Items can be stackable, 
         # Equippable Items cannot.
         #
@@ -85,9 +85,9 @@ init -890 python:
             # Stackability
             if stackable != None:
                 self.stackable = stackable
-            # Default from InventorySettings if not given.
+            # Default from lezInvSettings if not given.
             else:
-                self.stackable = InventorySettings.defaultStack
+                self.stackable = lezInvSettings.defaultStack
             
             # Max number of items in the stack.
             self.stackSize = stacksize

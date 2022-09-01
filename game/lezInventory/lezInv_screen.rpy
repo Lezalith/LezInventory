@@ -69,7 +69,7 @@
 
 # Main window of the Inventory.
 style inventory_main_frame:
-    xysize InventorySettings.mainFrameSize
+    xysize lezInvSettings.mainFrameSize
     align (0.5, 0.4)
 
 ##########################
@@ -86,17 +86,17 @@ style inventory_slots_grid:
 
 # One Slot for an Item inside the grid, when the slot is full.
 style inventory_slot:
-    idle_background InventorySettings.slotFullIdle
-    hover_background InventorySettings.slotFullHover
-    selected_idle_background InventorySettings.slotFullSelected
-    selected_hover_background InventorySettings.slotFullSelectedHover
-    xysize InventorySettings.slotSize
+    idle_background lezInvSettings.slotFullIdle
+    hover_background lezInvSettings.slotFullHover
+    selected_idle_background lezInvSettings.slotFullSelected
+    selected_hover_background lezInvSettings.slotFullSelectedHover
+    xysize lezInvSettings.slotSize
 
 # One Slot for an Item inside the grid, when the slot is empty.
 style inventory_slot_empty:
-    idle_background InventorySettings.slotEmptyIdle
-    hover_background InventorySettings.slotEmptyHover
-    xysize InventorySettings.slotSize
+    idle_background lezInvSettings.slotEmptyIdle
+    hover_background lezInvSettings.slotEmptyHover
+    xysize lezInvSettings.slotSize
 
 # Text - Number of items on the stack.
 style inventory_slot_text:
@@ -324,7 +324,7 @@ screen inventoryScreen( howToLeave = "return" ):
 
         # Grid of all the Inventory Slots.
         # The grid size depends on the defined "grid" of an inventory.
-        grid Inventory.grid["width"] Inventory.grid["height"]:
+        grid Inventory.width Inventory.height:
 
             style_suffix "slots_grid" # Style: inventory_slots_grid
 
@@ -344,7 +344,7 @@ screen inventoryScreen( howToLeave = "return" ):
                     # Test whether this slot is Equipped.
                     if Inventory.isEquipped(item):
 
-                        add InventorySettings.equippedHighlightSlot align (0.5, 0.5)
+                        add lezInvSettings.equippedHighlightSlot align (0.5, 0.5)
 
                     #######################################################################
                     # Used before Slots got different backgrounds through "selected" below.
@@ -415,14 +415,14 @@ screen inventoryScreen( howToLeave = "return" ):
 
                 style_suffix "vbox_equipped" # Style: inventory_side_menu_vbox_equipped
 
-                if InventorySettings.showEquippedLabel:
+                if lezInvSettings.showEquippedLabel:
 
                     # Label
                     text "Equipped Item:":
 
                         style_suffix "vbox_equipped_text" # Style: inventory_side_menu_vbox_equipped_text
 
-                if InventorySettings.showEquippedSlot:
+                if lezInvSettings.showEquippedSlot:
 
                     # Frame around the Slot.
                     frame:
@@ -433,7 +433,7 @@ screen inventoryScreen( howToLeave = "return" ):
                         # Makes more clear how the equipped item is marked in the Inventory slots.
                         # if Inventory.equipped:
 
-                        add InventorySettings.equippedHighlight align (0.5, 0.5)
+                        add lezInvSettings.equippedHighlight align (0.5, 0.5)
                         # If there is an Equipped Item, add its Image in the middle.
                         if Inventory.equipped:
                             add Inventory.equipped.image:
@@ -443,7 +443,7 @@ screen inventoryScreen( howToLeave = "return" ):
                                 # So this is one of the few properties we have to manually write here. 
                                 align (0.5, 0.5)
 
-            if InventorySettings.showInfo:
+            if lezInvSettings.showInfo:
 
                 # A vertical box. This one contains:
                 # 1) Text of Item's name
@@ -479,7 +479,7 @@ screen inventoryScreen( howToLeave = "return" ):
 
                     style_suffix "vbox_interaction_equip_box" # Style: inventory_side_menu_vbox_interaction_equip_box
 
-                    if InventorySettings.showEquipButton:
+                    if lezInvSettings.showEquipButton:
 
                         # Checks whether the player can Unequip an item.
                         # This means that NOT ONLY does an item have to be equipped,
@@ -504,7 +504,7 @@ screen inventoryScreen( howToLeave = "return" ):
                                 sensitive Inventory.canEquip()
                                 action Function(Inventory.equip)
 
-                    if InventorySettings.showUseButton:
+                    if lezInvSettings.showUseButton:
 
                         # Either way, the Use button is shown.
                         textbutton "Use": 
@@ -516,7 +516,7 @@ screen inventoryScreen( howToLeave = "return" ):
                             sensitive Inventory.canUse()
                             action Function(Inventory.use)
 
-                if InventorySettings.showThrowAwayButton:
+                if lezInvSettings.showThrowAwayButton:
 
                     # The Throw Away button.
                     textbutton "Throw Away":
