@@ -20,178 +20,239 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-#####
-#TODO: REWRITE THIS FILE ###############################
-#####
-##############################################################################
 #
 # Hey! 
 # Welcome to the Docs that tell you how to define your own items.
 #
-# If you're here, it means you've probably visited inventoryDocs.rpy already.
+# If you're here, it means you've probably visited lezInv_startup.rpy already.
 # If not, I highly recommend you start there.
 #
-# There are three types of Items in LezInventory by default.
-# Regular Item, which doesn't do anything
-# Usable Item, which can be Used, consuming the Item and triggering an effect.
-# Equippable Item, which can be equipped into the Equip Slot the Inventory has.
+# There are three types of Items in LezInventory by default:
+# - Regular Items, which don't do anything
+# - Usable Items, which can be Used, triggering an effect
+# - Equippable Item, which can be equipped into the Equip Slot the Inventory has
+#
+# Let's go over them one by one.
 #
 ##############################################################################
 #
-# For regular items, you can simply define an Item object, like so:
+# For regular items, you can simply define an Item object.
+# Items take 2 positional arguments which have to be given,
+# and three optional keyword arguments.
 #
-define lezInvExampleItem = Item("Example Item", "A simple example.", None)
+# This is the bare minimum:
+define docCherries = Item( "Cherries" , "Spit the seeds at your foes!" )
 #
-# This creates a regular item. Item (As well as EquippableItem and UsableItem, which 
-# we'll get to in a second) takes three arguments. 
-# First one is the name, second is the description, and third is the image.
-# Image file doesn't have to be provided, in which case the Item's name will
-# be used as text in the Inventory Slot instead.
+# The positional arguments, the two that have to be provided, are the name and the description.
+# `name` and `description` both have to be strings.
 #
-##############################################################################
+# This Item has *all* the possible arguments provided:
+default docOrange = Item( "Orange" , "Lezalith's massive stash of oranges for making juice." , image = "lezInventory/example_items/images/17_Orange.png" , stackable = True, stacksize = 2579)
 #
-# Next, items that can be Used. You can also think of them as consumable items,
-# rather than usable ones. 
-#
-# To start, you're going to want to copy-paste the UsableItem template.
-# (I say template, this is actually the real UsableItem class, just
-# with different name so it doesn't get in the way.)
-#
-
-# TODO: OUTDATED EXAMPLE. Great examples of usables are Grapefruit and Guava.
-
-# init -1 python:
-
-#     # Give the class a different name, instead of the UsableItemExample.
-#     class UsableItemExample(Item):
-
-#         # This marks the Item as usable.
-#         usable = True
-
-#         # TODO: Maybe make a config var for this?
-#         consumedOnUse = True
-
-#         ## __init__ got ommited, as Apple doesn't take/need any extra arguments.
-        
-#         # What happens when the Item is used.
-#         def used(self, InventoryObject):
-
-#             ##############################################
-#             # Here is what happens when the Item is used.
-#             # Change this to your desires!
-#             ##############################################
-
-#             # By default, just make a note in the console that it has been used.
-#             return print("An Item {} has been used!".format(self.name))
-#
-# As is written in the last comment, by default, all UsableItem does is
-# print out the Item used into the console.
-#
-# In your case, this will happen if you either define the UsableItem class
-# rather than creating your own (As described in this paragraph),
-# or if you don't change the used() function to your own functionality.
-#
-# After that, we can define our new Item.
-# As already stated, UsableItem takes the same arguments as the regular Item,
-# being the name, the description and the image. 
-#
-# TODO: OUTDATED: define lezInvExampleUsableItem = UsableItemExample(name = "Example Usable" , desc = "A simple example no.2" , image = None) 
-#
-# Since UsableItem is a subclass of Item, the arguments are passed to the parent class.
-# If you decide to change the number of arguments, numOfArguments should
-# be changed (the "self" argument also counts).
+# `image`
+# The image of the Item. This follows the same rules as Ren'Py when it comes to images:
+# it can be a string with a filename, string with a defined image (through the image statement), or a Displayable. 
+# If it's the default of None, a Text displayable with the Item's name is created to represent it.  
 # 
-# (If you don't know what these last lines mean, don't worry,
-# that means you probably don't need to know what they mean anyway.)
+# `stackable`
+# Whether the Item is stackable or not. It can be True or False, and is False by default.
+# Stackable means that multiples of the same Item are stored in a single Inventory Slot.
 #
+# `stacksize`
+# Has to be an int (a number), is 1 by default, and is ignored completely if stackable is False.
+# How many of the same Item can be in the Inventory Slot. 
+# This cannot be exceeded. Should more of the Item be added after reaching max stacksize,
+# the extra Items will be discarded.
+#
+##############################################################################
+#
+# Moving onto Items that *do* do stuff, let's look at Usable Items. These can be used inside the Inventory, triggering an effect.
+# To define your own Usable Items, you will need to define a new Class for the Item. 
+#
+# This is done in pure Python, but it's not as scary as it sounds.
+# Here is what the simplest Usable Item can look like:
+
+
+# init python is python code that runs when the game is launched (init stands for initialization).
+init python:
+
+    # Class of the Dragon Fruit.
+    #### You of course have to give it a different name.
+    class DocDragonF(Item):
+
+        # This marks the Item as usable.
+        usable = True
+
+        # __init__ got ommited, as this Item doesn't take/need any extra arguments.
+        #### (I'll explain this in just a moment)
+
+        # What happens when the Item is used.
+        #### This is where you want to put your own functionality.
+        def used(self, InventoryObject):
+
+            # Show a screen that's defined somewhere.
+            return renpy.show_screen("dragonScreen")
+
+
+# First, the Item has to know that it's usable.
+# For this, it has to have the `usable` class variable set to `True`.
+# Class variables are put directly under the class name.
+#
+# After that, we can ommit __init__, unless we need some special setup for this Item.
+# If it's ommited, this Item sticks to what the regular Item has defined.
+# Out of all the Example Items, the only one with __init__ is the Lemon, because that one stores the current state
+# of the Inventory, and it has to have a variable prepared for it.
+#
+# Finally, the `used` method is what is called when the Item is used in the Inventory.
+# There's where you put anything and everything you want the Item to do.
+#
+# With the class defined, we can now define the Item itself that can be added to the Inventory.
+
+default docDragonFruit = DocDragonF( "Dragon Fruit" , "White as snow on the inside." , image = "lezInventory/example_items/images/07_Dragonfruit.png" )
+
+###################
+#
+# Of course, there are more options to your own defined Items, which I'll show you in just a moment.
+# However, let me first show you Equippable Items, since they are defined in the exact same way.
+#
+# Here is what the simplest Equippable Item can look like:
+
+
+# init python is python code that runs when the game is launched (init stands for initialization).
+init python:
+
+    # Class of the Apple.
+    #### You of course have to give it a different name.
+    class DocApple(Item):
+
+        # This marks the Item as equippable.
+        equippable = True
+
+        ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
+
+        # What happens when the Item is Equipped
+        #### This is where you want to put your own functionality.
+        def equipped(self, InventoryObject):
+
+            # Bring up a Notify with a custom text.
+            return renpy.notify("I have been crowned the King of all Fruits!")
+
+        # What happens when the Item is Unequipped
+        #### This is where you want to put your own functionality.
+        def unequipped(self, InventoryObject):
+
+            # Bring up a Notify with a custom text.
+            return renpy.notify("Long live the king...")
+
+
+# Again, we state that the Item can do something, with the `equippable` class var this time, set to `True`.
+#
+# After that, there are two different methods for functionality this time:
+# `equipped`, which is called when the Item is equipped.
+# `unequipped`, which is called when the Item is unequipped.
+# 
+# You might think that both HAVE to be given, but if you want an Item to do something only on being equipped, 
+# you can ommit unequipped just without issues.
+#
+# With the class prepared, we again define an Item that can be added to the Inventory.
+
+default docApple = DocApple( "Apple" , "The King of all the fruits." , image = "lezInventory/example_items/images/16_Apple.png" )
+
+###################
+#
+# With the simplest possible codes out of the way, let's now look at the most complex one.
+#
+# Not only does this include all the class variables to show all the settings that you can change,
+# it also shows the __init__ you might need, and shows that Items can be both usable and equippable.
+#
+# TODO: ?
+# It's a monster stitched from Dragon Fruit and Apple, not found as an Example in the Inventory Preview.
+
+# init python is python code that runs when the game is launched (init stands for initialization).
+init python:
+
+    # Class stitched from dragon fruit and apple.
+    #### You of course have to give it a different name.
+    class DocMonster(Item):
+
+        # This marks the Item as usable.
+        # It is False by default.
+        usable = True
+
+        # This marks the Item as equippable.
+        # It is False by default.
+        equippable = True
+
+        # States whether the Item should be removed upon being used.
+        # Default is taken from lezInv.settings.rpy 
+        consumedOnUse = True
+
+        # States whether the Item should be removed upon being unequipped.
+        # Default is taken from lezInv.settings.rpy 
+        consumedOnUnequip = True
+
+        # __init__ that takes care of setting up the default Item stuff,
+        # while allowing us to add our own functionality, like a new argument.
+        def __init__(self, exampleArgument, *args, **kwargs):
+
+            # Calls the parent class, Item, with everything that it needs.
+            #### The class given to `super` has to be the same as this class. 
+            super(DocMonster, self).__init__( *args, **kwargs )
+
+            #### Custom functionality can follow. If no functionality is needed, __init__ can be ommited completely.
+            #### I just store the exampleArgument in a variable that does nothing.
+            self.exampleVariable = exampleArgument
+
+        # What happens when the Item is used.
+        #### This is where you want to put your own functionality.
+        def used(self, InventoryObject):
+
+            # Show a screen that's defined somewhere.
+            return renpy.show_screen("dragonScreen")
+
+        # What happens when the Item is Equipped
+        #### This is where you want to put your own functionality.
+        def equipped(self, InventoryObject):
+
+            # Bring up a Notify with a custom text.
+            return renpy.notify("I have been crowned the King of all Fruits!")
+
+        # What happens when the Item is Unequipped
+        #### This is where you want to put your own functionality.
+        def unequipped(self, InventoryObject):
+
+            # Bring up a Notify with a custom text.
+            return renpy.notify("Long live the king...")
+
+
+# With all that code done, we can once again define the Item itself.
+# I'm not giving it an image because, uh, I don't have one.
+
+default docMonster = DocMonster(name = "Dragon Apple", desc = "Igor! Fetch me the brain!", exampleArgument = "something")
+
 ######################################################################################
 #
-# Finally, items that can be Equipped. The Inventory has one Equip slot
-# by default, and you can make it do things on both equipping it and unequipping it.
+# When you're done reading this, you should be able to define your own items!
 #
-# Again, copy the template below for starters.
-# (And again, it's the actual class, just with an example name.
+# I still highly recommend checking out the codes of (at least) the basic Items.
+# Basic Items show the most common functionality, like showing a screen, showing an image or entering a label.
+# These are the files of Items classified as basic:
 #
-
-# TODO: OUTDATED EXAMPLE. Great examples of equippables are Apple and Lemon.
-
-# init -1 python:
-
-#     # Give the class a different name, instead of the EquippableItemExample.
-#     class EquippableItemExample(EquippableItem):
-
-#         # What happens upon the definition.
-#         # THIS CAN BE OMMITED, in case *you* don't need something special in the __init__.
-#         # It is ommited in some examples, check those out. 
-#         def __init__(self, *args, **kwargs):
-
-#             # Calls the parent class, Item, with everything that it needs.
-#             super(UsableItemExample, self).__init__( *args, **kwargs )
-
-#         ############################
-#         ## To Be Overwritten
-#         ## Should be overwritten by child class
-#         ############################
-        
-#         # What happens when the Item is equipped.
-#         def equipped(self, InventoryObject):
-
-#             ###################################################
-#             # Here is what happens when the Item is equipped.
-#             ###################################################
-
-#             # By default, just make a note in the console that it has been equipped.
-#             return print("An Item {} has been equipped!".format(self.name))
-        
-#         # What happens when the Item is unequipped.
-#         def unequipped(self, InventoryObject):
-
-#             ###################################################
-#             # Here is what happens when the Item is unequipped.
-#             ###################################################
-
-#             # By default, just make a note in the console that it has been unequipped.
-#             return print("An Item {} has been unequipped!".format(self.name))# 
+# Equippables:
+# durian.rpy - shows/hides an image.
+# apple.rpy - uses a function on both equip and unequip.
 #
-# As is the case with UsableItem, all it does by default is
-# print out the Item equipped/unequipped into the console.
+# Passives:
+# orange.rpy - does nothing but there's a lot of them.
+# cherries.rpy - does nothing.
+# kiwi.rpy - does nothing.
+# strawberry.rpy - does nothing.
 #
-# (Mostly copied from above)
-# In your case, this will happen if you either define the EquippableItem class
-# rather than creating your own (As described in this paragraph),
-# or if you don't change the equipped() and/or unequipped function to your own functionality.
-#
-# And again, he's an example EquippableItem defined.
-# As already stated, UsableItem takes the same arguments as the regular Item,
-# being the name, the description and the image. 
-#
-# TODO: OUTDATED: define lezInvExampleEquippableItem = EquippableItemExample("Example Equippable" , "A simple example no.3" , None)
-#
-# These items are functional. If you want to see for youselves, you can
-# run this function ingame to add them to the Inventory.
-# #
-
-# TODO: OUTDATED FUNCTION.
-
-# init -1 python:
-
-#     def addDocItems():
-#         Inventory.add(lezInvExampleItem)
-#         Inventory.add(lezInvExampleUsableItem)
-#         Inventory.add(lezInvExampleEquippableItem)
-#
-######################################################################################
-#
-# And when you're done reading this, you should be able to define
-# your own items, both simple and complex :) 
-#
-# But of course, you might want to see some examples, first. I got you!
-#
-# I have included three example Items that aren't placed into the Inventory at any point from my side.
-# They are the most simple ones used in my LezInventory project, they should guide you. The files are:
-# apple.rpy for a simple look at how equip and unequip effects are done
-# passionfruit.rpy for a usable that leads to a label
-# dragonfruit.rpy for a usable that let's you show a screen
+# Usables:
+# dragonfruit.rpy - shows a screen.
+# passionfruit.rpy - calls a label.
+# plum.rpy - adds multiple counts of one Item into the Inventory.
+# grapefruit.rpy - wipes the inventory clean.
 #
 # Go check them out, they're commented and very simple to understand!
 #
