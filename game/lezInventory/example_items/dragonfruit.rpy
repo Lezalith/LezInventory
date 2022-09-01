@@ -34,4 +34,4 @@ init -800 python:
             return renpy.show_screen("dragonScreen")
 
     # Dragon Fruit defined.
-    dragonFruit = dragonF( "Dragon Fruit" , "White as snow on the inside." , "lezInventory/example_items/images/07_Dragonfruit.png", stackable = True, stacksize = 5 )
+    dragonFruit = dragonF( "Dragon Fruit" , "White as snow on the inside." , "lezInventory/example_items/images/07_Dragonfruit.png")
