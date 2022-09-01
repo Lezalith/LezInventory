@@ -28,70 +28,71 @@
 
 # It has to be defined before it is used in any of the Inventory classes.
 # (At the time of writing, closest is InventoryObject at -900)
-init -999:
+# It also can't be below -999, that's where Ren'Py Internals are.
+init offset = -966
 
-    ############################
-    ## Variables of the Inventory screen.
-    ############################
+############################
+## Variables of the Inventory screen.
+############################
 
-    # How many slots is the Inventory wide and high.
-    # It is 3 by 3 slots by default.
-    define lezInvSettings.width = 3
-    define lezInvSettings.height = 3
+# How many slots is the Inventory wide and high.
+# It is 3 by 3 slots by default.
+define lezInvSettings.width = 3
+define lezInvSettings.height = 3
 
-    # Size of the Inventory
-    define lezInvSettings.mainFrameSize = (1280, 720)
+# Size of the Inventory
+define lezInvSettings.mainFrameSize = (1280, 720)
 
-    # Size of one Inventory Slot
-    define lezInvSettings.slotSize = (180, 180)
+# Size of one Inventory Slot
+define lezInvSettings.slotSize = (180, 180)
 
-    # Background of the whole Inventory
-    define lezInvSettings.mainFrame = "gui/frame.png"
+# Background of the whole Inventory
+define lezInvSettings.mainFrame = "gui/frame.png"
 
-    # Backgrounds of an Inventory Slot that contains an Item.
-    define lezInvSettings.slotFullIdle = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
-    define lezInvSettings.slotFullHover = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
-    define lezInvSettings.slotFullSelected = Frame("lezInventory/gui/slot_selected.png", 6, 6, 6, 6)
-    define lezInvSettings.slotFullSelectedHover = Frame("lezInventory/gui/slot_selected.png", 6, 6, 6, 6)
+# Backgrounds of an Inventory Slot that contains an Item.
+define lezInvSettings.slotFullIdle = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
+define lezInvSettings.slotFullHover = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
+define lezInvSettings.slotFullSelected = Frame("lezInventory/gui/slot_selected.png", 6, 6, 6, 6)
+define lezInvSettings.slotFullSelectedHover = Frame("lezInventory/gui/slot_selected.png", 6, 6, 6, 6)
 
-    # Background of an Inventory Slot that is empty.
-    define lezInvSettings.slotEmptyIdle = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
-    define lezInvSettings.slotEmptyHover = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
+# Background of an Inventory Slot that is empty.
+define lezInvSettings.slotEmptyIdle = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
+define lezInvSettings.slotEmptyHover = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
 
-    # A highlight effect that the Inventory Slot which holds a currently
-    # equipped item will have.
-    # Is shown *below* the item.
-    define lezInvSettings.equippedHighlight = "lezInventory/gui/equippedHighlight.png"
+# A highlight effect that the Inventory Slot which holds a currently
+# equipped item will have.
+# Is shown *below* the item.
+define lezInvSettings.equippedHighlight = "lezInventory/gui/equippedHighlight.png"
 
-    # A highlight effect that the Equipped Item Slot always has.
-    # Is shown *below* the item.
-    define lezInvSettings.equippedHighlightSlot = "lezInventory/gui/equippedHighlightSlot.png"
+# A highlight effect that the Equipped Item Slot always has.
+# Is shown *below* the item.
+define lezInvSettings.equippedHighlightSlot = "lezInventory/gui/equippedHighlightSlot.png"
 
-    # Variables that control what is showed on the Inventory screen.
-    # This allows the user to quickly reduce the Inventory's functionality,
-    # should they desire to do so.
-    define lezInvSettings.showEquippedLabel = True
-    define lezInvSettings.showEquippedSlot = True
-    define lezInvSettings.showInfo = True
-    define lezInvSettings.showEquipButton = True
-    define lezInvSettings.showUseButton = True
-    define lezInvSettings.showThrowAwayButton = True
+# Variables that control what is showed on the Inventory screen.
+# This allows the user to quickly reduce the Inventory's functionality,
+# should they desire to do so.
+define lezInvSettings.showEquippedLabel = True
+define lezInvSettings.showEquippedSlot = True
+define lezInvSettings.showInfo = True
+define lezInvSettings.showEquipButton = True
+define lezInvSettings.showUseButton = True
+define lezInvSettings.showThrowAwayButton = True
 
-    ############################
-    ## Variables of Item functionality
-    ############################
+############################
+## Variables of Item functionality
+############################
 
-    # Whatever these values are, they can be overwritten in a specific Item.
+# Whatever these values are, they can be overwritten in a specific Item.
 
-    # If True, usable items get removed upon use by default.
-    define lezInvSettings.defaultUseConsume = True
+# If True, usable items get removed upon use by default.
+define lezInvSettings.defaultUseConsume = True
 
-    # If True, equippable items get removed upon unequip by default.
-    define lezInvSettings.defaultUnequipConsume = False
+# If True, equippable items get removed upon unequip by default.
+define lezInvSettings.defaultUnequipConsume = False
 
-    # If True, Items are stackable by default.
-    define lezInvSettings.defaultStack = False
+# If True, Items are stackable by default.
+define lezInvSettings.defaultStack = False
 
-    # Int. Used if an Item is stackable and stacksize isn't given.
-    # Don't set this to 
-    define lezInvSettings.defaultStackSize = 3
+# Int. Used if an Item is stackable and stacksize isn't given.
+# Don't set this to 
+define lezInvSettings.defaultStackSize = 3
