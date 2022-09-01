@@ -111,8 +111,7 @@ init -900 python:
         # the stacks, and only the Item if the stack goes below 1.
         def remove(self, item = None, count = 1):
 
-            # item not provided.
-            # Attempting to use the SelectedItem instead.
+            # Attempt to use the SelectedItem if item is not provided.
             if item == None:
 
                 # Do nothing if nothing is selected
@@ -156,16 +155,12 @@ init -900 python:
                 if item == self.equippedItem:
                     self.unequip()
 
-                # Unselect this item
-                print("Unselected.")
+                # # Unselect this item
+                # print("Unselected.")
                 self.unselect()
 
+                # Completely remove the Item from the inventory.
                 del self.inventory[item]
-
-                # If we try to remove it straight away before unselecting it,
-                # the screen manages to render one more time, and throws
-                # an error because it doesn't find the selected item
-                # inside the inventory.
 
             # Check pages whether we don't have
             # (an) empty one(s) after the removal.
@@ -381,13 +376,15 @@ init -900 python:
             # First is the current page index, second is the last page index.
             return ( self.page, lastPage )
 
-        # Check pages whether we don't have (an) empty one(s)
+        # Check whether we've not stayed on an empty page.
         def checkPages(self):
 
             pages = self.getPages()
 
+            # If the page we're on currently is over the total amount of pages...
             if pages[0] > pages[1]:
 
+                # ...put us onto the last page.
                 self.page = pages[1]
 
         # Moving up or down between pages. 1 goes up a page, -1 down a page.
@@ -398,16 +395,12 @@ init -900 python:
             if not self.canChangePage(direction):
                 return None
 
-            try:
-
-                self.page += direction
-
-            # Not given a number.
-            except TypeError:
-                raise Exception("changePage() got invalid direction.")
-
+            # Change the page.
+            self.page += direction
 
             # Finally, unselect whatever's selected.
+            # This is debatable, but I don't think Item's name and description should be
+            # shown if you can't see the selected Item, since it's on a different page.
             self.unselect()
 
         # Checks whether we can move between pages.
@@ -419,6 +412,7 @@ init -900 python:
             if self.getPages()[1] == 0:
                 return False
 
+            # Try changing the page.
             try:
 
                 # Checks for going up.
@@ -431,7 +425,7 @@ init -900 python:
                 # Checks for going down.
                 elif direction < 0:
 
-                    # Can move, unless we're on the first page.
+                    # Can move, unless we'd go below the first page.
                     if self.page > 0:
                         return True
 
@@ -439,7 +433,8 @@ init -900 python:
             except TypeError:
                 raise Exception("changePage() got invalid direction.")
 
-            # If we get here, it means the check did not pass.
+            # If we get here, it means the check did not pass
+            # and the page cannot be changed.
             return False
 
         # Returns tuple of two ints - (Current Page, Final Page).
@@ -511,13 +506,20 @@ init -900 python:
         # int, 0 if the item isn't present.
         def getItemCount(self, item):
 
+            # If the Item is present in the Inventory...
             if item in self.inventory.keys():
 
+                # ...return it's count.
                 return self.inventory[item]
 
+            # 0 if the Item given isn't present.
             return 0
 
 init -850:
 
     # Default of the Inventory.
+    # The Alpha and Omega.
+    # The Beginning and the End.
+    # ...
+    # (Warwarneverchanges)
     default Inventory = InventoryObject()
