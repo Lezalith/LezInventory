@@ -94,5 +94,5 @@ define lezInvSettings.consumedOnUnequip = False
 define lezInvSettings.stackable = False
 
 # Int. Used if an Item is stackable and stacksize isn't given.
-# Don't set this to 
+# stacksize is ignored completely by Items that aren't stackable.
 define lezInvSettings.stacksize = 3

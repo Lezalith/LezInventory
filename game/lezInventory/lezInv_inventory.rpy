@@ -98,11 +98,11 @@ init -900 python:
                     # Set the Item count.
                     self.inventory[item] = count
 
-            # Check whether the count hasn't gone over Item's stackSize.
-            if self.inventory[item] > item.stackSize:
+            # Check whether the count hasn't gone over Item's stacksize.
+            if self.inventory[item] > item.stacksize:
 
                 # Set it to max value if it has.
-                self.inventory[item] = item.stackSize
+                self.inventory[item] = item.stacksize
 
         # Removes an Item from the inventory.
         # If item is not specified, it will remove the selected item,

@@ -67,7 +67,7 @@ init -890 python:
         # Never brought up if stackable is False.
         #
         # What happens upon the definition.
-        def __init__(self, name, desc, image = None, stackable = None, stacksize = 0):
+        def __init__(self, name, desc, image = None, stackable = None, stacksize = 1):
 
             # Name of the Item.
             self.name = name
@@ -90,7 +90,11 @@ init -890 python:
                 self.stackable = lezInvSettings.stackable
             
             # Max number of items in the stack.
-            self.stackSize = stacksize
+            if stacksize != None:
+                self.stacksize = stacksize
+            # Default from lezInvSettings if not given.
+            else:
+                self.stacksize = lezInvSettings.stacksize
 
             # Check for things that aren't allowed.
             self.check()
