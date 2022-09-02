@@ -29,12 +29,12 @@ init -900 python:
     ###########################################
     ###########################################
     #
-    # InventoryObject Class
+    # Inventory Class
     #
     ###########################################
     ###########################################
 
-    # InventoryObject uses Indexes. 
+    # Inventory uses Indexes. 
     # Indexes are counted from 0 rather than from 1.
     #
     # Index 0 in the inventory means 1st item, 
@@ -47,7 +47,7 @@ init -900 python:
     # which gives you the "real" number rather than the index.
     # That is the one that should be used for printing purposes.
 
-    class InventoryObject(object):
+    class Inventory(object):
 
         "Inventory that holds all the items and manages them."
 
@@ -174,7 +174,7 @@ init -900 python:
             self.selectedItem = None
             self.page = 0
 
-        # Lets us read inventory with InventoryObject.items
+        # Lets us read inventory with Inventory.items
         @property
         def items(self):
             return self.inventory
@@ -200,7 +200,7 @@ init -900 python:
 
             self.selectedItem = None
 
-        # Lets us read selectedItem with InventoryObject.selected
+        # Lets us read selectedItem with Inventory.selected
         @property
         def selected(self):
             return self.selectedItem
@@ -241,7 +241,7 @@ init -900 python:
                 self.unequip()
 
             # Call Item's equipped() method.
-            item.equipped(InventoryObject = self)
+            item.equipped(Inventory = self)
 
             # Set the Item as equipped.
             self.equippedItem = item
@@ -299,7 +299,7 @@ init -900 python:
                     # Remove the Item from the Inventory.
                     self.remove()
 
-        # Lets us read equippedItem with InventoryObject.equipped
+        # Lets us read equippedItem with Inventory.equipped
         @property
         def equipped(self):
             return self.equippedItem
@@ -522,4 +522,4 @@ init -850:
     # The Beginning and the End.
     # ...
     # (Warwarneverchanges)
-    default Inventory = InventoryObject()
+    default inventory = Inventory()

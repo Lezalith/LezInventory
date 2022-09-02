@@ -104,13 +104,13 @@ init -800 python:
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is Equipped
-        def equipped(self, InventoryObject):
+        def equipped(self, Inventory):
 
             # Show the grapesScreen screen.
             return renpy.show_screen("grapesScreen")
 
         # What happens when the Item is Unequipped
-        def unequipped(self, InventoryObject):
+        def unequipped(self, Inventory):
 
             # Hide the grapesScreen screen.
             return renpy.hide_screen("grapesScreen")

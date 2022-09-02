@@ -324,7 +324,7 @@ screen inventoryScreen( howToLeave = "return" ):
 
         # Grid of all the Inventory Slots.
         # The grid size depends on the defined "grid" of an inventory.
-        grid Inventory.width Inventory.height:
+        grid inventory.width inventory.height:
 
             style_suffix "slots_grid" # Style: inventory_slots_grid
 
@@ -333,7 +333,7 @@ screen inventoryScreen( howToLeave = "return" ):
             #
             # Enumerate gives us a tuple of (index, item) for every iteration.
             # TODO: index no longer used. Keep it? It doesn't harm anything rn.
-            for index, item in enumerate( Inventory.getPageItems() ):
+            for index, item in enumerate( inventory.getPageItems() ):
 
                 # One Slot.
                 # Has a background to also function as a frame around the item.
@@ -342,7 +342,7 @@ screen inventoryScreen( howToLeave = "return" ):
                     style_suffix "slot" # Style: inventory_slot
 
                     # Test whether this slot is Equipped.
-                    if Inventory.isEquipped(item):
+                    if inventory.isEquipped(item):
 
                         add lezInvSettings.equippedHighlightSlot align (0.5, 0.5)
 
@@ -352,7 +352,7 @@ screen inventoryScreen( howToLeave = "return" ):
                     # to a Selected slot, in different color.
                     #
                     # # Test whether this slot is Selected.
-                    # if Inventory.isSelected(index):
+                    # if inventory.isSelected(index):
                     #
                     #     # Custom screen statement. Check 01marker.rpy.
                     #     marker:
@@ -362,11 +362,11 @@ screen inventoryScreen( howToLeave = "return" ):
 
                     # We further use .isSelected as means of telling Ren'Py
                     # when the button is selected, for example for background purposes.
-                    selected Inventory.isSelected(item)
+                    selected inventory.isSelected(item)
 
                     # Triggers .select(), a method which manages
                     # selecting and deselecting items.
-                    action Function( Inventory.select , item )
+                    action Function( inventory.select , item )
                     
                     # An Image of the item inside the frame.
                     add item.image:
@@ -376,7 +376,7 @@ screen inventoryScreen( howToLeave = "return" ):
                         # So this is one of the few properties we have to manually write here. 
                         align (0.5, 0.5)
 
-                    $ itemCount = Inventory.getItemCount(item)
+                    $ itemCount = inventory.getItemCount(item)
                     if itemCount <= 1:
                         $ itemCount = ""
 
@@ -387,7 +387,7 @@ screen inventoryScreen( howToLeave = "return" ):
             # been left empty on a non-full page and fills them with empty space.
             #
             # This is necessary because Ren'Py requires grids to have all cells filled.
-            for x in range( Inventory.getEmptyCells() ):
+            for x in range( inventory.getEmptyCells() ):
 
                 # One Empty Slot.
                 # Also has a background to function as a frame around the "item".
@@ -396,7 +396,7 @@ screen inventoryScreen( howToLeave = "return" ):
                     style_suffix "slot_empty" # Style: inventory_slot_empty                    
 
                     # Unselects the selected item.
-                    action Function( Inventory.unselect )
+                    action Function( inventory.unselect )
 
         #########################
         # Buttons and text
@@ -431,12 +431,12 @@ screen inventoryScreen( howToLeave = "return" ):
 
                         # If there is an Equipped Item, create a marker around it.
                         # Makes more clear how the equipped item is marked in the Inventory slots.
-                        # if Inventory.equipped:
+                        # if inventory.equipped:
 
                         add lezInvSettings.equippedHighlight align (0.5, 0.5)
                         # If there is an Equipped Item, add its Image in the middle.
-                        if Inventory.equipped:
-                            add Inventory.equipped.image:
+                        if inventory.equipped:
+                            add inventory.equipped.image:
 
                                 # Normally I would put style_suffix "vbox_equipped_slot_image" here, but
                                 # as it turns out, add cannot have a style.
@@ -454,13 +454,13 @@ screen inventoryScreen( howToLeave = "return" ):
 
                     # Item's Name.
                     # Underlined to create a line between this and...
-                    text ( Inventory.selected.name if Inventory.selected else "Nothing selected." ):
+                    text ( inventory.selected.name if inventory.selected else "Nothing selected." ):
 
                         style_suffix "vbox_info_name" # Style: inventory_side_menu_vbox_info_name
 
                     # Item's Description.
                     # Smaller Size.
-                    text ( Inventory.selected.description if Inventory.selected else "Nothing selected." ):
+                    text ( inventory.selected.description if inventory.selected else "Nothing selected." ):
 
                         style_suffix "vbox_info_description" # Style: inventory_side_menu_vbox_info_description
 
@@ -484,13 +484,13 @@ screen inventoryScreen( howToLeave = "return" ):
                         # Checks whether the player can Unequip an item.
                         # This means that NOT ONLY does an item have to be equipped,
                         # that same item also has to in a selected slot.
-                        if Inventory.canUnequip():
+                        if inventory.canUnequip():
 
                             textbutton "Unequip":
 
                                 style_suffix "vbox_interaction_unequip_textbutton" # Style: inventory_side_menu_vbox_interaction_unequip_textbutton
 
-                                action Function(Inventory.unequip)
+                                action Function(inventory.unequip)
 
                         # If you can't Unequip stuff, automatically show the Equip button.
                         else:
@@ -501,8 +501,8 @@ screen inventoryScreen( howToLeave = "return" ):
 
                                 # .canEquip() decides whether you can actually click the button.
                                 # Depends on whether an Equippable is Selected.
-                                sensitive Inventory.canEquip()
-                                action Function(Inventory.equip)
+                                sensitive inventory.canEquip()
+                                action Function(inventory.equip)
 
                     if lezInvSettings.showUseButton:
 
@@ -513,8 +513,8 @@ screen inventoryScreen( howToLeave = "return" ):
                             
                             # .canUse() decides whether you can click this button,
                             # and this one depends on the Item being Usable. 
-                            sensitive Inventory.canUse()
-                            action Function(Inventory.use)
+                            sensitive inventory.canUse()
+                            action Function(inventory.use)
 
                 if lezInvSettings.showThrowAwayButton:
 
@@ -524,8 +524,8 @@ screen inventoryScreen( howToLeave = "return" ):
                         style_suffix "vbox_interaction_throwaway_textbutton" # Style: inventory_side_menu_vbox_interaction_throwaway_textbutton
 
                         # Can be clicked if an item is Selected.
-                        sensitive Inventory.selected
-                        action Function(Inventory.remove)
+                        sensitive inventory.selected
+                        action Function(inventory.remove)
 
             # The Return button. Closes the Inventory.
             textbutton "Return":
@@ -552,14 +552,14 @@ screen inventoryScreen( howToLeave = "return" ):
 
                 style_suffix "hbox_left" # Style: inventory_pages_hbox_left
 
-                sensitive Inventory.canChangePage( -1 )
-                action Function( Inventory.changePage, -1 )
+                sensitive inventory.canChangePage( -1 )
+                action Function( inventory.changePage, -1 )
 
             # Text with the current page and total pages.
             # .format expects two arguments.
             # .getPagesRepr() returns a tuple (<current page>, <total pages>),
             # which is then unpacked into two arguments by the *.
-            text "{} / {}".format( *Inventory.getPagesRepr() ):
+            text "{} / {}".format( *inventory.getPagesRepr() ):
 
                 style_suffix "hbox_text" # Style: inventory_pages_hbox_text
 
@@ -568,5 +568,5 @@ screen inventoryScreen( howToLeave = "return" ):
 
                 style_suffix "hbox_right" # Style: inventory_pages_hbox_right
 
-                sensitive Inventory.canChangePage( 1 )
-                action Function( Inventory.changePage, 1 )
+                sensitive inventory.canChangePage( 1 )
+                action Function( inventory.changePage, 1 )

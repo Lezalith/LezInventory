@@ -12,10 +12,10 @@ init -800 python:
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is used.
-        def used(self, InventoryObject):
+        def used(self, Inventory):
             
             # Wipe the Inventory clean.
-            InventoryObject.clear()
+            Inventory.clear()
 
     # Grapefruit defined.
     grapefruit = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "lezInventory/example_items/images/12_Grapefruit.png" )

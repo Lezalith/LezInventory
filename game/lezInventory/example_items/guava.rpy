@@ -20,11 +20,11 @@ init -800 python:
         consumedOnUse = False
 
         # What happens when the Item is used.
-        def used(self, InventoryObject):
+        def used(self, Inventory):
 
             # We cannot change the order of OrderedDict, which is what the Inventory is.
             # So, we'll create a list, copy stuff over there, deal with the Guava functionality, then update the OrderedDict.
-            l = list(InventoryObject.inventory.keys())
+            l = list(Inventory.inventory.keys())
 
             # Find out where the Guava currently is.
             badIndex = l.index(self)
@@ -34,7 +34,7 @@ init -800 python:
             for x in range(8):
 
                 # Generated Index
-                newIndex = randint( 0 , len(InventoryObject.inventory.keys()) - 1 )
+                newIndex = randint( 0 , len(Inventory.inventory.keys()) - 1 )
 
                 # If it's the same index as the original one, try the roll again.
                 # If not, use it.
@@ -56,14 +56,14 @@ init -800 python:
             # keys are taken from the list which has had order of items changed,
             # values are taken from the original Inventory.
             for key in l:
-                d[key] = InventoryObject.inventory[key]
+                d[key] = Inventory.inventory[key]
 
             # Update Inventory to the new OrderedDict.
-            InventoryObject.inventory = d
+            Inventory.inventory = d
 
             # Unselect the Item, since selection depends on index:
             # If the order changed, a different item would be in place and kept selected.
-            InventoryObject.unselect()
+            Inventory.unselect()
 
     # Guava defined.
     guava = Guava( "Guava" , "Kinda random, to be honest." , "lezInventory/example_items/images/13_Guava.png" )

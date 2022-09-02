@@ -88,7 +88,7 @@ init python:
 
         # What happens when the Item is used.
         #### This is where you want to put your own functionality.
-        def used(self, InventoryObject):
+        def used(self, Inventory):
 
             # Show a screen that's defined somewhere.
             return renpy.show_screen("dragonScreen")
@@ -132,14 +132,14 @@ init python:
 
         # What happens when the Item is Equipped
         #### This is where you want to put your own functionality.
-        def equipped(self, InventoryObject):
+        def equipped(self, Inventory):
 
             # Bring up a Notify with a custom text.
             return renpy.notify("I have been crowned the King of all Fruits!")
 
         # What happens when the Item is Unequipped
         #### This is where you want to put your own functionality.
-        def unequipped(self, InventoryObject):
+        def unequipped(self, Inventory):
 
             # Bring up a Notify with a custom text.
             return renpy.notify("Long live the king...")
@@ -205,21 +205,21 @@ init python:
 
         # What happens when the Item is used.
         #### This is where you want to put your own functionality.
-        def used(self, InventoryObject):
+        def used(self, Inventory):
 
             # Show a screen that's defined somewhere.
             return renpy.show_screen("dragonScreen")
 
         # What happens when the Item is Equipped
         #### This is where you want to put your own functionality.
-        def equipped(self, InventoryObject):
+        def equipped(self, Inventory):
 
             # Bring up a Notify with a custom text.
             return renpy.notify("I have been crowned the King of all Fruits!")
 
         # What happens when the Item is Unequipped
         #### This is where you want to put your own functionality.
-        def unequipped(self, InventoryObject):
+        def unequipped(self, Inventory):
 
             # Bring up a Notify with a custom text.
             return renpy.notify("Long live the king...")

@@ -28,7 +28,7 @@ init -800 python:
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is used.
-        def used(self, InventoryObject):
+        def used(self, Inventory):
 
             # Show a screen.
             return renpy.show_screen("dragonScreen")

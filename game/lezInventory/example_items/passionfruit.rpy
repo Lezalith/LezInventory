@@ -14,7 +14,7 @@ label passionFLabel():
             "Lezalith" "Great! I'll add some more passion fruit to your Inventory then!"
 
             # Adds one more Passion Fruit into the Inventory.
-            $ Inventory.add( passionF( "Passion Fruit" , "About as tropical as you can get." , "lezInventory/example_items/images/20_Passionfruit.png" ) )
+            $ inventory.add( passionF( "Passion Fruit" , "About as tropical as you can get." , "lezInventory/example_items/images/20_Passionfruit.png" ) )
 
         "Not tropical at all.":
 
@@ -34,7 +34,7 @@ init -800 python:
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is used.
-        def used(self, InventoryObject):
+        def used(self, Inventory):
 
             # Enter the passionFLabel label defined above.
             # The function might look scary, but to us, it's like a regular call.

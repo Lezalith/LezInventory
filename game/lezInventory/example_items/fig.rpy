@@ -40,13 +40,13 @@ init -800 python:
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is equipped.
-        def equipped(self, InventoryObject):
+        def equipped(self, Inventory):
 
             # Show the screen.
             return renpy.show_screen("figScreen")
 
         # What happens when the Item is unequipped.
-        def unequipped(self, InventoryObject):
+        def unequipped(self, Inventory):
 
             # Message showing the removal.
             return renpy.notify("The flavour fades away...")

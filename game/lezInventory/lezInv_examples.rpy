@@ -20,43 +20,43 @@ init -750 python:
     def addBasicItems():
 
         # Equippables
-        Inventory.add(durian)
-        Inventory.add(apple)
+        inventory.add(durian)
+        inventory.add(apple)
 
         # Passives
-        Inventory.add(orange, count = 2579)
+        inventory.add(orange, count = 2579)
 
-        Inventory.add(cherries)
-        # Inventory.add(cranberries)
-        Inventory.add(kiwi)
-        Inventory.add(strawberry)
+        inventory.add(cherries)
+        # inventory.add(cranberries)
+        inventory.add(kiwi)
+        inventory.add(strawberry)
 
         # Usables
-        Inventory.add(dragonFruit)
-        Inventory.add(passionFruit)
-        Inventory.add(plum, count = 2)
-        Inventory.add(grapefruit)
+        inventory.add(dragonFruit)
+        inventory.add(passionFruit)
+        inventory.add(plum, count = 2)
+        inventory.add(grapefruit)
 
     def addAdvancedItems():
 
         # Equippables
-        Inventory.add(grapes)
-        Inventory.add(lemon)
+        inventory.add(grapes)
+        inventory.add(lemon)
 
         # Passives
 
         # Usables
-        Inventory.add(guava)
-        Inventory.add(apricot)
-        Inventory.add(wmelon)
-        Inventory.add(peach1)
-        Inventory.add(peach2)
-        Inventory.add(peach3)
-        Inventory.add(fig)
+        inventory.add(guava)
+        inventory.add(apricot)
+        inventory.add(wmelon)
+        inventory.add(peach1)
+        inventory.add(peach2)
+        inventory.add(peach3)
+        inventory.add(fig)
 
     def resetInventory():
 
-        Inventory.clear()
+        inventory.clear()
 
         addExampleItems()
 

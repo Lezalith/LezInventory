@@ -25,22 +25,22 @@ init -800 python:
             self.inventory = OrderedDict()
 
         # What happens when the Item is Equipped
-        def equipped(self, InventoryObject):
+        def equipped(self, Inventory):
 
             # Remembers the current Inventory state...
-            self.inventory = InventoryObject.inventory
+            self.inventory = Inventory.inventory
 
             # ...before clearing it...
-            InventoryObject.inventory = OrderedDict()
+            Inventory.inventory = OrderedDict()
 
             # ...and keeping only the lemon.
-            InventoryObject.inventory[self] = 1
+            Inventory.inventory[self] = 1
 
         # What happens when the Item is Unequipped
-        def unequipped(self, InventoryObject):
+        def unequipped(self, Inventory):
 
             # Loads up the original Inventory state back into the Inventory.
-            InventoryObject.inventory = self.inventory
+            Inventory.inventory = self.inventory
 
     # Lemon defined.
     lemon = Lemon( "Lemon" , "Not good in combination with other fruits." , "lezInventory/example_items/images/15_Lemon.png" )

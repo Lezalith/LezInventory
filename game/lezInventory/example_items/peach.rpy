@@ -34,7 +34,7 @@ init -800 python:
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is used.
-        def used(self, InventoryObject):
+        def used(self, Inventory):
 
             # Up the class variable counter.
             Peach.howManyTimesUsed += 1

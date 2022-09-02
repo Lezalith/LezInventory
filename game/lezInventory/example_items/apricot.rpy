@@ -71,7 +71,7 @@ label apricotLabel(selfItem):
 
         # We cannot change the order of OrderedDict, which is what the Inventory is.
         # So, we'll create a list, copy stuff over there, deal with the Guava functionality, then update the OrderedDict.
-        l = list(Inventory.inventory.keys())
+        l = list(inventory.inventory.keys())
 
         # Find out where the Apricot currently is.
         currentIndex = l.index(selfItem)
@@ -90,15 +90,15 @@ label apricotLabel(selfItem):
 
             # Otherwise just copy over the info from the original Inventory.
             else:
-                d[key] = Inventory.inventory[key]
+                d[key] = inventory.inventory[key]
 
         # Update Inventory to the new OrderedDict.
-        Inventory.inventory = d
+        inventory.inventory = d
 
         # Aside from the fact that we don't want the new item selected anyway,
         # finishing of Inventory.used() will throw an error, because of not being able to remove it.
         # Unselecting it prevents this.
-        Inventory.unselect()
+        inventory.unselect()
 
     # Return back to the Inventory.
     return
@@ -148,7 +148,7 @@ init -800 python:
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is used.
-        def used(self, InventoryObject):
+        def used(self, Inventory):
 
             # Enter the apricotLabel label defined above.
             # The function might look scary, but to us, it's like a regular call.

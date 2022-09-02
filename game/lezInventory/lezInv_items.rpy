@@ -125,13 +125,13 @@ init -890 python:
         ############################
         
         # What happens when the Item is used.
-        def used(self, InventoryObject):
+        def used(self, Inventory):
             return None 
 
         # What happens when the Item is Equipped.
-        def equipped(self, InventoryObject):
+        def equipped(self, Inventory):
             return None 
 
         # What happens when the Item is Unequipped.
-        def unequipped(self, InventoryObject):
+        def unequipped(self, Inventory):
             return None

@@ -13,10 +13,10 @@ init -800 python:
         consumedOnUse = False
 
         # What happens when the Item is used.
-        def used(self, InventoryObject):
+        def used(self, Inventory):
 
             # Add (Current count / 5 + 1) Plums to the Inventory.
-            InventoryObject.add( item = self, count = int(InventoryObject.inventory[self] / 5 + 1) )
+            Inventory.add( item = self, count = int(Inventory.inventory[self] / 5 + 1) )
 
     # Watermelon defined.
     plum = Plum( "Plum" , "Evergrowing in power, dark like a deep abyss." , "lezInventory/example_items/images/06_Plum.png", stackable = True, stacksize = 9999 )

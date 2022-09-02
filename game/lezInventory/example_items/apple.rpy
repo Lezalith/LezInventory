@@ -13,13 +13,13 @@ init -800 python:
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is Equipped
-        def equipped(self, InventoryObject):
+        def equipped(self, Inventory):
 
             # Bring up a Notify with a custom text.
             return renpy.notify("I have been crowned the King of all Fruits!")
 
         # What happens when the Item is Unequipped
-        def unequipped(self, InventoryObject):
+        def unequipped(self, Inventory):
 
             # Bring up a Notify with a custom text.
             return renpy.notify("Long live the king...")

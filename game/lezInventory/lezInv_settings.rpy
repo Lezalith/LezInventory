@@ -27,7 +27,7 @@
 # functionality of Items, like whether Usables are consumed by default.
 
 # It has to be defined before it is used in any of the Inventory classes.
-# (At the time of writing, closest is InventoryObject at -900)
+# (At the time of writing, closest is Inventory at -900)
 # It also can't be below -999, that's where Ren'Py Internals are.
 init offset = -966
 

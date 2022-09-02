@@ -16,11 +16,11 @@ init -800 python:
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # What happens when the Item is used.
-        def used(self, InventoryObject):
+        def used(self, Inventory):
 
             # Create a list that we can shuffle, since we cannot
             # change order of items in OrderedDict.
-            l = list(InventoryObject.inventory.keys())
+            l = list(Inventory.inventory.keys())
 
             # Shuffle the list with the items.
             shuffle(l)
@@ -32,10 +32,10 @@ init -800 python:
             # keys are taken from the list which has had order of items changed,
             # values are taken from the original Inventory.
             for key in l:
-                d[key] = InventoryObject.inventory[key]
+                d[key] = Inventory.inventory[key]
 
             # Update Inventory to the new OrderedDict.
-            InventoryObject.inventory = d
+            Inventory.inventory = d
 
     # Watermelon defined.
     wmelon = WMelon( "Watermelon" , "Bouncy enough to hit other items." , "lezInventory/example_items/images/23_Watermelon.png" )
