@@ -16,7 +16,7 @@ init -800 python:
         def used(self, InventoryObject):
 
             # Add (Current count / 5 + 1) Plums to the Inventory.
-            InventoryObject.add( item = self, count = InventoryObject.inventory[self] / 5 + 1 )
+            InventoryObject.add( item = self, count = int(InventoryObject.inventory[self] / 5 + 1) )
 
     # Watermelon defined.
     plum = Plum( "Plum" , "Evergrowing in power, dark like a deep abyss." , "lezInventory/example_items/images/06_Plum.png", stackable = True, stacksize = 9999 )
