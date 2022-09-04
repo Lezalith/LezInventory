@@ -2,13 +2,13 @@
 # Equipping it will bring up a screen, hinting at the fact that it will be consumed upon being unequipped.
 
 # Overlay to darken Inventory behind the frame.
-define figOverlay = At( Solid("000"), Transform(alpha = 0.5) )
+define fig_overlay = At( Solid("000"), Transform(alpha = 0.5) )
 
 # Screen shown when the Item is equipped.
-screen figScreen():
+screen fig_screen():
 
     # Add the overlay.
-    add figOverlay
+    add fig_overlay
 
     # Frame in the middle of the screen
     frame:
@@ -24,7 +24,7 @@ screen figScreen():
     modal True
 
     # Hide the screen on click.
-    key "dismiss" action Hide("figScreen")
+    key "dismiss" action Hide("fig_screen")
 
 init -800 python:
 
@@ -35,7 +35,7 @@ init -800 python:
         equippable = True
 
         # Remove the Item once it's unequipped.
-        consumedOnUnequip = True
+        consumed_on_unequip = True
 
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
@@ -43,7 +43,7 @@ init -800 python:
         def equipped(self, Inventory):
 
             # Show the screen.
-            return renpy.show_screen("figScreen")
+            return renpy.show_screen("fig_screen")
 
         # What happens when the Item is unequipped.
         def unequipped(self, Inventory):

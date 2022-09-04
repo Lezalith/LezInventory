@@ -1,5 +1,5 @@
 # Plum is a Usable Item.
-# When Used, its count increases by 20%, capping at it's stacksize, 9999.
+# When Used, its count increases by 20%, capping at it's stack_size, 9999.
 
 init -800 python:
 
@@ -10,7 +10,7 @@ init -800 python:
         usable = True
 
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
-        consumedOnUse = False
+        consumed_on_use = False
 
         # What happens when the Item is used.
         def used(self, Inventory):
@@ -19,4 +19,4 @@ init -800 python:
             Inventory.add( item = self, count = int(Inventory.inventory[self] / 5 + 1) )
 
     # Watermelon defined.
-    plum = Plum( "Plum" , "Evergrowing in power, dark like a deep abyss." , "lezInventory/example_items/images/06_Plum.png", stackable = True, stacksize = 9999 )
+    plum = Plum( "Plum" , "Evergrowing in power, dark like a deep abyss." , "lezInventory/example_items/images/06_Plum.png", stackable = True, stack_size = 9999 )

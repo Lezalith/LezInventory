@@ -47,7 +47,7 @@ define docCherries = Item( "Cherries" , "Spit the seeds at your foes!" )
 # `name` and `description` both have to be strings.
 #
 # This Item has *all* the possible arguments provided:
-default docOrange = Item( "Orange" , "Lezalith's massive stash of oranges for making juice." , image = "lezInventory/example_items/images/17_Orange.png" , stackable = True, stacksize = 2579)
+default docOrange = Item( "Orange" , "Lezalith's massive stash of oranges for making juice." , image = "lezInventory/example_items/images/17_Orange.png" , stackable = True, stack_size = 2579)
 #
 # `image`
 # The image of the Item. This follows the same rules as Ren'Py when it comes to images:
@@ -58,10 +58,10 @@ default docOrange = Item( "Orange" , "Lezalith's massive stash of oranges for ma
 # Whether the Item is stackable or not. It can be True or False, and is False by default.
 # Stackable means that multiples of the same Item are stored in a single Inventory Slot.
 #
-# `stacksize`
+# `stack_size`
 # Has to be an int (a number), is 1 by default, and is ignored completely if stackable is False.
 # How many of the same Item can be in the Inventory Slot. 
-# This cannot be exceeded. Should more of the Item be added after reaching max stacksize,
+# This cannot be exceeded. Should more of the Item be added after reaching max stack_size,
 # the extra Items will be discarded.
 #
 ##############################################################################
@@ -185,11 +185,11 @@ init python:
 
         # States whether the Item should be removed upon being used.
         # Default is taken from lezInv.settings.rpy 
-        consumedOnUse = True
+        consumed_on_use = True
 
         # States whether the Item should be removed upon being unequipped.
         # Default is taken from lezInv.settings.rpy 
-        consumedOnUnequip = True
+        consumed_on_unequip = True
 
         # __init__ that takes care of setting up the default Item stuff,
         # while allowing us to add our own functionality, like a new argument.

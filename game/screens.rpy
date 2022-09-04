@@ -462,7 +462,7 @@ screen quick_menu():
         align (0.5, 1.0)
 
         text "{u}Fruit art{/u} created by the amazing" yoffset 1
-        textbutton "Admurin" yoffset -4 action Function(copyText, text = "https://admurin.itch.io", notice = "Admurin's Itch.io copied to clipboard!") text_size 32
+        textbutton "Admurin" yoffset -4 action Function(copy_text, text = "https://admurin.itch.io", notice = "Admurin's Itch.io copied to clipboard!") text_size 32
 
 default quick_menu = True
 

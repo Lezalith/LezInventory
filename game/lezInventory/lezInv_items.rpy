@@ -40,13 +40,13 @@ init -890 python:
         usable = False
         equippable = False
 
-        # Taken from lezInvSettings, default of whether
+        # Taken from lezInv_settings, default of whether
         # usable items get removed from the Inventory when used.
-        consumedOnUse = lezInvSettings.consumedOnUse
+        consumed_on_use = lezInv_settings.consumed_on_use
 
-        # Taken from lezInvSettings, default of whether
+        # Taken from lezInv_settings, default of whether
         # usable items get removed from the Inventory when used.
-        consumedOnUnequip = lezInvSettings.consumedOnUnequip
+        consumed_on_unequip = lezInv_settings.consumed_on_unequip
 
         # Initialization. Arguments:
         #
@@ -59,15 +59,15 @@ init -890 python:
         # creates a Text Displayable from the name argument.
         #
         # stackable - True if the Item can stack, False if not.
-        # If not given, default of None refers to lezInvSettings.defaultStack.
+        # If not given, default of None refers to lezInv_settings.defaultStack.
         # Only regular Items and Usable Items can be stackable, 
         # Equippable Items cannot.
         #
-        # stacksize - How big this Item's stack can be.
+        # stack_size - How big this Item's stack can be.
         # Never brought up if stackable is False.
         #
         # What happens upon the definition.
-        def __init__(self, name, desc, image = None, stackable = None, stacksize = 1):
+        def __init__(self, name, desc, image = None, stackable = None, stack_size = 1):
 
             # Name of the Item.
             self.name = name
@@ -85,16 +85,16 @@ init -890 python:
             # Stackability
             if stackable != None:
                 self.stackable = stackable
-            # Default from lezInvSettings if not given.
+            # Default from lezInv_settings if not given.
             else:
-                self.stackable = lezInvSettings.stackable
+                self.stackable = lezInv_settings.stackable
             
             # Max number of items in the stack.
-            if stacksize != None:
-                self.stacksize = stacksize
-            # Default from lezInvSettings if not given.
+            if stack_size != None:
+                self.stack_size = stack_size
+            # Default from lezInv_settings if not given.
             else:
-                self.stacksize = lezInvSettings.stacksize
+                self.stack_size = lezInv_settings.stack_size
 
             # Check for things that aren't allowed.
             self.check()
@@ -110,12 +110,12 @@ init -890 python:
         ############################
 
         # Used by the Inventory screen, whether Item can be Equipped.
-        def isEquippable(self):
+        def is_equippable(self):
 
             return self.equippable
 
         # Used by the Inventory screen, whether Item can be Used.
-        def isUsable(self):
+        def is_usable(self):
 
             return self.usable
 

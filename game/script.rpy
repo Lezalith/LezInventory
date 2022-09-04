@@ -1,11 +1,11 @@
-﻿transform mySize():
+﻿transform my_size():
     size (240, 240)
 
-image side lezalith = At("myself.jpeg", mySize)
+image side lezalith = At("myself.jpeg", my_size)
 define lez = Character("Lezalith", image = "lezalith")
 
 init -1 python:
-    def copyText(text, notice):
+    def copy_text(text, notice):
 
         import pygame.scrap
        
@@ -67,11 +67,11 @@ screen main_menu():
 
                     textbutton "Enter from a screen.":
                         yalign 0.5
-                        action Show("fromScreen")
+                        action Show("from_screen")
 
                     textbutton "Enter from a label.":
                         yalign 0.5
-                        action Start("fromLabel")
+                        action Start("from_label")
 
 
                 vbox:
@@ -80,16 +80,16 @@ screen main_menu():
 
                     text "What Example Items do you want in the preview?" size 26 xalign 0.5
 
-                    textbutton "Basic ones, that show simplicity." xalign 0.5 action SetVariable("addWhichItems", "basic") text_size 26 text_selected_color "ff6242"
-                    textbutton "Advanced ones, that show off what LezInventory can do." xalign 0.5 action SetVariable("addWhichItems", "advanced") text_size 26 text_selected_color "ff6242"
-                    textbutton "ALL THE ITEMS!" xalign 0.5 action SetVariable("addWhichItems", "both") text_size 26 text_selected_color "ff6242"
+                    textbutton "Basic ones, that show simplicity." xalign 0.5 action SetVariable("add_which_items", "basic") text_size 26 text_selected_color "ff6242"
+                    textbutton "Advanced ones, that show off what LezInventory can do." xalign 0.5 action SetVariable("add_which_items", "advanced") text_size 26 text_selected_color "ff6242"
+                    textbutton "ALL THE ITEMS!" xalign 0.5 action SetVariable("add_which_items", "both") text_size 26 text_selected_color "ff6242"
 
                 vbox:
                     xalign 0.5
                     yalign 1.0
                     text "And here, you can click to copy my Discord, let me know how you've liked my work."
 
-                    textbutton "Lezalith (LezCave.com)#2853" xalign 0.5 action Function(copyText, text = "Lezalith (LezCave.com)#2853", notice = "Lez's Discord copied to clipboard!")
+                    textbutton "Lezalith (LezCave.com)#2853" xalign 0.5 action Function(copy_text, text = "Lezalith (LezCave.com)#2853", notice = "Lez's Discord copied to clipboard!")
 
 screen info():
 
@@ -130,7 +130,7 @@ screen info():
 
         textbutton "Back to the menu!" align (0.5, 1.0) yoffset -10 action Hide("info")
 
-style descStyle_text:
+style desc_style_text:
     size 28
 
 screen desc():
@@ -148,7 +148,7 @@ screen desc():
 
         vbox:
 
-            style_prefix "descStyle"
+            style_prefix "desc_style"
 
             xalign 0.5
             spacing 50
@@ -180,7 +180,7 @@ screen desc():
         textbutton "Back to the menu!" align (0.5, 1.0) yoffset 70 action Hide("desc")
 
 
-screen fromScreen():
+screen from_screen():
 
     tag main
     modal True
@@ -199,11 +199,11 @@ screen fromScreen():
             text "Click the button below to enter it." xalign 0.5
             text "I sincerely hope you'll enjoy!" xalign 0.5
             text ""
-            textbutton "Woosh!" action Function(resetInventory), Show("quick_menu"), Show("inventoryScreen", howToLeave = "both"), Hide("fromScreen") xalign 0.5
+            textbutton "Woosh!" action Function(reset_inventory), Show("quick_menu"), Show("inventory_screen", howToLeave = "both"), Hide("from_screen") xalign 0.5
 
-label fromLabel():
+label from_label():
 
-    $ resetInventory()
+    $ reset_inventory()
 
     show screen quick_menu
 
@@ -211,7 +211,7 @@ label fromLabel():
 
     show screen quick_menu
 
-    call screen inventoryScreen
+    call screen inventory_screen
 
     lez "Welcome back to the label! I hope you've enjoyed :)"
 

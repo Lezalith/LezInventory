@@ -43,7 +43,7 @@ init -900 python:
     # Same thing for pages. In here, page = 0 means the first page,
     # page 1 is the second, 2 is the third.
     # 
-    # The ONLY time when this is not true is in the getPagesRepr method,
+    # The ONLY time when this is not true is in the get_pages_repr method,
     # which gives you the "real" number rather than the index.
     # That is the one that should be used for printing purposes.
 
@@ -54,8 +54,8 @@ init -900 python:
         def __init__(self):
  
             # In slots, width and height of the Inventory.
-            self.width = lezInvSettings.width
-            self.height = lezInvSettings.height
+            self.width = lezInv_settings.width
+            self.height = lezInv_settings.height
 
             # INDEX of the page that we're on.
             self.page = 0
@@ -64,10 +64,10 @@ init -900 python:
             self.inventory = OrderedDict()
 
             # Currently selected Item (Key of self.inventory).
-            self.selectedItem = None
+            self.selected_item = None
 
             # Currently equipped Item (Key of self.inventory)
-            self.equippedItem = None
+            self.equipped_item = None
 
         ##########################################
         ## Inventory - Add, Remove and Clear Functions
@@ -98,11 +98,11 @@ init -900 python:
                     # Set the Item count.
                     self.inventory[item] = count
 
-            # Check whether the count hasn't gone over Item's stacksize.
-            if self.inventory[item] > item.stacksize:
+            # Check whether the count hasn't gone over Item's stack_size.
+            if self.inventory[item] > item.stack_size:
 
                 # Set it to max value if it has.
-                self.inventory[item] = item.stacksize
+                self.inventory[item] = item.stack_size
 
         # Removes an Item from the inventory.
         # If item is not specified, it will remove the selected item,
@@ -115,10 +115,10 @@ init -900 python:
             if item == None:
 
                 # Do nothing if nothing is selected
-                if self.selectedItem == None:
+                if self.selected_item == None:
                     return
 
-                item = self.selectedItem
+                item = self.selected_item
 
             # Item is stackable.
             if item.stackable:
@@ -146,13 +146,13 @@ init -900 python:
 
                     # Check pages whether we don't have
                     # (an) empty one(s) after the removal.
-                    self.checkPages()
+                    self.check_pages()
 
             # Unstackable Item
             else:
 
                 # Unequip if this Item was equipped
-                if item == self.equippedItem:
+                if item == self.equipped_item:
                     self.unequip()
 
                 # # Unselect this item
@@ -164,14 +164,14 @@ init -900 python:
 
             # Check pages whether we don't have
             # (an) empty one(s) after the removal.
-            self.checkPages()
+            self.check_pages()
 
         # Clears the whole inventory.
         def clear(self):
 
             self.inventory = OrderedDict()
-            self.equippedItem = None
-            self.selectedItem = None
+            self.equipped_item = None
+            self.selected_item = None
             self.page = 0
 
         # Lets us read inventory with Inventory.items
@@ -187,30 +187,30 @@ init -900 python:
         def select(self, item):
 
             # If given item is already selected.
-            if self.selectedItem == item:
+            if self.selected_item == item:
 
                 # Unselect it, and with that end this function.
                 return self.unselect()
 
             # Set the item as selected.
-            self.selectedItem = item
+            self.selected_item = item
 
         # Unselects the selected item.
         def unselect(self):
 
-            self.selectedItem = None
+            self.selected_item = None
 
-        # Lets us read selectedItem with Inventory.selected
+        # Lets us read selected_item with Inventory.selected
         @property
         def selected(self):
-            return self.selectedItem
+            return self.selected_item
 
         ###############################
         ## Equipping and Using of Items
         ###############################
 
         # Equips an Item.
-        # If item is not given, tries to equip currently selectedItem.
+        # If item is not given, tries to equip currently selected_item.
         # If item is given, a specific item is Equipped, being added into
         # inventory in the process if it's not already present.
         def equip(self, item = None):
@@ -219,11 +219,11 @@ init -900 python:
             if not item:
 
                 # Do nothing if nothing is selected.
-                if not self.selectedItem:
+                if not self.selected_item:
                     return
 
-                # Refer to the selectedItem.
-                item = self.selectedItem
+                # Refer to the selected_item.
+                item = self.selected_item
 
             # Specific item given.
             else:
@@ -235,7 +235,7 @@ init -900 python:
             # (Continue with the equip process.)
 
             # Something was already equipped.
-            if self.equippedItem != None:
+            if self.equipped_item != None:
 
                 # Unequip it first.
                 self.unequip()
@@ -244,35 +244,35 @@ init -900 python:
             item.equipped(Inventory = self)
 
             # Set the Item as equipped.
-            self.equippedItem = item
+            self.equipped_item = item
 
         # Unequip currently equipped Item.
         def unequip(self):
 
             # Do nothing if nothing is equipped.
-            if self.equippedItem == None:
+            if self.equipped_item == None:
                 return
 
             # Call Item's unequipped() method.
-            self.equippedItem.unequipped(self)
+            self.equipped_item.unequipped(self)
 
             # Store the item so we can unequip it.***
-            i = self.equippedItem
+            i = self.equipped_item
 
             # Set Item equipped to None.
-            self.equippedItem = None
+            self.equipped_item = None
 
             # Check if the item is supposed to be consumed.
-            if i.consumedOnUnequip:
+            if i.consumed_on_unequip:
 
                 # Remove the Item from the Inventory.
-                # *** It cannot just be self.equippedItem, since remove() will call unequip() again.
+                # *** It cannot just be self.equipped_item, since remove() will call unequip() again.
                 self.remove(i)
 
-                # TODO: Create an example on consumedOnUnequip.
+                # TODO: Create an example on consumed_on_unequip.
 
         # Use an Item.
-        # If item is not given, tries to use currently selectedItem.
+        # If item is not given, tries to use currently selected_item.
         # If item is given, a specific item is Used. It doesn't have to be present in the Inventory.
         def use(self, item = None):
 
@@ -283,75 +283,75 @@ init -900 python:
                 return item.used(self)
 
             # Do nothing if nothing is selected.
-            if not self.selectedItem:
+            if not self.selected_item:
                 return
 
             # Call Item's used() method.
-            self.selectedItem.used(self)
+            self.selected_item.used(self)
 
             # An extra check whether an Item is still selected, in case the Item's
             # effect messed around with it. Guava Item is a good example of that.
-            if self.selectedItem:
+            if self.selected_item:
 
                 # Check if the item is supposed to be consumed.
-                if self.selectedItem.consumedOnUse:
+                if self.selected_item.consumed_on_use:
 
                     # Remove the Item from the Inventory.
                     self.remove()
 
-        # Lets us read equippedItem with Inventory.equipped
+        # Lets us read equipped_item with Inventory.equipped
         @property
         def equipped(self):
-            return self.equippedItem
+            return self.equipped_item
 
         ##################################################
         ## Checks, used mostly in the Inventory Screen
         ##################################################
 
         # Whether given item is currently selected.
-        def isSelected(self, item):
+        def is_selected(self, item):
             
-            return self.selectedItem == item
+            return self.selected_item == item
 
         # Whether given item is currently equipped.
-        def isEquipped(self, item):
+        def is_equipped(self, item):
             
-            return self.equippedItem == item
+            return self.equipped_item == item
 
         # Whether currently equipped item can be unequipped.
         # Returns True if the equipped item is also the one currently selected.
-        def canUnequip(self):
+        def can_unequip(self):
 
-            return self.selectedItem == self.equippedItem
+            return self.selected_item == self.equipped_item
 
         # Whether an item can be equipped.
         # Returns True if an equippable item is currently selected.
-        def canEquip(self):
+        def can_equip(self):
 
             # If an Item is selected.
-            if self.selectedItem != None:
+            if self.selected_item != None:
 
                 # Check the equippable property.
-                return self.selectedItem.isEquippable()
+                return self.selected_item.is_equippable()
 
             # If an Item isn't selected.
             return False 
 
         # Whether an item can be used.
         # Returns True if a usable item is currently selected.
-        def canUse(self):
+        def can_use(self):
 
             # If an Item is selected.
-            if self.selectedItem != None:
+            if self.selected_item != None:
 
                 # Check the usable property.
-                return self.selectedItem.isUsable()
+                return self.selected_item.is_usable()
 
             # If an Item isn't selected.
             return False 
 
         # Whether an item is present in inventory.
-        def isInInventory(self, item):
+        def is_in_inventory(self, item):
 
             return item in self.inventory.keys()
 
@@ -360,26 +360,26 @@ init -900 python:
         ###################
 
         # Returns the index of the current page.
-        def getCurrentPage(self):
+        def get_current_page(self):
             return self.page
 
         # Returns tuple of two ints - (Current Page INDEX, Final Page INDEX ).
-        def getPages(self):
+        def get_pages(self):
 
             # Calculate how many pages are there.
-            lastPage = (len(self.inventory) - 1) // self.getSize()
+            last_page = (len(self.inventory) - 1) // self.get_size()
 
             # A safe check. 
-            if lastPage < 0:
-                lastPage = 0
+            if last_page < 0:
+                last_page = 0
 
             # First is the current page index, second is the last page index.
-            return ( self.page, lastPage )
+            return ( self.page, last_page )
 
         # Check whether we've not stayed on an empty page.
-        def checkPages(self):
+        def check_pages(self):
 
-            pages = self.getPages()
+            pages = self.get_pages()
 
             # If the page we're on currently is over the total amount of pages...
             if pages[0] > pages[1]:
@@ -389,10 +389,10 @@ init -900 python:
 
         # Moving up or down between pages. 1 goes up a page, -1 down a page.
         # You can move multiple pages, but it won't let you go to an empty one.
-        def changePage(self, direction):
+        def change_page(self, direction):
 
             # Check whether the move can be executed.
-            if not self.canChangePage(direction):
+            if not self.can_change_page(direction):
                 return None
 
             # Change the page.
@@ -406,10 +406,10 @@ init -900 python:
         # Checks whether we can move between pages.
         # Moving is possible as long as we're not going past the first
         # or past the final page.
-        def canChangePage(self, direction):
+        def can_change_page(self, direction):
 
             # Only on one page - Cannot move anywhere.
-            if self.getPages()[1] == 0:
+            if self.get_pages()[1] == 0:
                 return False
 
             # Try changing the page.
@@ -419,7 +419,7 @@ init -900 python:
                 if direction > 0:
 
                     # Can move, unless it would lead us further than the last page.
-                    if not (self.page + direction) > self.getPages()[1]:
+                    if not (self.page + direction) > self.get_pages()[1]:
                         return True
 
                 # Checks for going down.
@@ -431,7 +431,7 @@ init -900 python:
 
             # Not given a number.
             except TypeError:
-                raise Exception("changePage() got invalid direction.")
+                raise Exception("change_page() got invalid direction.")
 
             # If we get here, it means the check did not pass
             # and the page cannot be changed.
@@ -440,11 +440,11 @@ init -900 python:
         # Returns tuple of two ints - (Current Page, Final Page).
         # This shows the page indexes when counting from 1 rather than 0,
         # for the purposes of printing.
-        def getPagesRepr(self):
+        def get_pages_repr(self):
 
-            firstPage, lastPage = self.getPages()
+            first_page, last_page = self.get_pages()
 
-            return (firstPage + 1, lastPage + 1)
+            return (first_page + 1, last_page + 1)
 
         ################################################
         ## Calculations used by the Inventory Screen
@@ -452,28 +452,28 @@ init -900 python:
 
         # Calculates how many cells on a page by doing
         # width * height of the grid.
-        def getSize(self):
+        def get_size(self):
 
             return self.width * self.height
 
         # Returns Items from the current page.
-        def getPageItems(self):
+        def get_page_items(self):
 
-            # bottomLimitIndex is the Index of the first item on the page.
+            # bottom_limit_index is the Index of the first item on the page.
             # Simply put, it's 0 on page 0, 8 on page 1, 17 on page 2 etc...
-            bottomLimitIndex = self.page * self.getSize()
+            bottom_limit_index = self.page * self.get_size()
 
-            # topLimitIndex is the last possible index that can be included in the slice.
+            # top_limit_index is the last possible index that can be included in the slice.
             # Slicing past the last index throws an IndexError.
-            # Usually, the topLimitIndex is just the size of a page...
-            topLimitIndex = self.page * self.getSize() + self.getSize()
+            # Usually, the top_limit_index is just the size of a page...
+            top_limit_index = self.page * self.get_size() + self.get_size()
 
             # ...Unless the page is not full, which can happen only on the last page.
             # That means it will only get the remaining items. 
-            if topLimitIndex > len(self.inventory.keys()) - 1:
-                topLimitIndex = len(self.inventory.keys()) - 1 + 1
+            if top_limit_index > len(self.inventory.keys()) - 1:
+                top_limit_index = len(self.inventory.keys()) - 1 + 1
 
-            # Returns Items between bottomLimitIndex and topLimitIndex.
+            # Returns Items between bottom_limit_index and top_limit_index.
             #
             # For example:
             # On a full page with index 1, the slice is [9 : 18].
@@ -482,14 +482,14 @@ init -900 python:
             # Another example:
             # On the last page with index 2 that has 4 items, 
             # the slice is [18 : 22], indexes 19, 20, 21 and 22.
-            return list(self.inventory.keys())[ bottomLimitIndex : topLimitIndex ]
+            return list(self.inventory.keys())[ bottom_limit_index : top_limit_index ]
 
         # Takes the amount of Items on the current page and calculates
         # how many slots on the page will be empty.
-        def getEmptyCells(self):
+        def get_empty_cells(self):
 
             # Get the current and the last page.
-            pages = self.getPages()
+            pages = self.get_pages()
 
             # Unless this is the only page...
             if not pages[0] == 0:
@@ -500,11 +500,11 @@ init -900 python:
                     return 0
 
             # Otherwise:
-            return self.getSize() - len( self.getPageItems() )
+            return self.get_size() - len( self.get_page_items() )
 
         # Returns how many of given item are in present inventory.
         # int, 0 if the item isn't present.
-        def getItemCount(self, item):
+        def get_item_count(self, item):
 
             # If the Item is present in the Inventory...
             if item in self.inventory.keys():

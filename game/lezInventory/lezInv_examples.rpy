@@ -1,4 +1,4 @@
-default addWhichItems = "basic"
+default add_which_items = "basic"
 
 init -750 python:
 
@@ -9,15 +9,15 @@ init -750 python:
     # the example items, and add it to a callback so it gets automatically
     # ran when the game starts.
 
-    def addExampleItems():
+    def add_example_items():
 
-        if store.addWhichItems == "basic" or store.addWhichItems == "both":
-            addBasicItems() 
+        if store.add_which_items == "basic" or store.add_which_items == "both":
+            add_basic_items() 
 
-        if store.addWhichItems == "advanced" or store.addWhichItems == "both":
-            addAdvancedItems()
+        if store.add_which_items == "advanced" or store.add_which_items == "both":
+            add_advanced_items()
 
-    def addBasicItems():
+    def add_basic_items():
 
         # Equippables
         inventory.add(durian)
@@ -37,7 +37,7 @@ init -750 python:
         inventory.add(plum, count = 2)
         inventory.add(grapefruit)
 
-    def addAdvancedItems():
+    def add_advanced_items():
 
         # Equippables
         inventory.add(grapes)
@@ -54,11 +54,11 @@ init -750 python:
         inventory.add(peach3)
         inventory.add(fig)
 
-    def resetInventory():
+    def reset_inventory():
 
         inventory.clear()
 
-        addExampleItems()
+        add_example_items()
 
-    if addExampleItems not in config.start_callbacks:
-        config.start_callbacks.append(resetInventory)
+    if add_example_items not in config.start_callbacks:
+        config.start_callbacks.append(reset_inventory)

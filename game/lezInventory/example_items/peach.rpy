@@ -3,7 +3,7 @@
 # This means that multiple different Peaches can be defined, but they all share the same counter.
 
 # A little secret label that can be shown instead of peach's renpy.notify.
-label peachLabel():
+label peach_label():
 
     "Lezalith" "Did you..."
     "Lezalith" "Did you just...{p=1.0}Eat a peach number 4..?"
@@ -29,7 +29,7 @@ init -800 python:
 
         # Signature function of Peach.
         # How many times an Item of the Peach class has been used.
-        howManyTimesUsed = 0
+        how_many_times_used = 0
 
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
@@ -37,15 +37,15 @@ init -800 python:
         def used(self, Inventory):
 
             # Up the class variable counter.
-            Peach.howManyTimesUsed += 1
+            Peach.how_many_times_used += 1
 
             # Show the count.
-            if Peach.howManyTimesUsed != 4:
-                renpy.notify("*Munching sounds...*\nYou just ate a peach number {}!".format(Peach.howManyTimesUsed))
+            if Peach.how_many_times_used != 4:
+                renpy.notify("*Munching sounds...*\nYou just ate a peach number {}!".format(Peach.how_many_times_used))
 
             # Special message in a label instead, on the 4th peach used.
             else:
-                renpy.call_in_new_context("peachLabel")
+                renpy.call_in_new_context("peach_label")
 
 
     # Three different peaches defined.

@@ -69,7 +69,7 @@
 
 # Main window of the Inventory.
 style inventory_main_frame:
-    xysize lezInvSettings.mainFrameSize
+    xysize lezInv_settings.main_frame_size
     align (0.5, 0.4)
 
 ##########################
@@ -86,17 +86,17 @@ style inventory_slots_grid:
 
 # One Slot for an Item inside the grid, when the slot is full.
 style inventory_slot:
-    idle_background lezInvSettings.slotFullIdle
-    hover_background lezInvSettings.slotFullHover
-    selected_idle_background lezInvSettings.slotFullSelected
-    selected_hover_background lezInvSettings.slotFullSelectedHover
-    xysize lezInvSettings.slotSize
+    idle_background lezInv_settings.slot_full_idle
+    hover_background lezInv_settings.slot_full_hover
+    selected_idle_background lezInv_settings.slot_full_selected
+    selected_hover_background lezInv_settings.slot_full_selected_hover
+    xysize lezInv_settings.slot_size
 
 # One Slot for an Item inside the grid, when the slot is empty.
 style inventory_slot_empty:
-    idle_background lezInvSettings.slotEmptyIdle
-    hover_background lezInvSettings.slotEmptyHover
-    xysize lezInvSettings.slotSize
+    idle_background lezInv_settings.slot_empty_idle
+    hover_background lezInv_settings.slot_empty_hover
+    xysize lezInv_settings.slot_size
 
 # Text - Number of items on the stack.
 style inventory_slot_text:
@@ -137,7 +137,7 @@ style inventory_side_menu_vbox_equipped:
 
 # The Equipped Slot.
 style inventory_side_menu_vbox_equipped_slot:
-    background Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
+    background lezInv_settings.slot_equipped_image
     xysize (200, 200)
     xalign 0.5
 
@@ -305,12 +305,12 @@ style inventory_pages_hbox_right_text:
 ###########################################
 ###########################################
 
-# Takes one argument, howToLeave. This specifies what
+# Takes one argument, how_to_leave. This specifies what
 # the Inventory does when the Return button is clicked.
-# "return" will Return(), "hide" will Hide("inventoryScreen"),
+# "return" will Return(), "hide" will Hide("inventory_screen"),
 # or "both" which will do both, first Hide, then Return.
 
-screen inventoryScreen( howToLeave = "return" ):
+screen inventory_screen( how_to_leave = "return" ):
 
     # You cannot interact with other shown screens below.
     # This means not even clicking to continue dialogue.
@@ -328,12 +328,12 @@ screen inventoryScreen( howToLeave = "return" ):
 
             style_suffix "slots_grid" # Style: inventory_slots_grid
 
-            # .getPageItems() fetches items that are supposed 
+            # .get_page_items() fetches items that are supposed 
             # to be shown on the current inventory page.
             #
             # Enumerate gives us a tuple of (index, item) for every iteration.
             # TODO: index no longer used. Keep it? It doesn't harm anything rn.
-            for index, item in enumerate( inventory.getPageItems() ):
+            for index, item in enumerate( inventory.get_page_items() ):
 
                 # One Slot.
                 # Has a background to also function as a frame around the item.
@@ -342,9 +342,9 @@ screen inventoryScreen( howToLeave = "return" ):
                     style_suffix "slot" # Style: inventory_slot
 
                     # Test whether this slot is Equipped.
-                    if inventory.isEquipped(item):
+                    if inventory.is_equipped(item):
 
-                        add lezInvSettings.equippedHighlightSlot align (0.5, 0.5)
+                        add lezInv_settings.equipped_highlight_slot_image align (0.5, 0.5)
 
                     #######################################################################
                     # Used before Slots got different backgrounds through "selected" below.
@@ -352,7 +352,7 @@ screen inventoryScreen( howToLeave = "return" ):
                     # to a Selected slot, in different color.
                     #
                     # # Test whether this slot is Selected.
-                    # if inventory.isSelected(index):
+                    # if inventory.is_selected(index):
                     #
                     #     # Custom screen statement. Check 01marker.rpy.
                     #     marker:
@@ -360,9 +360,9 @@ screen inventoryScreen( howToLeave = "return" ):
                     #         xysize (150, 150)
                     ##################################
 
-                    # We further use .isSelected as means of telling Ren'Py
+                    # We further use .is_selected as means of telling Ren'Py
                     # when the button is selected, for example for background purposes.
-                    selected inventory.isSelected(item)
+                    selected inventory.is_selected(item)
 
                     # Triggers .select(), a method which manages
                     # selecting and deselecting items.
@@ -376,18 +376,18 @@ screen inventoryScreen( howToLeave = "return" ):
                         # So this is one of the few properties we have to manually write here. 
                         align (0.5, 0.5)
 
-                    $ itemCount = inventory.getItemCount(item)
-                    if itemCount <= 1:
-                        $ itemCount = ""
+                    $ item_count = inventory.get_item_count(item)
+                    if item_count <= 1:
+                        $ item_count = ""
 
-                    text str(itemCount):
+                    text str(item_count):
                         style_suffix "slot_text"
                         
-            # .getEmptyCells() fetches the number of cells that have
+            # .get_empty_cells() fetches the number of cells that have
             # been left empty on a non-full page and fills them with empty space.
             #
             # This is necessary because Ren'Py requires grids to have all cells filled.
-            for x in range( inventory.getEmptyCells() ):
+            for x in range( inventory.get_empty_cells() ):
 
                 # One Empty Slot.
                 # Also has a background to function as a frame around the "item".
@@ -415,14 +415,14 @@ screen inventoryScreen( howToLeave = "return" ):
 
                 style_suffix "vbox_equipped" # Style: inventory_side_menu_vbox_equipped
 
-                if lezInvSettings.showEquippedLabel:
+                if lezInv_settings.show_equipped_label:
 
                     # Label
                     text "Equipped Item:":
 
                         style_suffix "vbox_equipped_text" # Style: inventory_side_menu_vbox_equipped_text
 
-                if lezInvSettings.showEquippedSlot:
+                if lezInv_settings.show_equipped_slot:
 
                     # Frame around the Slot.
                     frame:
@@ -433,7 +433,7 @@ screen inventoryScreen( howToLeave = "return" ):
                         # Makes more clear how the equipped item is marked in the Inventory slots.
                         # if inventory.equipped:
 
-                        add lezInvSettings.equippedHighlight align (0.5, 0.5)
+                        add lezInv_settings.equipped_highlight_image align (0.5, 0.5)
                         # If there is an Equipped Item, add its Image in the middle.
                         if inventory.equipped:
                             add inventory.equipped.image:
@@ -443,7 +443,7 @@ screen inventoryScreen( howToLeave = "return" ):
                                 # So this is one of the few properties we have to manually write here. 
                                 align (0.5, 0.5)
 
-            if lezInvSettings.showDescription:
+            if lezInv_settings.show_description:
 
                 # A vertical box. This one contains:
                 # 1) Text of Item's name
@@ -479,12 +479,12 @@ screen inventoryScreen( howToLeave = "return" ):
 
                     style_suffix "vbox_interaction_equip_box" # Style: inventory_side_menu_vbox_interaction_equip_box
 
-                    if lezInvSettings.showEquipButton:
+                    if lezInv_settings.show_equip_button:
 
                         # Checks whether the player can Unequip an item.
                         # This means that NOT ONLY does an item have to be equipped,
                         # that same item also has to in a selected slot.
-                        if inventory.canUnequip():
+                        if inventory.can_unequip():
 
                             textbutton "Unequip":
 
@@ -499,24 +499,24 @@ screen inventoryScreen( howToLeave = "return" ):
 
                                 style_suffix "vbox_interaction_equip_textbutton" # Style: inventory_side_menu_vbox_interaction_equip_textbutton
 
-                                # .canEquip() decides whether you can actually click the button.
+                                # .can_equip() decides whether you can actually click the button.
                                 # Depends on whether an Equippable is Selected.
-                                sensitive inventory.canEquip()
+                                sensitive inventory.can_equip()
                                 action Function(inventory.equip)
 
-                    if lezInvSettings.showUseButton:
+                    if lezInv_settings.show_use_button:
 
                         # Either way, the Use button is shown.
                         textbutton "Use": 
 
                             style_suffix "vbox_interaction_use_textbutton" # Style: inventory_side_menu_vbox_interaction_use_textbutton
                             
-                            # .canUse() decides whether you can click this button,
+                            # .can_use() decides whether you can click this button,
                             # and this one depends on the Item being Usable. 
-                            sensitive inventory.canUse()
+                            sensitive inventory.can_use()
                             action Function(inventory.use)
 
-                if lezInvSettings.showThrowAwayButton:
+                if lezInv_settings.show_throw_away_button:
 
                     # The Throw Away button.
                     textbutton "Throw Away":
@@ -532,12 +532,12 @@ screen inventoryScreen( howToLeave = "return" ):
 
                 style_suffix "return_textbutton" # Style: inventory_side_menu_return_textbutton
 
-                if howToLeave == "return":
+                if how_to_leave == "return":
                     action Return()
-                elif howToLeave == "hide":
-                    action Hide("inventoryScreen")
-                elif howToLeave == "both":
-                    action Hide("inventoryScreen"), Return()
+                elif how_to_leave == "hide":
+                    action Hide("inventory_screen")
+                elif how_to_leave == "both":
+                    action Hide("inventory_screen"), Return()
 
         # A horizontal box. This one contains:
         # 1) Left Arrow for controlling Inventory Pages
@@ -552,14 +552,14 @@ screen inventoryScreen( howToLeave = "return" ):
 
                 style_suffix "hbox_left" # Style: inventory_pages_hbox_left
 
-                sensitive inventory.canChangePage( -1 )
-                action Function( inventory.changePage, -1 )
+                sensitive inventory.can_change_page( -1 )
+                action Function( inventory.change_page, -1 )
 
             # Text with the current page and total pages.
             # .format expects two arguments.
-            # .getPagesRepr() returns a tuple (<current page>, <total pages>),
+            # .get_pages_repr() returns a tuple (<current page>, <total pages>),
             # which is then unpacked into two arguments by the *.
-            text "{} / {}".format( *inventory.getPagesRepr() ):
+            text "{} / {}".format( *inventory.get_pages_repr() ):
 
                 style_suffix "hbox_text" # Style: inventory_pages_hbox_text
 
@@ -568,5 +568,5 @@ screen inventoryScreen( howToLeave = "return" ):
 
                 style_suffix "hbox_right" # Style: inventory_pages_hbox_right
 
-                sensitive inventory.canChangePage( 1 )
-                action Function( inventory.changePage, 1 )
+                sensitive inventory.can_change_page( 1 )
+                action Function( inventory.change_page, 1 )

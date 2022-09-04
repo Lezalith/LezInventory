@@ -17,7 +17,7 @@ init -800 python:
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
         # Keep this Item in Inventory even after using it.
-        consumedOnUse = False
+        consumed_on_use = False
 
         # What happens when the Item is used.
         def used(self, Inventory):
@@ -27,27 +27,27 @@ init -800 python:
             l = list(Inventory.inventory.keys())
 
             # Find out where the Guava currently is.
-            badIndex = l.index(self)
+            old_index = l.index(self)
 
             # 5 Tries to generate a different index than where it currently is.
             # Only 8 tries to not affect performance, in case we'd get REALLY unlucky.
             for x in range(8):
 
                 # Generated Index
-                newIndex = randint( 0 , len(Inventory.inventory.keys()) - 1 )
+                new_index = randint( 0 , len(Inventory.inventory.keys()) - 1 )
 
                 # If it's the same index as the original one, try the roll again.
                 # If not, use it.
-                if newIndex != badIndex:
+                if new_index != old_index:
                     break        
 
                 # Keep the index if 8 rolls weren't enough.
 
             # Get rid of original Guava.
-            l.pop(badIndex)
+            l.pop(old_index)
 
             # Insert Guava at the generated index..
-            l.insert(newIndex, self)
+            l.insert(new_index, self)
 
             # Prepare a new OrderedDict for the Inventory.
             d = OrderedDict()

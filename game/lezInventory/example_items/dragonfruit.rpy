@@ -2,7 +2,7 @@
 # When used, it will show a simple screen with some trivia.
 
 # Screen that we'll show by Using the Item.
-screen dragonScreen():
+screen dragon_screen():
 
     # Small frame in the bottom right corner
     frame:
@@ -14,7 +14,7 @@ screen dragonScreen():
         # Short trivia text, as well as a button to close this screen.
         vbox:
             text "Did you know that Dragon Fruit is actually called Pitahaya?"
-            textbutton "Glad to know!" action Hide("dragonScreen") xalign 0.5
+            textbutton "Glad to know!" action Hide("dragon_screen") xalign 0.5
 
 
 init -800 python:
@@ -31,7 +31,7 @@ init -800 python:
         def used(self, Inventory):
 
             # Show a screen.
-            return renpy.show_screen("dragonScreen")
+            return renpy.show_screen("dragon_screen")
 
     # Dragon Fruit defined.
     dragonFruit = dragonF( "Dragon Fruit" , "White as snow on the inside." , "lezInventory/example_items/images/07_Dragonfruit.png")

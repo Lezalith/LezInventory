@@ -23,7 +23,7 @@
 #
 # Hi there! So glad to see you!
 #
-# Welcome to my LezInventory, Inventory framework. 
+# Welcome to my LezInventory, an Inventory framework. 
 # This code's purpose is to let other creators code an Inventory into their game(s),
 # an Inventory that I think is easy to set up, to use, to customize and relatively to understand.
 #
@@ -32,24 +32,32 @@
 #
 ##############################################################################
 #
-# First, I will tell you some basic functionalities, and where to find all of them.
+# First, I will tell you some basic functionalities, and where to find all of them in files.
 # 
 # 95% of all the functionality is found in the inventory_class.rpy file. As there is
 # only one object that handles the whole Inventory, all of the functions are tied to it.
 #
-# Inventory is defined once, at the bottom of that file.
-# It is called "Inventory", however you can change it's name to whatever suits you,
-# or even delete the default altogether and define it yourselves somewhere else.
+# Inventory is defined once, at the bottom of the inventory_class.rpy file.
+# It is called "inventory" (lowercase i is important!), however you can change it's name
+# to whatever suits you, or even delete the default altogether and define it yourselves somewhere else.
 #
 # After the Inventory is defined, we can use all the different functions/methods. 
-# While they are used mainly by the Inventory screen, some you'll be using yourself, like:
-# Inventory.add(), which adds an Item to the Inventory.
-# Inventory.remove(), which removes an Item from the Inventory.
-# Inventory.use(), Inventory.equip() or Inventory.unequip() which interact with Items
-# Inventory.isInInventory(Item), to check whether Item is in the Inventory
-# Inventory.getEquippedItem() or Inventory.isEquipped(Item) to see which Item is currently equipped
+# Some are used directly by the Inventory screen, and some you will be using yourself.
+# 
+# Here's an overview of all the functions that you might need.
 #
-# Inventory.use(Item) can also be used to trigger an Item's effect, like if it was used by the Inventory.
+# inventory.add(Item) - adds an Item to the Inventory.
+# inventory.remove(Item) - removes an Item from the Inventory. Item can be ommited, 
+#                          in which case the currently selected Item is removed (if one is selected).
+# inventory.use(Item) - triggers the .use method of Item. Item can be ommited, 
+#                       in which case the currently selected Item is used (if one is selected).
+# inventory.equip(Item) - Places the Item into Inventory's equip slot and triggers Item's .equip method.
+#                       Item can be ommited, in which case the currently selected Item is equipped (if one is selected).
+# inventory.use(Item) - Removes the Item from Inventory's equip slot and triggers Item's .unequip method.
+# inventory.clear() - Removes all Items currently in the Inventory.
+# inventory.is_in_inventory(Item), to check whether Item is in the Inventory
+# inventory.getEquippedItem() or inventory.is_equipped(Item) to see which Item is currently equipped
+#
 #
 # I think you should only need more of them if you decide to do big changes to the Inventory screen,
 # but if that's up your alley, go for it. All the functions are documented as well as can be, 
@@ -99,16 +107,16 @@
 # It can be shown either from a screen, a label, as demonstrated in the
 # LezInventory project, to suit all your needs.
 #
-# To show it through a label, simply use "call screen inventoryScreen".
+# To show it through a label, simply use "call screen inventory_screen".
 #
-# To show it through a screen, use the action Show("inventoryScreen", howToLeave = "both").
+# To show it through a screen, use the action Show("inventory_screen", howToLeave = "both").
 # As you can see, it has one argument, howToLeave. This determines what happens when
 # the Return button is clicked, being "both" in the LezInventory project. 
-# "return" will Return(), "hide" will Hide("inventoryScreen"), and "both" will first Hide(), then Return().
+# "return" will Return(), "hide" will Hide("inventory_screen"), and "both" will first Hide(), then Return().
 #
 # You can also use the Ren'Py function for showing or calling a screen,
-# renpy.show_screen("inventoryScreen") for showing it,
-# renpy.call_screen("inventoryScreen") for calling it.
+# renpy.show_screen("inventory_screen") for showing it,
+# renpy.call_screen("inventory_screen") for calling it.
 #
 #################################################################################
 #

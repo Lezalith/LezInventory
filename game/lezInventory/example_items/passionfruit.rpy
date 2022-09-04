@@ -3,7 +3,7 @@
 # If you say very tropical, I add one more Passion Fruit into your Inventory.
 
 # Label that we'll enter by Using the Item.
-label passionFLabel():
+label passionF_label():
 
     "Lezalith" "How tropical are you feeling today?"
 
@@ -36,9 +36,9 @@ init -800 python:
         # What happens when the Item is used.
         def used(self, Inventory):
 
-            # Enter the passionFLabel label defined above.
+            # Enter the passionF_label label defined above.
             # The function might look scary, but to us, it's like a regular call.
-            return renpy.call_in_new_context("passionFLabel")
+            return renpy.call_in_new_context("passionF_label")
 
     # Passion Fruit defined.
     passionFruit = passionF( "Passion Fruit" , "About as tropical as you can get." , "lezInventory/example_items/images/20_Passionfruit.png" )

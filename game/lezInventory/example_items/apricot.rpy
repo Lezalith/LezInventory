@@ -3,11 +3,11 @@
 # the Apricot into. Since it's a transform and not remove-then-add, it will keep it's Inventory Slot.
 
 # Label that we'll enter by Using the Item.
-label apricotLabel(selfItem):
+label apricot_label(self_item):
 
     # All of the Menu options define a new Item that will be added.
 
-    menu(screen = "apricotMenu"):
+    menu(screen = "apricot_menu"):
         "Apricot has the ability to transform into any fruit.\nIt will keep it's place in the inventory."
 
         "Durian.":
@@ -63,7 +63,7 @@ label apricotLabel(selfItem):
             $ r = Fig( "Fig" , "Strange fruit from the Mediterranean." , "lezInventory/example_items/images/09_Fig.png" )
 
         "Plum.":
-            $ r = Plum( "Plum" , "Evergrowing in power, dark like a deep abyss." , "lezInventory/example_items/images/06_Plum.png", stackable = True, stacksize = 9999 )
+            $ r = Plum( "Plum" , "Evergrowing in power, dark like a deep abyss." , "lezInventory/example_items/images/06_Plum.png", stackable = True, stack_size = 9999 )
 
 
     # Note: Similar functionality to Guava.
@@ -72,9 +72,6 @@ label apricotLabel(selfItem):
         # We cannot change the order of OrderedDict, which is what the Inventory is.
         # So, we'll create a list, copy stuff over there, deal with the Guava functionality, then update the OrderedDict.
         l = list(inventory.inventory.keys())
-
-        # Find out where the Apricot currently is.
-        currentIndex = l.index(selfItem)
 
         # Prepare a new OrderedDict for the Inventory.
         d = OrderedDict()
@@ -85,7 +82,7 @@ label apricotLabel(selfItem):
         for key in l:
 
             # Once we encounter the index where Apricot is, replace it with the selected item.
-            if key == selfItem:
+            if key == self_item:
                 d[r] = 1
 
             # Otherwise just copy over the info from the original Inventory.
@@ -105,13 +102,13 @@ label apricotLabel(selfItem):
 
 # A custom choice screen that is used instead of the default one.
 # The choices look nicer and are way smaller, since there's so many of them.
-screen apricotMenu(items):
+screen apricot_menu(items):
 
     # Still has the same style as default choice screen though
     style_prefix "choice"
 
-    default oddItems = items[::2]
-    default evenItems = items[1::2]
+    default odd_items = items[::2]
+    default even_items = items[1::2]
 
     # Vbox for all the buttons.
     vbox:
@@ -119,23 +116,23 @@ screen apricotMenu(items):
         align (0.5, 0.2)
         spacing 20
 
-        for i, entry in enumerate(evenItems):
+        for i, entry in enumerate(even_items):
 
             hbox:
 
                 spacing 20
 
-                textbutton oddItems[i].caption action oddItems[i].action text_color "000" xsize 700
+                textbutton odd_items[i].caption action odd_items[i].action text_color "000" xsize 700
                 textbutton entry.caption action entry.action text_color "000" xsize 700
 
         # If there was a solo item at the end
-        if len(oddItems) > len(evenItems):
+        if len(odd_items) > len(even_items):
 
             hbox:
 
                 xalign 0.5
                 
-                textbutton oddItems[-1].caption action oddItems[-1].action text_color "000" xsize 700
+                textbutton odd_items[-1].caption action odd_items[-1].action text_color "000" xsize 700
 
 init -800 python:    
 
@@ -150,10 +147,10 @@ init -800 python:
         # What happens when the Item is used.
         def used(self, Inventory):
 
-            # Enter the apricotLabel label defined above.
+            # Enter the apricot_label label defined above.
             # The function might look scary, but to us, it's like a regular call.
             # We pass it this Item, so that the label can figure out which Item to replace in the Inventory.
-            return renpy.call_in_new_context("apricotLabel", selfItem = self)
+            return renpy.call_in_new_context("apricot_label", self_item = self)
 
     # Apricot defined.
     apricot = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "lezInventory/example_items/images/21_Apricot.png" )

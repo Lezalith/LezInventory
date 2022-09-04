@@ -3,7 +3,7 @@
 # When unequipped, it will hide the screen again.
 
 # Screen that we'll show by Using the Item.
-screen grapesScreen():
+screen grapes_screen():
 
     # Inner frame of the Balls.
     frame:
@@ -15,17 +15,17 @@ screen grapesScreen():
         
         # Makes the frame move counter-clockwise,
         # as well as a transform for smooth appear and disappear
-        at frameCC, frameAlpha
+        at frame_CC, frame_alpha
 
         # All the different Balls, spinning clockwise themselves.
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.125) at grapesC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.5, 0.0) at grapesC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.125) at grapesC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.0, 0.5) at grapesC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (1.0, 0.5) at grapesC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.875) at grapesC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.5, 1.0) at grapesC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.875) at grapesC
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.125) at grapes_C
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.5, 0.0) at grapes_C
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.125) at grapes_C
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.0, 0.5) at grapes_C
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (1.0, 0.5) at grapes_C
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.875) at grapes_C
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.5, 1.0) at grapes_C
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.875) at grapes_C
 
     # Outer frame of the Balls.
     frame:
@@ -37,20 +37,20 @@ screen grapesScreen():
         
         # Makes the frame move clockwise,
         # as well as a transform for smooth appear and disappear
-        at frameC, frameAlpha
+        at frame_C, frame_alpha
 
         # All the different Balls, spinning counter-clockwise themselves.
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.125) at grapesCC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.5, 0.0) at grapesCC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.125) at grapesCC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.0, 0.5) at grapesCC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (1.0, 0.5) at grapesCC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.875) at grapesCC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.5, 1.0) at grapesCC
-        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.875) at grapesCC
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.125) at grapes_CC
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.5, 0.0) at grapes_CC
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.125) at grapes_CC
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.0, 0.5) at grapes_CC
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (1.0, 0.5) at grapes_CC
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.125, 0.875) at grapes_CC
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.5, 1.0) at grapes_CC
+        add "lezInventory/example_items/images/11_Grapes_Green.png" align (0.875, 0.875) at grapes_CC
 
 # Transform for smooth appear and disappear
-transform frameAlpha():
+transform frame_alpha():
 
     on show:
         alpha 0.0
@@ -61,7 +61,7 @@ transform frameAlpha():
         easeout 1.0 alpha 0.0 yoffset 300
 
 # Clockwise spin on a frame
-transform frameC():
+transform frame_C():
 
     rotate 0.0
     linear 15.0 rotate 360.0
@@ -69,7 +69,7 @@ transform frameC():
     repeat
 
 # Counter-clockwise spin on a frame
-transform frameCC():
+transform frame_CC():
 
     rotate 0.0
     linear 15.0 rotate -360.0
@@ -77,7 +77,7 @@ transform frameCC():
     repeat
 
 # Clockwise spin on a grape
-transform grapesC():
+transform grapes_C():
 
     rotate 0.0
     linear 3.0 rotate 360.0
@@ -85,7 +85,7 @@ transform grapesC():
     repeat
 
 # Counter-clockwise spin on a grape
-transform grapesCC():
+transform grapes_CC():
 
     rotate 0.0
     linear 3.0 rotate -360.0
@@ -106,14 +106,14 @@ init -800 python:
         # What happens when the Item is Equipped
         def equipped(self, Inventory):
 
-            # Show the grapesScreen screen.
-            return renpy.show_screen("grapesScreen")
+            # Show the grapes_screen screen.
+            return renpy.show_screen("grapes_screen")
 
         # What happens when the Item is Unequipped
         def unequipped(self, Inventory):
 
-            # Hide the grapesScreen screen.
-            return renpy.hide_screen("grapesScreen")
+            # Hide the grapes_screen screen.
+            return renpy.hide_screen("grapes_screen")
 
     # Grapes defined.
     grapes = Grapes( "Grapes" , "So many balls..." , "lezInventory/example_items/images/11_Grapes_Green.png" )
