@@ -6,7 +6,7 @@ LezInventory is an Inventory framework that anybody can take and use in their ow
 The aim of LezInventory is to be easy to work with, to customize and to understand.
 It tries to do this with helpful formatting and an excessive amount of comments.
 
-![LezInventory Screen Preview](examples/screen.png, "LezInventory Screen")
+![LezInventory Screen Preview](examples/screen.png "LezInventory Screen")
 
 ## Features of LezInventory
 - Inventory object into which defined Items can be added and removed
