@@ -5,6 +5,7 @@ Here is a list of some of the features:
 - Inventory object where defined Items can be added and removed
 - No limit to the amount of Inventory slots
 - Stackability of Items - One Item can be stacked multiple times into one Inventory slot
+- Usable and Equippable Items
 - One Equip slot, which can be removed if desired
 - Customizable Inventory screen
 - File with default settings for even faster setup
