@@ -308,6 +308,11 @@ init -900 python:
         ## Checks, used mostly in the Inventory Screen
         ##################################################
 
+        # Whether an item is present in inventory.
+        def is_in_inventory(self, item):
+
+            return item in self.inventory.keys()
+
         # Whether given item is currently selected.
         def is_selected(self, item):
             
@@ -349,11 +354,6 @@ init -900 python:
 
             # If an Item isn't selected.
             return False 
-
-        # Whether an item is present in inventory.
-        def is_in_inventory(self, item):
-
-            return item in self.inventory.keys()
 
         ###################
         ## Page Functions

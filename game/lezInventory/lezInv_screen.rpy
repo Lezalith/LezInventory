@@ -278,12 +278,6 @@ style inventory_pages_hbox_left_text:
 
 #---------------
 
-# The Current/Last Page text. 
-style inventory_pages_hbox_text:
-    ypos 7
-
-#---------------
-
 # The Right Arrow textbutton. 
 # Has no properties at the time of writing, 
 # but has to be defined. Background already is None.
@@ -296,6 +290,12 @@ style inventory_pages_hbox_right_text:
     insensitive_color "aaaaaa7f"
     idle_color "aaa"
     hover_color "c60"
+
+#---------------
+
+# The Current/Last Page text. 
+style inventory_pages_hbox_text:
+    ypos 7
 
 ###########################################
 ###########################################

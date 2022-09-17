@@ -43,11 +43,11 @@ define lezInv_settings.height = 3
 # Size of the Inventory
 define lezInv_settings.main_frame_size = (1280, 720)
 
-# Size of one Inventory Slot
-define lezInv_settings.slot_size = (180, 180)
-
 # Background of the whole Inventory
 define lezInv_settings.main_frame_image = "gui/frame.png"
+
+# Size of one Inventory Slot
+define lezInv_settings.slot_size = (180, 180)
 
 # Backgrounds of an Inventory Slot that contains an Item.
 define lezInv_settings.slot_full_idle = Frame("lezInventory/gui/slot.png", 6, 6, 6, 6)
