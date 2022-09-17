@@ -1,3 +1,17 @@
+# LezInventory
+LezInventory is an inventory framework for Ren'Py, a visual novel engine coded in Python.
+
+Here is a list of some of the features:
+- Inventory object where defined Items can be added and removed
+- No limit to the amount of Inventory slots
+- Stackability of Items - One Item can be stacked multiple times into one Inventory slot
+- One Equip slot, which can be removed if desired
+- Customizable Inventory screen
+- File with default settings for even faster setup
+
+This list cannot do LezInventory justice, and if you want to see it in action, download this project. 
+I promise you won't regret it.
+
 # This Project
 This project is a showoff of whole LezInventory, along with some basic information. 
 To check it out, simply download the files, put them into a new folder inside your Projects folder, and launch it from the Ren'Py launcher.  
