@@ -199,7 +199,7 @@ screen from_screen():
             text "Click the button below to enter it." xalign 0.5
             text "I sincerely hope you'll enjoy!" xalign 0.5
             text ""
-            textbutton "Woosh!" action Function(reset_inventory), Show("quick_menu"), Show("inventory_screen", howToLeave = "both"), Hide("from_screen") xalign 0.5
+            textbutton "Woosh!" action Function(reset_inventory), Show("quick_menu"), Show("inventory_screen", how_to_leave = "both"), Hide("from_screen") xalign 0.5
 
 label from_label():
 

@@ -98,4 +98,4 @@ define lezInv_settings.stackable = False
 
 # Int. Used if an Item is stackable and stack_size isn't given.
 # stack_size is ignored completely by Items that aren't stackable.
-define lezInv_settings.stack_size = 3
+define lezInv_settings.stack_size = 1
