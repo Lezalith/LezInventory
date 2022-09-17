@@ -1,5 +1,5 @@
 # LezInventory
-LezInventory is an inventory framework for Ren'Py, a visual novel engine coded in Python.
+LezInventory is an inventory framework for [Ren'Py - a visual novel engine](https://www.renpy.org) coded in Python.
 
 Here is a list of some of the features:
 - Inventory object where defined Items can be added and removed
@@ -21,7 +21,7 @@ Even if you don't, the files can still be downloaded very easily - under the **C
 
 ![screenshot0158](https://user-images.githubusercontent.com/56970124/190859681-ef481fd7-b7d8-4ce0-b1db-1dde37c7b16e.png)
 
-The project includes many example items, which not only show how to do the basic stuff like calling a label or showing a screen, they also show what LezInventory is capable of. 
+The project includes many example items, which not only show how to do the basic stuff like calling a label or showing a screen, they also show what LezInventory is capable of. I don't exactly know why, but I decided to use different fruit for their images. The assets are made by Admurin - here is a [link to their itch.io page](https://admurin.itch.io)!
 All of the example items are described in the Documentation, under the **Wiki** tab.
 
 # Using LezInventory
@@ -32,7 +32,7 @@ If you desire, you can delete the **example_items** folder inside.
 On the GitHub page of this project, there's the **Wiki** tab.
 There, you can find pretty much all the instructions on how to work with LezInventory.
 
-You can modify the code as much as you want. Pretty much every line of code in the files is commented.
+On top of that, pretty much every line of code in the files is commented - **You can change the code as much as you want!**
 
 # Terms of Use
 I just want to be credited, that's all! **Lezalith** alone is fine, **Jan "Lezalith" Masek** is appreciated.
