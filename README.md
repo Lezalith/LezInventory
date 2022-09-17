@@ -18,7 +18,7 @@ This project is a showoff of whole LezInventory, along with some basic informati
 To check it out, simply download the files, put them into a new folder inside your Projects folder, and launch it from the Ren'Py launcher.  
 
 I know git sites like GitHub can be intimidating and confusing, as many people don't know how to work with gits.
-Even if you don't, the files can still be downloaded very easily - under the **Code** tab, there's a green **Code** dropdown button, where the **Download ZIP** option lies.
+Even if you don't, the files can still be downloaded very easily. When on the **Code** tab, on the right side, there's a **Releases** button. There, you can find releases of LezInventory, and download them by clicking the dropdown **Assets** and grabbing the .zip or .tar.gz file.
 
 ![screenshot0158](https://user-images.githubusercontent.com/56970124/190859681-ef481fd7-b7d8-4ce0-b1db-1dde37c7b16e.png)
 
