@@ -2,6 +2,32 @@
 # When equipped, a screen will appear with all kinds of confusion.
 # When unequipped, it will hide the screen again.
 
+init -800 python:
+
+    # Class of the Grapes.
+    class Grapes(Item):
+
+        # This marks the Item as equippable.
+        equippable = True
+
+        ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
+
+        # What happens when the Item is Equipped
+        def equipped(self, Inventory):
+
+            # Show the grapes_screen screen.
+            return renpy.show_screen("grapes_screen")
+
+        # What happens when the Item is Unequipped
+        def unequipped(self, Inventory):
+
+            # Hide the grapes_screen screen.
+            return renpy.hide_screen("grapes_screen")
+
+# Grapes defined.
+default grapes = Grapes( "Grapes" , "So many balls..." , "lezInventory/example_items/images/11_Grapes_Green.png" )
+    
+
 # Screen that we'll show by Using the Item.
 screen grapes_screen():
 
@@ -91,29 +117,3 @@ transform grapes_CC():
     linear 3.0 rotate -360.0
     linear 3.0 rotate 0.0
     repeat
-
-
-init -800 python:
-
-    # Class of the Grapes.
-    class Grapes(Item):
-
-        # This marks the Item as equippable.
-        equippable = True
-
-        ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
-
-        # What happens when the Item is Equipped
-        def equipped(self, Inventory):
-
-            # Show the grapes_screen screen.
-            return renpy.show_screen("grapes_screen")
-
-        # What happens when the Item is Unequipped
-        def unequipped(self, Inventory):
-
-            # Hide the grapes_screen screen.
-            return renpy.hide_screen("grapes_screen")
-
-    # Grapes defined.
-    grapes = Grapes( "Grapes" , "So many balls..." , "lezInventory/example_items/images/11_Grapes_Green.png" )

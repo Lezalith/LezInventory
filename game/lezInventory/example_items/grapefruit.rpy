@@ -17,5 +17,5 @@ init -800 python:
             # Wipe the Inventory clean.
             Inventory.clear()
 
-    # Grapefruit defined.
-    grapefruit = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "lezInventory/example_items/images/12_Grapefruit.png" )
+# Grapefruit defined.
+default grapefruit = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "lezInventory/example_items/images/12_Grapefruit.png" )

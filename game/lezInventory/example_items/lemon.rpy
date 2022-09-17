@@ -42,5 +42,5 @@ init -800 python:
             # Loads up the original Inventory state back into the Inventory.
             Inventory.inventory = self.inventory
 
-    # Lemon defined.
-    lemon = Lemon( "Lemon" , "Not good in combination with other fruits." , "lezInventory/example_items/images/15_Lemon.png" )
+# Lemon defined.
+default lemon = Lemon( "Lemon" , "Not good in combination with other fruits." , "lezInventory/example_items/images/15_Lemon.png" )

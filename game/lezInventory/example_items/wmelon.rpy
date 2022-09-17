@@ -37,5 +37,5 @@ init -800 python:
             # Update Inventory to the new OrderedDict.
             Inventory.inventory = d
 
-    # Watermelon defined.
-    wmelon = WMelon( "Watermelon" , "Bouncy enough to hit other items." , "lezInventory/example_items/images/23_Watermelon.png" )
+# Watermelon defined.
+default wmelon = WMelon( "Watermelon" , "Bouncy enough to hit other items." , "lezInventory/example_items/images/23_Watermelon.png" )

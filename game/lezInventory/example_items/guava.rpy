@@ -65,5 +65,5 @@ init -800 python:
             # If the order changed, a different item would be in place and kept selected.
             Inventory.unselect()
 
-    # Guava defined.
-    guava = Guava( "Guava" , "Kinda random, to be honest." , "lezInventory/example_items/images/13_Guava.png" )
+# Guava defined.
+default guava = Guava( "Guava" , "Kinda random, to be honest." , "lezInventory/example_items/images/13_Guava.png" )

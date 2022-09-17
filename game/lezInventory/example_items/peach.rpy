@@ -2,23 +2,6 @@
 # When used, it shows a message stating how many peaches have been used so far.
 # This means that multiple different Peaches can be defined, but they all share the same counter.
 
-# A little secret label that can be shown instead of peach's renpy.notify.
-label peach_label():
-
-    "Lezalith" "Did you..."
-    "Lezalith" "Did you just...{p=1.0}Eat a peach number 4..?"
-    "Lezalith" "But how? I put just three into the inventory!"
-
-    "Lezalith" "..."
-    "Lezalith" "Oh right, the Apricot."
-    "Lezalith" "That's clever. I completely forgot about that."
-
-    "Lezalith" "(...I didn't really.{p=1.0}I'm the one who wrote this dialogue.)"
-
-    # Return back to the Inventory.
-    return
-
-
 init -800 python:
 
     # Class of the Peach.
@@ -48,7 +31,24 @@ init -800 python:
                 renpy.call_in_new_context("peach_label")
 
 
-    # Three different peaches defined.
-    peach1 = Peach( "Shiny Peach" , "It tastes really sweet!" , image = "lezInventory/example_items/images/19_Peach.png" )
-    peach2 = Peach( "Shimmering Peach" , "It smells of an update." , image = "lezInventory/example_items/images/19_Peach.png" )
-    peach3 = Peach( "Glistening Peach" , "Both tastes sweet {i}and{/i}\nsmells of an update." , image = "lezInventory/example_items/images/19_Peach.png" )
+# Three different peaches defined.
+default peach1 = Peach( "Shiny Peach" , "It tastes really sweet!" , image = "lezInventory/example_items/images/19_Peach.png" )
+default peach2 = Peach( "Shimmering Peach" , "It smells of an update." , image = "lezInventory/example_items/images/19_Peach.png" )
+default peach3 = Peach( "Glistening Peach" , "Both tastes sweet {i}and{/i}\nsmells of an update." , image = "lezInventory/example_items/images/19_Peach.png" )
+
+
+# A little secret label that can be shown instead of peach's renpy.notify.
+label peach_label():
+
+    "Lezalith" "Did you..."
+    "Lezalith" "Did you just...{p=1.0}Eat a peach number 4..?"
+    "Lezalith" "But how? I put just three into the inventory!"
+
+    "Lezalith" "..."
+    "Lezalith" "Oh right, the Apricot."
+    "Lezalith" "That's clever. I completely forgot about that."
+
+    "Lezalith" "(...I didn't really.{p=1.0}I'm the one who wrote this dialogue.)"
+
+    # Return back to the Inventory.
+    return

@@ -1,2 +1,2 @@
 # A regular Item, showing off stackability.
-default orange = Item( "Orange" , "Lezalith's massive stash of oranges for making juice." , "lezInventory/example_items/images/17_Orange.png" , stackable = True, stack_size = 2579)
+default orange = Item( "Orange" , "Lezalith's massive stash of oranges for making juice." , image = "lezInventory/example_items/images/17_Orange.png" , stackable = True, stack_size = 2579)

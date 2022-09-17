@@ -2,6 +2,28 @@
 # When used, it will take you to a label, where you can choose a fruit to transform 
 # the Apricot into. Since it's a transform and not remove-then-add, it will keep it's Inventory Slot.
 
+init -800 python:    
+
+    # Class of the Apricot.
+    class Apricot(Item):
+
+        # This marks the Item as usable.
+        usable = True
+
+        ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
+
+        # What happens when the Item is used.
+        def used(self, Inventory):
+
+            # Enter the apricot_label label defined above.
+            # The function might look scary, but to us, it's like a regular call.
+            # We pass it this Item, so that the label can figure out which Item to replace in the Inventory.
+            return renpy.call_in_new_context("apricot_label", self_item = self)
+
+# Apricot defined.
+default apricot = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "lezInventory/example_items/images/21_Apricot.png" )
+
+
 # Label that we'll enter by Using the Item.
 label apricot_label(self_item):
 
@@ -133,24 +155,3 @@ screen apricot_menu(items):
                 xalign 0.5
                 
                 textbutton odd_items[-1].caption action odd_items[-1].action text_color "000" xsize 700
-
-init -800 python:    
-
-    # Class of the Apricot.
-    class Apricot(Item):
-
-        # This marks the Item as usable.
-        usable = True
-
-        ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
-
-        # What happens when the Item is used.
-        def used(self, Inventory):
-
-            # Enter the apricot_label label defined above.
-            # The function might look scary, but to us, it's like a regular call.
-            # We pass it this Item, so that the label can figure out which Item to replace in the Inventory.
-            return renpy.call_in_new_context("apricot_label", self_item = self)
-
-    # Apricot defined.
-    apricot = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "lezInventory/example_items/images/21_Apricot.png" )

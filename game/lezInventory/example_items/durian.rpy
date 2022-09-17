@@ -23,5 +23,5 @@ init -800 python:
             # Remove the Solid color.
             return renpy.hide("durTag", "screens")
 
-    # Durian defined.
-    durian = Durian( "Durian" , "World's smelliest fruit, supposedly." , "lezInventory/example_items/images/08_Durian.png" )
+# Durian defined.
+default durian = Durian( "Durian" , "World's smelliest fruit, supposedly." , "lezInventory/example_items/images/08_Durian.png" )

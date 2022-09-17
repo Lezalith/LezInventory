@@ -24,5 +24,5 @@ init -800 python:
             # Bring up a Notify with a custom text.
             return renpy.notify("Long live the king...")
 
-    # Apple defined.
-    apple = Apple( "Apple" , "The King of all the fruits." , "lezInventory/example_items/images/16_Apple.png" )
+# Apple defined.
+default apple = Apple( "Apple" , "The King of all the fruits." , "lezInventory/example_items/images/16_Apple.png" )
