@@ -107,6 +107,11 @@ style inventory_slot_text:
     color "000"
     outlines [ (absolute(4), "ffcc11", absolute(0), absolute(0)) ]
 
+# Vbox holding the Equippable and Usable indicators.
+style inventory_slot_indicator_hbox:
+    xalign 1.0
+    offset (-10, 10)
+
 ##########################
 ##  Side Menu
 ##########################
@@ -382,6 +387,22 @@ screen inventory_screen( how_to_leave = "return" ):
 
                     text str(item_count):
                         style_suffix "slot_text"
+
+                    # Hbox holding the indicators for usable/equippable items.
+                    hbox:
+                        style_suffix "slot_indicator_hbox"
+
+                        if lezInv_settings.show_equippable_indicator:
+
+                            # Show an indicator if the item is equippable.
+                            if item.equippable:
+                                add lezInv_settings.equippable_indicator
+
+                        if lezInv_settings.show_usable_indicator:
+                            
+                            # Show an indicator if the item is usable.
+                            if item.usable:
+                                add lezInv_settings.usable_indicator
                         
             # .get_empty_cells() fetches the number of cells that have
             # been left empty on a non-full page and fills them with empty space.

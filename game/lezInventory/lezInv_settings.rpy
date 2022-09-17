@@ -71,6 +71,16 @@ define lezInv_settings.equipped_highlight_image = "lezInventory/gui/equipped_hig
 # Is shown *below* the item.
 define lezInv_settings.equipped_highlight_slot_image = "lezInventory/gui/equipped_highlight_imageSlot.png"
 
+# If True, equippable_indicator is shown in item's slot, to show that the item is equippable.
+define lezInv_settings.show_equippable_indicator = True
+# Image of the equippable indicator.
+define lezInv_settings.equippable_indicator = Text("E", bold = True, size = 28, color = "000", outlines = [ (absolute(1), "ffcc11", absolute(0), absolute(0)) ])
+
+# If True, usable_indicator is shown in item's slot, to show that the item is usable.
+define lezInv_settings.show_usable_indicator = True
+# Image of the Usable indicator.
+define lezInv_settings.usable_indicator = Text("U", bold = True, size = 28, color = "000", outlines = [ (absolute(1), "ffcc11", absolute(0), absolute(0)) ])
+
 # Variables that control what is showed on the Inventory screen.
 # This allows the user to quickly reduce the Inventory's functionality,
 # should they desire to do so.
