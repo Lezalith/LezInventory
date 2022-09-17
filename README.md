@@ -19,6 +19,11 @@ To check it out, simply download the files, put them into a new folder inside yo
 I know git sites like GitHub can be intimidating and confusing, as many people don't know how to work with gits.
 Even if you don't, the files can still be downloaded very easily - under the **Code** tab, there's a green **Code** dropdown button, where the **Download ZIP** option lies.
 
+![screenshot0158](https://user-images.githubusercontent.com/56970124/190859681-ef481fd7-b7d8-4ce0-b1db-1dde37c7b16e.png)
+
+The project includes many example items, which not only show how to do the basic stuff like calling a label or showing a screen, they also show what LezInventory is capable of. 
+All of the example items are described in the Documentation, under the **Wiki** tab.
+
 # Using LezInventory
 To insert LezInventory into your project, all you need is to copy the **lezInventory** folder from this repository into your **game** folder.
 If you desire, you can delete the **example_items** folder inside.
