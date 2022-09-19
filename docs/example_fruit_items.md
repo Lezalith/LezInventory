@@ -217,6 +217,105 @@ init -800 python:
     # Plum defined.
     plum = Plum( "Plum" , "Evergrowing in power, dark like a deep abyss." , "lezInventory/example_items/images/06_Plum.png", stackable = True, stack_size = 9999 )
 ```
+# Pear
+![18_Pear](https://user-images.githubusercontent.com/56970124/191106028-04293ad6-4d4a-40e4-b2c1-f83b80ef2d94.png)
+
+Pear is a simple usable item, one of the three with overwritten **__init__** method, others being Lemon and Cranberries.
+
+When used, changes the image of the item.
+
+```py
+init -800 python:
+
+    from random import randrange
+
+    # Class of the WMelon.
+    class Pear(Item):
+
+        # This marks the Item as usable.
+        usable = True
+
+        # What happens upon the definition.
+        # THIS CAN BE OMMITED, in case *you* don't need something special in the __init__.
+        # In this case we need it to take and remember all the images.
+        def __init__(self, images = [], *args, **kwargs):
+
+            # Calls the parent class, Item, with everything that it needs.
+            super(Pear, self).__init__( *args, **kwargs )
+
+            # List of multiple possible images.
+            self.images = images
+
+            # Index of the currently selected image, always starting with the first one.
+            self.current_index = 0
+
+            # Image used by the item, picked from images via current_index.
+            self.image = self.images[self.current_index]
+
+        # consumed_on_use = False
+        # This would be set, as I do not want the item being consumed,
+        # however, it gets unselected in the used method, which prevents the Inventory
+        # from removing it like it normally would. Guava also do this.
+
+        # Change this item's image to a new one at random.
+        def change_image(self):
+
+            ##### Generating the new, random index #############
+
+            # 8 Tries to generate a different image than there currently is.
+            # Only 8 tries to not affect performance, in case we'd get REALLY unlucky.
+            for x in range(8):
+
+                # Index of new image from the list
+                i = randrange(0, len(self.images))
+
+                # Last image is a special case:
+                # It has additionaly reduced chance of being picked.
+                if i == len(self.images) - 1:
+
+                    # Here is a 50/50 chance to keep the special image.
+                    if randrange(0, 1) == 0:
+
+                        # If it doesn't pass, reroll instantly, giving the special image
+                        # one more chance to be selected.
+                        i = randrange(0, len(self.images))
+
+                # If it's different from the current one, use it.
+                # Otherwise, try the roll again.
+                if i != self.current_index:
+                    break
+
+            ####################################################
+
+            # Records the new picked image index.
+            self.current_index = i
+
+            # Updates the image according to the new index.
+            self.image = self.images[self.current_index]
+
+        # What happens when the Item is used.
+        def used(self, Inventory):
+
+            # Changes its own image.
+            self.change_image()
+
+            # Unselect this item, so that it doesn't get removed.
+            # consumed_on_use = False would do it, but the item would stay selected,
+            # I don't want that.
+            Inventory.unselect()
+
+# Pear defined.
+default pear = Pear( name = "Pear", desc = "Every bite has a different,\nbut always sweet taste.", stackable = True, stack_size = 9999,
+                     images = ["lezInventory/example_items/images/18_Pear.png",
+                               "lezInventory/example_items/images/18_Pear_1.png",
+                               "lezInventory/example_items/images/18_Pear_2.png",
+                               "lezInventory/example_items/images/18_Pear_3.png",
+                               "lezInventory/example_items/images/18_Pear_4.png",
+                               "lezInventory/example_items/images/18_Pear_5.png",
+                               "lezInventory/example_items/images/18_Pear_6.png",
+                               "lezInventory/example_items/images/18_Pear_7.png",
+                               "lezInventory/example_items/images/18_Pear_8.png"] )
+```
 # Grapefruit
 ![12_Grapefruit](https://user-images.githubusercontent.com/56970124/190860982-b365b54a-7e2c-46cb-996b-f1d725922190.png)
 
@@ -371,7 +470,7 @@ transform grapes_CC():
 # Lemon
 ![15_Lemon](https://user-images.githubusercontent.com/56970124/190861161-09dc54d5-284e-485b-a919-5349323e4efb.png)
 
-Lemon is a complex equippable item, one of the few with overwritten **__init__** method.
+Lemon is a complex equippable item, one of the three with overwritten **__init__** method, others being Pear and Cranberries.
 
 When equipped, it clears the entire inventory except for itself in the equip slot. When unequipped, it returns the inventory to its original state.
 
@@ -418,6 +517,75 @@ init -800 python:
 
     # Lemon defined.
     lemon = Lemon( "Lemon" , "Not good in combination with other fruits." , "lezInventory/example_items/images/15_Lemon.png" )
+```
+# Cranberries
+![03_Cranberry](https://user-images.githubusercontent.com/56970124/191125583-c69fbc07-a35f-4c84-b993-933206984c1d.png)
+
+Cranberries in the only example fruit item that is both equippable and usable. It is one of the three with overwritten **__init__** method, others being Pear and Lemon.
+
+When equipped, it displays a simple message. Does nothing when unequipped. When used, displays a simple screen showing how many times this item has been equipped.
+
+Unlike Peach, Cranberries has its counter set up in the **__init__** method, meaning the counter is not shared between different defined Cranberries items.
+
+```py
+init -800 python:
+
+    # Class of the Dragon Fruit.
+    class Cranberries(Item):
+
+        # This marks the Item as equippable.
+        equippable = True
+
+        # This marks the Item as usable.
+        usable = True
+
+        # Do not remove this item on use.
+        consumed_on_use = False
+
+        # What happens upon the definition.
+        # THIS CAN BE OMMITED, in case *you* don't need something special in the __init__.
+        # In this case we need to set up the variable that counts times equipped.
+        def __init__(self, *args, **kwargs):
+
+            # Calls the parent class, Item, with everything that it needs.
+            super(Cranberries, self).__init__( *args, **kwargs )
+
+            self.counter = 0
+
+        ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
+
+        # What happens when the Item is Equipped
+        def equipped(self, Inventory):
+
+            self.counter += 1
+
+            # Bring up a Notify with a custom text.
+            return renpy.notify("You eat one berry as you pick the cranberries up.")
+
+        # What happens when the Item is used.
+        def used(self, Inventory):
+
+            # Show a screen.
+            return renpy.show_screen("cranberries_screen")
+
+# Cranberries defined.
+default cranberries = Cranberries( "Cranberries" , "A handful of red berries." , "lezInventory/example_items/images/03_Cranberry.png" )
+
+# Screen that we'll show by Using the Item.
+# Basically the same as Dragon Fruit's screen.
+screen cranberries_screen():
+
+    # Small frame in the bottom right corner
+    frame:
+
+        align (1.0, 1.0)
+        padding (10, 10)
+        offset (-50, -50)
+
+        # Short trivia text, as well as a button to close this screen.
+        vbox:
+            text "You've had [cranberries.counter] cranberry berries so far!"
+            textbutton "(Hide this)" action Hide("cranberries_screen") xalign 0.5
 ```
 # Guava
 ![13_Guava](https://user-images.githubusercontent.com/56970124/190861304-ac106701-b674-4238-9ab2-44c038403441.png)
@@ -708,7 +876,9 @@ default wmelon = WMelon( "Watermelon" , "Bouncy enough to hit other items." , "l
 
 Peach is a usable item.
 
-Upon being used, it shows a message, stating how many Peaches have been used so far. Multiple Peaches with different names and descriptions can be defined, and the counter is shared between them.
+Upon being used, it shows a message, stating how many Peaches have been used so far. 
+
+This information is stored inside a **class variable**, meaning multiple Peach items with different names and descriptions can be defined and the counter is shared among them.
 
 ```py
 init -800 python:
