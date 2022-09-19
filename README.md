@@ -32,6 +32,8 @@ If you desire, you can delete the **example_items** folder inside.
 # Documentation
 On the GitHub page of this project, there's the **Wiki** tab.
 There, you can find pretty much all the instructions on how to work with LezInventory.
+There, you can find all the instructions on how to work with LezInventory.
+Local copy of the Wiki pages is also included in the releases, in the **docs** folder.
 
 On top of that, pretty much every line of code in the files is commented - **You can change the code as much as you want!**
 
