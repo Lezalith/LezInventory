@@ -27,7 +27,6 @@ init -750 python:
         inventory.add(orange, count = 2579)
 
         inventory.add(cherries)
-        # inventory.add(cranberries)
         inventory.add(kiwi)
         inventory.add(strawberry)
 
@@ -44,7 +43,8 @@ init -750 python:
         inventory.add(grapes)
         inventory.add(lemon)
 
-        # Passives
+        # Both Equippable and Usable
+        inventory.add(cranberries)
 
         # Usables
         inventory.add(guava)
