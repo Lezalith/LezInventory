@@ -26,17 +26,18 @@ The project includes many example items, which not only show how to do the basic
 All of the example items are described in the Documentation, under the **Wiki** tab.
 
 # Using LezInventory
-To insert LezInventory into your project, all you need is to copy the **lezInventory** folder from this repository into your **game** folder.
-If you desire, you can delete the **example_items** folder inside.
+To insert LezInventory into your project, all you need is to copy the **lezInventory** folder from one of this project's releases into your **game** folder. You can find releases on the right side of the GitHub page, under **Releases**.
+
+If you desire, you can delete the **example_items** folder inside, but they serve as amazing guidance. All of them are described in the documentation.
 
 # Documentation
 On the GitHub page of this project, there's the **Wiki** tab.
-There, you can find pretty much all the instructions on how to work with LezInventory.
 There, you can find all the instructions on how to work with LezInventory.
 Local copy of the Wiki pages is also included in the releases, in the **docs** folder.
 
 On top of that, pretty much every line of code in the files is commented - **You can change the code as much as you want!**
 
 # Terms of Use
-I just want to be credited, that's all! **Lezalith** alone is fine, **Jan "Lezalith" Masek** is appreciated.
-And if you want to support me, the most you can do is mention my website, **LezCave.com**, where I post Ren'Py tutorials and useful scripts!
+I just want to be credited, that's all! **Lezalith** alone is fine, **Jan "Lezalith" Masek** is greatly appreciated. 
+
+And if you want to support me further, the most you can do is mention my website, **LezCave.com**, where I post Ren'Py tutorials and useful scripts!
