@@ -1,7 +1,7 @@
 ﻿transform my_size():
     size (240, 240)
 
-image side lezalith = At("myself.jpeg", my_size)
+image side lezalith = At("gui/myself.jpeg", my_size)
 define lez = Character("Lezalith", image = "lezalith")
 
 init -1 python:
@@ -26,7 +26,7 @@ screen main_menu():
         xysize (1800, 900)
         ypadding 75
 
-        add "myself.jpeg" xalign 1.0 size (200, 200) offset (-15, -60)
+        add "gui/myself.jpeg" xalign 1.0 size (200, 200) offset (-15, -60)
 
         vbox:
             xalign 0.5
@@ -102,7 +102,7 @@ screen info():
         xysize (1800, 800)
         ypadding 120
 
-        add "myself.jpeg" xalign 1.0 size (120, 120) offset (-10, -110)
+        add "gui/myself.jpeg" xalign 1.0 size (120, 120) offset (-10, -110)
 
         vbox:
             xalign 0.5
@@ -144,7 +144,7 @@ screen desc():
         xysize (1850, 800)
         ypadding 120
 
-        add "myself.jpeg" xalign 1.0 size (120, 120) offset (-10, -110)
+        add "gui/myself.jpeg" xalign 1.0 size (120, 120) offset (-10, -110)
 
         vbox:
 
@@ -193,7 +193,7 @@ screen from_screen():
             spacing 2
             first_spacing 20
 
-            add "myself.jpeg" xalign 0.5 size (250, 250) yoffset -50
+            add "gui/myself.jpeg" xalign 0.5 size (250, 250) yoffset -50
 
             text "Sorry, didn't want to drop you into the Inventory straight away."
             text "Click the button below to enter it." xalign 0.5
