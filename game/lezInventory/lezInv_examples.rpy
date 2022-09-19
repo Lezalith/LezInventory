@@ -35,6 +35,7 @@ init -750 python:
         inventory.add(dragonFruit)
         inventory.add(passionFruit)
         inventory.add(plum, count = 2)
+        inventory.add(pear)
         inventory.add(grapefruit)
 
     def add_advanced_items():

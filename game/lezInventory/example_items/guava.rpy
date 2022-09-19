@@ -16,8 +16,10 @@ init -800 python:
 
         ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
 
-        # Keep this Item in Inventory even after using it.
-        consumed_on_use = False
+        # consumed_on_use = False
+        # This would be set, as I do not want the item being consumed,
+        # however, it gets unselected in the used method, which prevents the Inventory
+        # from removing it like it normally would. Pear also does this.
 
         # What happens when the Item is used.
         def used(self, Inventory):
@@ -29,15 +31,15 @@ init -800 python:
             # Find out where the Guava currently is.
             old_index = l.index(self)
 
-            # 5 Tries to generate a different index than where it currently is.
+            # 8 Tries to generate a different index than where it currently is.
             # Only 8 tries to not affect performance, in case we'd get REALLY unlucky.
             for x in range(8):
 
                 # Generated Index
                 new_index = randint( 0 , len(Inventory.inventory.keys()) - 1 )
 
-                # If it's the same index as the original one, try the roll again.
-                # If not, use it.
+                # If it's different from the current one, use it.
+                # Otherwise, try the roll again.
                 if new_index != old_index:
                     break        
 
@@ -63,6 +65,8 @@ init -800 python:
 
             # Unselect the Item, since selection depends on index:
             # If the order changed, a different item would be in place and kept selected.
+            #
+            # This also means the item won't be consumed, letting us omit consumed_on_use as shown above.
             Inventory.unselect()
 
 # Guava defined.

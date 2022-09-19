@@ -15,7 +15,7 @@ init -800 python:
 
         # What happens upon the definition.
         # THIS CAN BE OMMITED, in case *you* don't need something special in the __init__.
-        # But in this case, we do - we need the memory.
+        # In this case, we need the prepare the variable that remembers the inventory state.
         def __init__(self, *args, **kwargs):
 
             # Calls the parent class, Item, with everything that it needs.
