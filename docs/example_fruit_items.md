@@ -220,7 +220,7 @@ init -800 python:
 # Pear
 ![18_Pear](https://user-images.githubusercontent.com/56970124/191106028-04293ad6-4d4a-40e4-b2c1-f83b80ef2d94.png)
 
-Pear is a simple usable item, one of the three with overwritten **__init__** method, others being Lemon and Cranberries.
+Pear is a simple usable item, one of the three with overwritten **__init__** method, like Cranberries or Lemon.
 
 When used, changes the image of the item.
 
@@ -470,7 +470,7 @@ transform grapes_CC():
 # Lemon
 ![15_Lemon](https://user-images.githubusercontent.com/56970124/190861161-09dc54d5-284e-485b-a919-5349323e4efb.png)
 
-Lemon is a complex equippable item, one of the three with overwritten **__init__** method, others being Pear and Cranberries.
+Lemon is a complex equippable item, one of the three with overwritten **__init__** method, like Pear or Cranberries.
 
 When equipped, it clears the entire inventory except for itself in the equip slot. When unequipped, it returns the inventory to its original state.
 
@@ -521,7 +521,7 @@ init -800 python:
 # Cranberries
 ![03_Cranberry](https://user-images.githubusercontent.com/56970124/191125583-c69fbc07-a35f-4c84-b993-933206984c1d.png)
 
-Cranberries in the only example fruit item that is both equippable and usable. It is one of the three with overwritten **__init__** method, others being Pear and Lemon.
+Cranberries in the only example fruit item that is both equippable and usable. It is one of the few with overwritten **__init__** method, like Pear or Lemon.
 
 When equipped, it displays a simple message. Does nothing when unequipped. When used, displays a simple screen showing how many times this item has been equipped.
 

@@ -26,7 +26,6 @@ init -750 python:
         # Passives
         inventory.add(orange, count = 2579)
 
-        inventory.add(cherries)
         inventory.add(kiwi)
         inventory.add(strawberry)
 
@@ -47,6 +46,7 @@ init -750 python:
         inventory.add(cranberries)
 
         # Usables
+        inventory.add(cherries, count = 250)
         inventory.add(guava)
         inventory.add(apricot)
         inventory.add(wmelon)
