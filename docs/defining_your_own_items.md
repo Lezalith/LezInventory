@@ -139,10 +139,16 @@ init python:
         #### Does nothing by default.
         def unequipped(self, Inventory):
             pass
+
+        # What happens when the Item is Discarded
+        #### Does nothing by default.
+        def discarded(self, Inventory):
+            pass
 ```
 While commented, here is an overview of the code:
 - **usable** class variable can be set to **True**. This allows the Item to be used inside the Inventory screen, which calls the **used** method. It needs to be overwritten, as it does nothing by default.
 - **equippable** class variable can be set to **True**. This allows the Item to be equipped and unequipped inside the Inventory screen, calling the **equipped** and **unequipped** methods, respectively.
 - **consumed_on_use** can be set to **True** or **False**. This determines whether the Item is removed from the Inventory once its **used** method is called. Default is taken from the **lezInv_settings.consumed_on_use** variable, defined in **lezInv_settings.rpy**. 
 - **consumed_on_unequip** can be set to **True** or **False**. This determines whether the Item is removed from the Inventory once its **unequipped** method is called. Default is taken from the **lezInv_settings.consumed_on_unequip** variable, defined in **lezInv_settings.rpy**. 
+- When being discarded from the inventory, **discarded** method of the item is run.
 - The **__init__** method can often be omitted. It is called when the Item is defined, and needs to be included only when you need additional functionality, like allowing for a new argument (like in the block above) or setting up complicated stuff (The **Lemon** Fruit Item is an example of this).

@@ -216,7 +216,7 @@ init -900 python:
         def equip(self, item = None):
 
             # Specific item not given.
-            if not item:
+            if item is None:
 
                 # Do nothing if nothing is selected.
                 if not self.selected_item:
@@ -250,7 +250,7 @@ init -900 python:
         def unequip(self):
 
             # Do nothing if nothing is equipped.
-            if self.equipped_item == None:
+            if self.equipped_item is None:
                 return
 
             # Call Item's unequipped() method.
@@ -269,16 +269,15 @@ init -900 python:
                 # *** It cannot just be self.equipped_item, since remove() will call unequip() again.
                 self.remove(i)
 
-
         # Use an Item.
         # If item is not given, tries to use currently selected_item.
         # If item is given, a specific item is Used. It doesn't have to be present in the Inventory.
         def use(self, item = None):
 
             # Specific item given.
-            if item:
+            if item is not None:
 
-                # Call Item's used() method.
+                # Call Item's used() method and end this function.
                 return item.used(self)
 
             # Do nothing if nothing is selected.
@@ -297,6 +296,31 @@ init -900 python:
 
                     # Remove the Item from the Inventory.
                     self.remove()
+
+        # Discard an Item.
+        # If item is not given, tries to use currently selected_item.
+        # If item is given, a specific item is Used. It HAS TO be present in the inventory.
+        def discard(self, item = None):
+
+            # Specific item not given.
+            if item is None:
+
+                # Do nothing if nothing is selected.
+                if self.selected_item is None:
+                    return
+
+                # Use selected_item instead.
+                item = self.selected_item
+
+            # Trigger an error if the item being discarded is not present in the inventory.
+            if not self.is_in_inventory(item):
+                raise Exception("Tried discarding {} but it's not present in the inventory.".format(item))
+
+            # Call Item's discarded() method.
+            item.discarded(self)
+
+            # Remove the Item from the Inventory.
+            self.remove(item)
 
         # Lets us read equipped_item with Inventory.equipped
         @property

@@ -135,3 +135,7 @@ init -890 python:
         # What happens when the Item is Unequipped.
         def unequipped(self, Inventory):
             return None
+
+        # What happens when the Item is Discarded.
+        def discarded(self, Inventory):
+            return None

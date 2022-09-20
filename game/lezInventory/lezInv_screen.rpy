@@ -36,12 +36,12 @@
 # The names are written logically, as they go deeper.
 # If we take one of the complex examples...
 # 
-# style inventory_side_menu_vbox_interaction_throwaway_textbutton
+# style inventory_side_menu_vbox_interaction_discard_textbutton
 # 
 # inventory_ is a prefix all styles here have
 # side_menu is a frame containing everything on the right side.
 # vbox_interaction is a name I chose for the vbox containing most buttons.
-# throwaway_textbutton finally points at the textbutton of "Throw Away".
+# discard_textbutton finally points at the textbutton of "Throw Away".
 
 #---------------
 
@@ -230,11 +230,11 @@ style inventory_side_menu_vbox_interaction_use_textbutton_text:
 #---------------
 
 # The Throw Away textbutton.
-style inventory_side_menu_vbox_interaction_throwaway_textbutton:
+style inventory_side_menu_vbox_interaction_discard_textbutton:
     xalign 0.5
 
 # The Throw Away textbutton - Text part.
-style inventory_side_menu_vbox_interaction_throwaway_textbutton_text:
+style inventory_side_menu_vbox_interaction_discard_textbutton_text:
     insensitive_color "aaaaaa7f"
     idle_color "aaa"
     hover_color "c60"
@@ -526,13 +526,13 @@ screen inventory_screen( how_to_leave = "return" ):
                 if lezInv_settings.show_throw_away_button:
 
                     # The Throw Away button.
-                    textbutton "Throw Away":
+                    textbutton "Discard":
 
-                        style_suffix "vbox_interaction_throwaway_textbutton" # Style: inventory_side_menu_vbox_interaction_throwaway_textbutton
+                        style_suffix "vbox_interaction_discard_textbutton" # Style: inventory_side_menu_vbox_interaction_discard_textbutton
 
                         # Can be clicked if an item is Selected.
                         sensitive inventory.selected
-                        action Function(inventory.remove)
+                        action Function(inventory.discard)
 
             # The Return button. Closes the Inventory.
             textbutton "Return":
