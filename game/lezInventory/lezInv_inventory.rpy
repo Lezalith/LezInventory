@@ -269,7 +269,6 @@ init -900 python:
                 # *** It cannot just be self.equipped_item, since remove() will call unequip() again.
                 self.remove(i)
 
-                # TODO: Create an example on consumed_on_unequip.
 
         # Use an Item.
         # If item is not given, tries to use currently selected_item.

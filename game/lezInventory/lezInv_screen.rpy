@@ -351,20 +351,6 @@ screen inventory_screen( how_to_leave = "return" ):
 
                         add lezInv_settings.equipped_highlight_slot_image align (0.5, 0.5)
 
-                    #######################################################################
-                    # Used before Slots got different backgrounds through "selected" below.
-                    # Adds the same marker from Equipped slot
-                    # to a Selected slot, in different color.
-                    #
-                    # # Test whether this slot is Selected.
-                    # if inventory.is_selected(index):
-                    #
-                    #     # Custom screen statement. Check 01marker.rpy.
-                    #     marker:
-                    #         color "f00"
-                    #         xysize (150, 150)
-                    ##################################
-
                     # We further use .is_selected as means of telling Ren'Py
                     # when the button is selected, for example for background purposes.
                     selected inventory.is_selected(item)
