@@ -300,7 +300,7 @@ init -900 python:
         # Discard an Item.
         # If item is not given, tries to use currently selected_item.
         # If item is given, a specific item is Used. It HAS TO be present in the inventory.
-        def discard(self, item = None):
+        def discard(self, item = None, count = 1):
 
             # Specific item not given.
             if item is None:
@@ -320,7 +320,7 @@ init -900 python:
             item.discarded(self)
 
             # Remove the Item from the Inventory.
-            self.remove(item)
+            self.remove(item, count = count)
 
         # Lets us read equipped_item with Inventory.equipped
         @property
