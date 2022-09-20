@@ -35,24 +35,11 @@ label apricot_label(self_item):
         "Durian.":
             $ r = Durian( "Durian" , "World's smelliest fruit, supposedly." , "lezInventory/example_items/images/08_Durian.png" )
 
-        "Grapes.":
-            $ r = Grapes( "Grapes" , "So many balls..." , "lezInventory/example_items/images/11_Grapes_Green.png" )
-
-        "Lemon.":
-            $ r = Lemon( "Lemon" , "Not good in combination with other fruits." , "lezInventory/example_items/images/15_Lemon.png" ) 
-
         "Apple.":
-            $ r = Item( "Apple" , "The King of all the fruits." , "lezInventory/example_items/images/16_Apple.png" )
-
-        "Cherries.":
-            $ r = Item( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png" )
+            $ r = Apple( "Apple" , "The King of all the fruits." , "lezInventory/example_items/images/16_Apple.png" )
 
         "Orange.":
-            $ r = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "lezInventory/example_items/images/17_Orange.png" )
-
-        # "Cranberries.":
-
-        #     $ r = Item( "Cranberries" , "Ever heard of \"Hermelín\"?" , "lezInventory/example_items/images/03_Cranberry.png" )
+            $ r = Item( "Orange" , "Lezalith's massive stash of oranges for making juice." , image = "lezInventory/example_items/images/17_Orange.png" , stackable = True, stack_size = 2579)
 
         "Kiwi.":
             $ r = Item( "Kiwi" , "Great as a tea with strawberries." , "lezInventory/example_items/images/14_Kiwi.png" )
@@ -63,6 +50,39 @@ label apricot_label(self_item):
         "Dragon fruit.":
             $ r = dragonF( "Dragon Fruit" , "White as snow on the inside." , "lezInventory/example_items/images/07_Dragonfruit.png" )
 
+        "Passion fruit.":
+            $ r = passionF( "Passion Fruit" , "About as tropical as you can get." , "lezInventory/example_items/images/20_Passionfruit.png" )
+
+        "Plum.":
+            $ r = Plum( "Plum" , "Evergrowing in power, dark like a deep abyss." , "lezInventory/example_items/images/06_Plum.png", stackable = True, stack_size = 9999 )
+
+        "Pear.":
+            $ r = Pear( name = "Pear", desc = "Every bite has a different,\nbut always sweet taste.", stackable = True, stack_size = 9999,
+                        images = ["lezInventory/example_items/images/18_Pear.png",
+                                  "lezInventory/example_items/images/18_Pear_1.png",
+                                  "lezInventory/example_items/images/18_Pear_2.png",
+                                  "lezInventory/example_items/images/18_Pear_3.png",
+                                  "lezInventory/example_items/images/18_Pear_4.png",
+                                  "lezInventory/example_items/images/18_Pear_5.png",
+                                  "lezInventory/example_items/images/18_Pear_6.png",
+                                  "lezInventory/example_items/images/18_Pear_7.png",
+                                  "lezInventory/example_items/images/18_Pear_8.png"] )
+
+        "Grapefruit.":
+            $ r = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "lezInventory/example_items/images/12_Grapefruit.png" )
+
+        "Grapes.":
+            $ r = Grapes( "Grapes" , "So many balls..." , "lezInventory/example_items/images/11_Grapes_Green.png" )
+
+        "Lemon.":
+            $ r = Lemon( "Lemon" , "Not good in combination with other fruits." , "lezInventory/example_items/images/15_Lemon.png" ) 
+
+        "Cranberries.":
+            $ r = Cranberries( "Cranberries" , "A handful of red berries." , "lezInventory/example_items/images/03_Cranberry.png" )
+
+        "Cherries.":
+            $ r = Cherries( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png", stackable = True, stack_size = 9999 )
+
         "Guava.":
             $ r = Guava( "Guava" , "Kinda random, to be honest." , "lezInventory/example_items/images/13_Guava.png" )
 
@@ -72,20 +92,11 @@ label apricot_label(self_item):
         "Watermelon.":
             $ r = WMelon( "Watermelon" , "So big, almost seems endless. And slippery." , "lezInventory/example_items/images/23_Watermelon.png" )
 
-        "Passion fruit.":
-            $ r = passionF( "Passion Fruit" , "About as tropical as you can get." , "lezInventory/example_items/images/20_Passionfruit.png" )
-
-        "Grapefruit.":
-            $ r = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "lezInventory/example_items/images/12_Grapefruit.png" )
-
         "Peach...?":
             $ r = Peach( "Peachpricot" , "An intriguing combination\nof peach and apricot.", image = "lezInventory/example_items/images/0X_Peachpricot.png" )
 
         "Fig.":
             $ r = Fig( "Fig" , "Strange fruit from the Mediterranean." , "lezInventory/example_items/images/09_Fig.png" )
-
-        "Plum.":
-            $ r = Plum( "Plum" , "Evergrowing in power, dark like a deep abyss." , "lezInventory/example_items/images/06_Plum.png", stackable = True, stack_size = 9999 )
 
 
     # Note: Similar functionality to Guava.
@@ -105,7 +116,8 @@ label apricot_label(self_item):
 
             # Once we encounter the index where Apricot is, replace it with the selected item.
             if key == self_item:
-                d[r] = 1
+
+                d[r] = r.stack_size
 
             # Otherwise just copy over the info from the original Inventory.
             else:

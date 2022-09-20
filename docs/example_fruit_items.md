@@ -76,13 +76,6 @@ However, it is stackable, with many Oranges present in the inventory. I dare you
 ```py
 default orange = Item( "Orange" , "Lezalith's massive stash of oranges for making juice." , image = "lezInventory/example_items/images/17_Orange.png" , stackable = True, stack_size = 2579)
 ```
-# Cherries
-![01_Cherry_Red](https://user-images.githubusercontent.com/56970124/190860521-79a1b350-568f-4d7f-85e8-0d61c2f86f88.png)
-
-Cherries are a passive item, not usable nor equippable.
-```py
-default cherries = Item( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png" )
-```
 # Kiwi
 ![14_Kiwi](https://user-images.githubusercontent.com/56970124/190860587-0eb1e321-74f3-4d9c-be6b-718bed82e939.png)
 
@@ -587,6 +580,126 @@ screen cranberries_screen():
             text "You've had [cranberries.counter] cranberry berries so far!"
             textbutton "(Hide this)" action Hide("cranberries_screen") xalign 0.5
 ```
+# Cherries
+![01_Cherry_Red](https://user-images.githubusercontent.com/56970124/191299116-a75a2f39-2042-4ce9-8ebd-7fdeb5f81c10.png)
+
+Cherries is a usable stackable item.
+
+They are more of a showoff of my CDD coding skills than anything else. When used, it adds a new instance of a simple CDD on screen.
+
+```py
+init -800 python:
+
+    # Used for generating random tag name.
+    from random import randrange
+
+    # Class of the Durian.
+    class Cherries(Item):
+
+        # This marks the Item as usable.
+        usable = True
+
+        ## __init__ got ommited, as this Item doesn't take/need any extra arguments.
+
+        # What happens when the Item is used.
+        def used(self, Inventory):
+
+            # A random string for the tag is generated, so that the cherry seed
+            # can be shown on screen multiple times, rather than one being re-shown.
+            #
+            # The random string is a number of 5-8 digits.
+            tag = str(randrange(10000, 99999999))
+
+            # Show a new CherrySeed CDD on screen.
+            return renpy.show( tag, layer = "screens", zorder = 20, what = CherrySeed() )
+
+# Durian defined.
+default cherries = Cherries( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png", stackable = True, stack_size = 9999 )
+
+init -870 python:
+
+    # Used for determining the random starting position of the seed.
+    from random import randrange
+
+    # Used to calculate an arc movement.
+    from math import sin
+
+    # Sets the starting ypos to random within the given range.
+    def cherry_seed_starting_pos(trans, st, at):
+
+        # Choose a random y, within the screen boundaries.
+        # -128 compensates for image size.
+        # +250 compensates for the arc image will be moving on (value is arc_height from cherry_seed_arc + 50, to allow partial overlap)
+        trans.ypos = randrange(0, config.screen_height - 128 + 250) 
+        
+        # Finish this function.
+        return None
+
+    def cherry_seed_arc(trans, st, at):
+
+        # Aprox. time of the seed crossing the right side of the screen.
+        duration = 2.0
+
+        # Both determine the arc's shape.
+        arc_height = 200
+        arc_shape = 0.7
+
+        # Finish this function so that the transform doesn't keep on updating endlessly after getting offscreen.
+        if st >= duration:
+            return None
+
+        # Update yoffset.
+        # This is calculated from a formula which has the displayables's current display time inside (st).
+        trans.yoffset = int(-arc_height * sin(st / arc_shape) )
+        
+        # Call this function again - continue the transform.
+        return 0
+
+# Transform that starts the image at random ypos on the left,
+# before moving it to the right with a vertical arc.
+init -860:
+    transform cherry_seed_transform():
+
+        # First set random ypos.
+        function cherry_seed_starting_pos
+
+        # At the same time, calculate yoffset for the arc movement.
+        parallel:
+            function cherry_seed_arc
+
+        # At the same time, move the seed to the right side of the screen.
+        parallel:
+            linear 1.5 xpos 2000
+
+# CherrySeed CDD.
+init -850 python:
+
+    class CherrySeed(renpy.Displayable):
+
+        # What happens upon the definition.
+        def __init__(self, **kwargs):
+
+            # Pass additional properties on to the renpy.Displayable constructor.
+            super(CherrySeed, self).__init__(**kwargs)
+
+            # The child.
+            i = renpy.displayable( "lezInventory/example_items/images/0X_CherrySeed.png" )
+
+            # That child will be moving at this transform.
+            self.child = At(i, cherry_seed_transform)
+
+        # Runs when the screen is rendered.
+        def render(self, width, height, st, at):
+
+            # Create a render, basically a canvas onto which we can place things.
+            render = renpy.Render(width, height)
+
+            # Place the seed image.
+            render.place(self.child)
+
+            # Return the render to show it.
+            return render
+```
 # Guava
 ![13_Guava](https://user-images.githubusercontent.com/56970124/190861304-ac106701-b674-4238-9ab2-44c038403441.png)
 
@@ -667,7 +780,7 @@ default guava = Guava( "Guava" , "Kinda random, to be honest." , "lezInventory/e
 
 Apricot is a usable item.
 
-When used, it calls a label where there is a custom **menu** prepared. In the menu, all the example fruit items are listed. The used Apricot transforms into the fruit selected, keeping it's place in the inventory.
+When used, it calls a label where there is a custom **menu** prepared. In the menu, all the example fruit items are listed. The used Apricot transforms into the fruit selected, keeping it's place in the inventory. If it's a stackable item, it sets the count to its stack_size.
 
 ```py
 init -800 python:    
@@ -691,8 +804,6 @@ init -800 python:
 # Apricot defined.
 default apricot = Apricot( "Apricot" , "Orange. Sweet. Delicious." , "lezInventory/example_items/images/21_Apricot.png" )
 
-
-# Label that we'll enter by Using the Item.
 label apricot_label(self_item):
 
     # All of the Menu options define a new Item that will be added.
@@ -703,24 +814,11 @@ label apricot_label(self_item):
         "Durian.":
             $ r = Durian( "Durian" , "World's smelliest fruit, supposedly." , "lezInventory/example_items/images/08_Durian.png" )
 
-        "Grapes.":
-            $ r = Grapes( "Grapes" , "So many balls..." , "lezInventory/example_items/images/11_Grapes_Green.png" )
-
-        "Lemon.":
-            $ r = Lemon( "Lemon" , "Not good in combination with other fruits." , "lezInventory/example_items/images/15_Lemon.png" ) 
-
         "Apple.":
-            $ r = Item( "Apple" , "The King of all the fruits." , "lezInventory/example_items/images/16_Apple.png" )
-
-        "Cherries.":
-            $ r = Item( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png" )
+            $ r = Apple( "Apple" , "The King of all the fruits." , "lezInventory/example_items/images/16_Apple.png" )
 
         "Orange.":
-            $ r = Item( "Orange" , "This Inventory's creator is addicted to orange juice." , "lezInventory/example_items/images/17_Orange.png" )
-
-        # "Cranberries.":
-
-        #     $ r = Item( "Cranberries" , "Ever heard of \"Hermelín\"?" , "lezInventory/example_items/images/03_Cranberry.png" )
+            $ r = Item( "Orange" , "Lezalith's massive stash of oranges for making juice." , image = "lezInventory/example_items/images/17_Orange.png" , stackable = True, stack_size = 2579)
 
         "Kiwi.":
             $ r = Item( "Kiwi" , "Great as a tea with strawberries." , "lezInventory/example_items/images/14_Kiwi.png" )
@@ -731,6 +829,39 @@ label apricot_label(self_item):
         "Dragon fruit.":
             $ r = dragonF( "Dragon Fruit" , "White as snow on the inside." , "lezInventory/example_items/images/07_Dragonfruit.png" )
 
+        "Passion fruit.":
+            $ r = passionF( "Passion Fruit" , "About as tropical as you can get." , "lezInventory/example_items/images/20_Passionfruit.png" )
+
+        "Plum.":
+            $ r = Plum( "Plum" , "Evergrowing in power, dark like a deep abyss." , "lezInventory/example_items/images/06_Plum.png", stackable = True, stack_size = 9999 )
+
+        "Pear.":
+            $ r = Pear( name = "Pear", desc = "Every bite has a different,\nbut always sweet taste.", stackable = True, stack_size = 9999,
+                        images = ["lezInventory/example_items/images/18_Pear.png",
+                                  "lezInventory/example_items/images/18_Pear_1.png",
+                                  "lezInventory/example_items/images/18_Pear_2.png",
+                                  "lezInventory/example_items/images/18_Pear_3.png",
+                                  "lezInventory/example_items/images/18_Pear_4.png",
+                                  "lezInventory/example_items/images/18_Pear_5.png",
+                                  "lezInventory/example_items/images/18_Pear_6.png",
+                                  "lezInventory/example_items/images/18_Pear_7.png",
+                                  "lezInventory/example_items/images/18_Pear_8.png"] )
+
+        "Grapefruit.":
+            $ r = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "lezInventory/example_items/images/12_Grapefruit.png" )
+
+        "Grapes.":
+            $ r = Grapes( "Grapes" , "So many balls..." , "lezInventory/example_items/images/11_Grapes_Green.png" )
+
+        "Lemon.":
+            $ r = Lemon( "Lemon" , "Not good in combination with other fruits." , "lezInventory/example_items/images/15_Lemon.png" ) 
+
+        "Cranberries.":
+            $ r = Cranberries( "Cranberries" , "A handful of red berries." , "lezInventory/example_items/images/03_Cranberry.png" )
+
+        "Cherries.":
+            $ r = Cherries( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png", stackable = True, stack_size = 9999 )
+
         "Guava.":
             $ r = Guava( "Guava" , "Kinda random, to be honest." , "lezInventory/example_items/images/13_Guava.png" )
 
@@ -740,20 +871,11 @@ label apricot_label(self_item):
         "Watermelon.":
             $ r = WMelon( "Watermelon" , "So big, almost seems endless. And slippery." , "lezInventory/example_items/images/23_Watermelon.png" )
 
-        "Passion fruit.":
-            $ r = passionF( "Passion Fruit" , "About as tropical as you can get." , "lezInventory/example_items/images/20_Passionfruit.png" )
-
-        "Grapefruit.":
-            $ r = Grapefruit( "Grapefruit" , "It's so bitter. How can people eat this?" , "lezInventory/example_items/images/12_Grapefruit.png" )
-
         "Peach...?":
             $ r = Peach( "Peachpricot" , "An intriguing combination\nof peach and apricot.", image = "lezInventory/example_items/images/0X_Peachpricot.png" )
 
         "Fig.":
             $ r = Fig( "Fig" , "Strange fruit from the Mediterranean." , "lezInventory/example_items/images/09_Fig.png" )
-
-        "Plum.":
-            $ r = Plum( "Plum" , "Evergrowing in power, dark like a deep abyss." , "lezInventory/example_items/images/06_Plum.png", stackable = True, stack_size = 9999 )
 
 
     # Note: Similar functionality to Guava.
@@ -773,7 +895,8 @@ label apricot_label(self_item):
 
             # Once we encounter the index where Apricot is, replace it with the selected item.
             if key == self_item:
-                d[r] = 1
+
+                d[r] = r.stack_size
 
             # Otherwise just copy over the info from the original Inventory.
             else:

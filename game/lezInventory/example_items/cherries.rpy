@@ -27,7 +27,7 @@ init -800 python:
             return renpy.show( tag, layer = "screens", zorder = 20, what = CherrySeed() )
 
 # Durian defined.
-default cherries = Cherries( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png", stackable = True, stack_size = 9999 )
+default cherries = Cherries( "Cherries" , "Spit the seeds at your foes!" , "lezInventory/example_items/images/01_Cherry_Red.png", stackable = True, stack_size = 250 )
 
 init -870 python:
 
