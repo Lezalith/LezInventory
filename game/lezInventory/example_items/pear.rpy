@@ -50,7 +50,7 @@ init -800 python:
                 if i == len(self.images) - 1:
 
                     # Here is a 50/50 chance to keep the special image.
-                    if randrange(0, 1) == 0:
+                    if randrange(0, 2) == 1:
 
                         # If it doesn't pass, reroll instantly, giving the special image
                         # one more chance to be selected.
