@@ -11,6 +11,11 @@ If keyword argument **count** is given, multiple copies of the Item can be remov
 ```py
 inventory.remove(item = None, count = 1)
 ```
+Discards an Item. Difference between **remove** and **discard** is that **discard** calls the item's **discarded** before removing the item. **item** can be omitted, in which case the currently **selected** Item is used, or nothing is if nothing is selected.
+Item being discarded HAS TO BE IN THE INVENTORY.
+```py
+inventory.discard(item = None)
+```
 Resets the Inventory to the empty state. Takes no arguments.
 ```py
 inventory.clear()
